@@ -24,5 +24,17 @@ impl Metadata {
     }
 }
 
+pub trait HasMetadata {
+    fn metadata(&self) -> &Metadata;
+    fn metadata_mut(&mut self) -> &mut Metadata;
+
+    fn touch(&mut self) {
+        let now = UtcDateTime::now();
+        let meta = self.metadata_mut();
+        meta.updated_at = now;
+        meta.version += 1;
+    }
+}
+
 #[cfg(test)]
 mod tests {}
