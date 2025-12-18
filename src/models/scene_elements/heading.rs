@@ -37,7 +37,7 @@ pub enum SceneTimeOfDay {
     Continuous,
 }
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct SceneHeading {
     camera_location: CameraLocation,
     scene_location: SceneLocation,

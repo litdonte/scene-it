@@ -4,7 +4,7 @@ pub mod action;
 pub mod dialogue;
 pub mod heading;
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub enum SceneElement {
     Action(SceneAction),
     Dialogue(Dialogue),

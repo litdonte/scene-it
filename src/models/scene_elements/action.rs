@@ -1,6 +1,6 @@
 use crate::{models::scene_elements::SceneElementError, utils};
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct SceneAction(String);
 
 impl SceneAction {

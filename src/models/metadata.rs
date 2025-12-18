@@ -1,6 +1,6 @@
 use time::UtcDateTime;
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct Metadata {
     pub created_at: UtcDateTime,
     pub updated_at: UtcDateTime,
