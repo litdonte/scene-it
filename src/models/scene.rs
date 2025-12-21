@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use crate::models::{
     Id,
-    metadata::Metadata,
+    metadata::{HasMetadata, Metadata},
     scene_elements::{SceneElement, heading::SceneHeading},
 };
 
@@ -50,6 +50,15 @@ impl Scene {
 
     pub fn id(&self) -> Id<Self> {
         self.id.clone()
+    }
+}
+
+impl HasMetadata for Scene {
+    fn metadata(&self) -> &Metadata {
+        &self.metadata
+    }
+    fn metadata_mut(&mut self) -> &mut Metadata {
+        &mut self.metadata
     }
 }
 
