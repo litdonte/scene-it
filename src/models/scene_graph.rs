@@ -1,6 +1,10 @@
 use std::collections::{HashMap, HashSet, VecDeque};
 
-use crate::models::{Id, scene::Scene, storyboard::StoryboardError};
+use crate::models::{
+    Id,
+    scene::Scene,
+    storyboard::{StoryboardError, StoryboardUpdate},
+};
 
 /// An ordering and relationship model for scenes that expresses what can come next.
 ///
@@ -24,7 +28,8 @@ impl SceneGraph {
     /// Adds a scene to the `SceneGraph`.  
     /// If the scene does not exist, it is initialized with an empty set of edges.
     pub fn add_scene(&mut self, scene_id: Id<Scene>) {
-        self.edges.entry(scene_id).or_default();
+        self.edges.entry(scene_id.clone()).or_default();
+        StoryboardUpdate::SceneAdded(scene_id);
     }
 
     /// Moves a scene from one parent scene to another.
@@ -47,7 +52,7 @@ impl SceneGraph {
         scene: Id<Scene>,
         from: Id<Scene>,
         to: Id<Scene>,
-    ) -> Result<(), StoryboardError> {
+    ) -> Result<StoryboardUpdate, StoryboardError> {
         if !self.edges.contains_key(&scene) {
             return Err(StoryboardError::UnknownScene(scene));
         }
@@ -75,10 +80,10 @@ impl SceneGraph {
         }
 
         if let Some(edges) = self.edges.get_mut(&to) {
-            edges.insert(scene);
+            edges.insert(scene.clone());
         }
 
-        Ok(())
+        Ok(StoryboardUpdate::Move { scene, from, to })
     }
 
     /// Determines whether `target` is reachable from `start` in the scene graph.
@@ -124,18 +129,25 @@ impl SceneGraph {
 
     /// Marks a scene as a root (entry point) in the `SceneGraph`.  
     /// The scene is added to the graph if it doesn't already exist.
-    pub fn add_root(&mut self, scene_id: Id<Scene>) {
+    pub fn add_root(&mut self, scene_id: Id<Scene>) -> StoryboardUpdate {
         self.add_scene(scene_id.clone());
-        self.roots.insert(scene_id);
+        self.roots.insert(scene_id.clone());
+        StoryboardUpdate::SceneSetAsRoot(scene_id)
     }
 
     /// Adds a directed edge from `from` to `to` in the graph, representing a possible next scene.  
     /// If the `to` scene does not exist in the graph, it is added automatically.  
     ///
     /// Example: Scene 3 -> Scene 4 or Scene 3 -> Scene 5
-    pub fn add_edge(&mut self, from: Id<Scene>, to: Id<Scene>) {
+    pub fn add_edge(&mut self, from: Id<Scene>, to: Id<Scene>) -> StoryboardUpdate {
+        self.add_scene(from.clone());
         self.add_scene(to.clone());
-        self.edges.get_mut(&from).unwrap().insert(to);
+
+        if let Some(node_edges) = self.edges.get_mut(&from) {
+            node_edges.insert(to.clone());
+        }
+
+        StoryboardUpdate::LinkedScenes { from, to }
     }
 
     /// Removes a scene from the `SceneGraph`.
@@ -152,7 +164,10 @@ impl SceneGraph {
     ///
     /// Returns `StoryboardError::UnknownScene` if the scene does not exist
     /// in the graph.
-    pub fn delete_scene(&mut self, scene_id: Id<Scene>) -> Result<(), StoryboardError> {
+    pub fn delete_scene(
+        &mut self,
+        scene_id: Id<Scene>,
+    ) -> Result<StoryboardUpdate, StoryboardError> {
         // Remove from edges
         if self.edges.remove(&scene_id).is_none() {
             return Err(StoryboardError::UnknownScene(scene_id));
@@ -165,7 +180,7 @@ impl SceneGraph {
             edges.remove(&scene_id);
         }
 
-        Ok(())
+        Ok(StoryboardUpdate::SceneDeleted(scene_id))
     }
 
     /// Removes a directed edge from one scene to another.
@@ -181,15 +196,19 @@ impl SceneGraph {
     ///
     /// Returns `StoryboardError::UnknownScene` if the `from` scene does not
     /// exist in the graph.
-    pub fn delete_edge(&mut self, from: Id<Scene>, to: Id<Scene>) -> Result<(), StoryboardError> {
+    pub fn delete_edge(
+        &mut self,
+        from: Id<Scene>,
+        to: Id<Scene>,
+    ) -> Result<StoryboardUpdate, StoryboardError> {
         let edges = self
             .edges
             .get_mut(&from)
-            .ok_or(StoryboardError::UnknownScene(from))?;
+            .ok_or(StoryboardError::UnknownScene(from.clone()))?;
 
         edges.remove(&to);
 
-        Ok(())
+        Ok(StoryboardUpdate::EdgeDeleted { from, to })
     }
 
     /// Returns an iterator over all scenes that are direct successors of `scene_id`.  
