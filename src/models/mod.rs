@@ -3,10 +3,9 @@ mod character;
 mod metadata;
 mod scene;
 mod scene_elements;
+mod scene_graph;
 mod storyboard;
 mod title;
-
-pub use scene::Scene;
 
 use std::{
     fmt,
