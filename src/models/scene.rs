@@ -23,6 +23,10 @@ impl SceneVariant {
             metadata: Metadata::new(),
         }
     }
+
+    pub fn id(&self) -> Id<Self> {
+        self.id.clone()
+    }
 }
 
 #[derive(Debug, PartialEq, Eq, Clone)]
@@ -36,14 +40,11 @@ pub struct Scene {
 impl Scene {
     pub fn new() -> Self {
         let variant = SceneVariant::new();
-        let variant_id = variant.id.clone();
-        let mut variants = HashMap::new();
-        variants.insert(variant_id.clone(), variant);
 
         Self {
             id: Id::new(),
-            active_variant: variant_id,
-            variants,
+            active_variant: variant.id(),
+            variants: HashMap::from([(variant.id(), variant)]),
             metadata: Metadata::new(),
         }
     }
