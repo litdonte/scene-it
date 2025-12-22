@@ -142,7 +142,7 @@ impl Storyboard {
     /// This registers the scene in both the scene graph (for ordering and
     /// relationships) and the scene bank (for scene data storage).
     pub fn add_scene(&mut self, scene: Scene) {
-        self.scene_graph.add_scene(scene.id());
+        self.scene_graph.add_scene(&scene.id());
         self.scene_bank.insert(scene.id(), scene);
     }
 
@@ -153,9 +153,9 @@ impl Storyboard {
     /// On success, affected scenes have their metadata updated.
     pub fn move_scene(
         &mut self,
-        scene: Id<Scene>,
-        from: Id<Scene>,
-        to: Id<Scene>,
+        scene: &Id<Scene>,
+        from: &Id<Scene>,
+        to: &Id<Scene>,
     ) -> Result<(), StoryboardError> {
         let graph_update = self.scene_graph.move_scene(scene, from, to)?;
         self.apply_update(graph_update);
@@ -228,7 +228,7 @@ impl Storyboard {
     /// ```
     pub fn delete_scene(&mut self, scene: &Id<Scene>) -> Result<(), StoryboardError> {
         if let Some(scene) = self.scene_bank.remove(scene) {
-            let graph_update = self.scene_graph.delete_scene(scene.id())?;
+            let graph_update = self.scene_graph.delete_scene(&scene.id())?;
             self.apply_update(graph_update);
         }
         Ok(())
@@ -237,7 +237,7 @@ impl Storyboard {
     /// Marks a scene as a root entry point in the scene graph.
     ///
     /// Root scenes represent valid starting points for story traversal.
-    pub fn set_scene_as_root(&mut self, scene_id: Id<Scene>) {
+    pub fn set_scene_as_root(&mut self, scene_id: &Id<Scene>) {
         self.scene_graph.add_root(scene_id);
     }
 
@@ -252,13 +252,13 @@ impl Storyboard {
     ///
     /// The `from` scene will be considered a predecessor of the `to` scene
     /// during traversal and linearization. Both scenes must already exist.
-    pub fn link_scenes(&mut self, from: Id<Scene>, to: Id<Scene>) -> Result<(), StoryboardError> {
+    pub fn link_scenes(&mut self, from: &Id<Scene>, to: &Id<Scene>) -> Result<(), StoryboardError> {
         if !self.scene_bank.contains_key(&from) {
-            return Err(StoryboardError::UnknownScene(from));
+            return Err(StoryboardError::UnknownScene(from.clone()));
         }
 
         if !self.scene_bank.contains_key(&to) {
-            return Err(StoryboardError::UnknownScene(to));
+            return Err(StoryboardError::UnknownScene(to.clone()));
         }
 
         let graph_update = self.scene_graph.add_edge(from, to);
@@ -306,7 +306,7 @@ impl Storyboard {
             return Err(StoryboardError::UnknownScene(to.clone()));
         }
 
-        let graph_update = self.scene_graph.delete_edge(from.clone(), to.clone())?;
+        let graph_update = self.scene_graph.delete_edge(from, to)?;
         self.apply_update(graph_update);
         Ok(())
     }

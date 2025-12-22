@@ -27,9 +27,9 @@ impl SceneGraph {
 
     /// Adds a scene to the `SceneGraph`.  
     /// If the scene does not exist, it is initialized with an empty set of edges.
-    pub fn add_scene(&mut self, scene_id: Id<Scene>) {
+    pub fn add_scene(&mut self, scene_id: &Id<Scene>) {
         self.edges.entry(scene_id.clone()).or_default();
-        StoryboardUpdate::SceneAdded(scene_id);
+        StoryboardUpdate::SceneAdded(scene_id.clone());
     }
 
     /// Moves a scene from one parent scene to another.
@@ -49,25 +49,29 @@ impl SceneGraph {
     /// ```
     pub fn move_scene(
         &mut self,
-        scene: Id<Scene>,
-        from: Id<Scene>,
-        to: Id<Scene>,
+        scene: &Id<Scene>,
+        from: &Id<Scene>,
+        to: &Id<Scene>,
     ) -> Result<StoryboardUpdate, StoryboardError> {
         if !self.edges.contains_key(&scene) {
-            return Err(StoryboardError::SceneNotInGraph(scene));
+            return Err(StoryboardError::SceneNotInGraph(scene.clone()));
         }
 
         if !self.edges.contains_key(&from) {
-            return Err(StoryboardError::SceneNotInGraph(from));
+            return Err(StoryboardError::SceneNotInGraph(from.clone()));
         }
 
         if !self.edges.contains_key(&to) {
-            return Err(StoryboardError::SceneNotInGraph(to));
+            return Err(StoryboardError::SceneNotInGraph(to.clone()));
         }
 
         if let Some(edges) = self.edges.get_mut(&from) {
             if !edges.remove(&scene) {
-                return Err(StoryboardError::InvalidMove { scene, from, to });
+                return Err(StoryboardError::InvalidMove {
+                    scene: scene.clone(),
+                    from: from.clone(),
+                    to: to.clone(),
+                });
             }
         }
 
@@ -76,14 +80,18 @@ impl SceneGraph {
                 edges.insert(scene.clone());
             }
 
-            return Err(StoryboardError::CycleDetected(scene, to));
+            return Err(StoryboardError::CycleDetected(scene.clone(), to.clone()));
         }
 
         if let Some(edges) = self.edges.get_mut(&to) {
             edges.insert(scene.clone());
         }
 
-        Ok(StoryboardUpdate::Move { scene, from, to })
+        Ok(StoryboardUpdate::Move {
+            scene: scene.clone(),
+            from: from.clone(),
+            to: to.clone(),
+        })
     }
 
     /// Determines whether `target` is reachable from `start` in the scene graph.
@@ -129,25 +137,28 @@ impl SceneGraph {
 
     /// Marks a scene as a root (entry point) in the `SceneGraph`.  
     /// The scene is added to the graph if it doesn't already exist.
-    pub fn add_root(&mut self, scene_id: Id<Scene>) -> StoryboardUpdate {
-        self.add_scene(scene_id.clone());
+    pub fn add_root(&mut self, scene_id: &Id<Scene>) -> StoryboardUpdate {
+        self.add_scene(scene_id);
         self.roots.insert(scene_id.clone());
-        StoryboardUpdate::SceneSetAsRoot(scene_id)
+        StoryboardUpdate::SceneSetAsRoot(scene_id.clone())
     }
 
     /// Adds a directed edge from `from` to `to` in the graph, representing a possible next scene.  
     /// If the `to` scene does not exist in the graph, it is added automatically.  
     ///
     /// Example: Scene 3 -> Scene 4 or Scene 3 -> Scene 5
-    pub fn add_edge(&mut self, from: Id<Scene>, to: Id<Scene>) -> StoryboardUpdate {
-        self.add_scene(from.clone());
-        self.add_scene(to.clone());
+    pub fn add_edge(&mut self, from: &Id<Scene>, to: &Id<Scene>) -> StoryboardUpdate {
+        self.add_scene(from);
+        self.add_scene(to);
 
         if let Some(node_edges) = self.edges.get_mut(&from) {
             node_edges.insert(to.clone());
         }
 
-        StoryboardUpdate::LinkedScenes { from, to }
+        StoryboardUpdate::LinkedScenes {
+            from: from.clone(),
+            to: to.clone(),
+        }
     }
 
     /// Removes a scene from the `SceneGraph`.
@@ -166,21 +177,21 @@ impl SceneGraph {
     /// in the graph.
     pub fn delete_scene(
         &mut self,
-        scene_id: Id<Scene>,
+        scene_id: &Id<Scene>,
     ) -> Result<StoryboardUpdate, StoryboardError> {
         // Remove from edges
         if self.edges.remove(&scene_id).is_none() {
-            return Err(StoryboardError::SceneNotInGraph(scene_id));
+            return Err(StoryboardError::SceneNotInGraph(scene_id.clone()));
         }
         // Remove from roots, if needed
-        self.roots.remove(&scene_id);
+        self.roots.remove(scene_id);
 
         // Remove from scenes connected by edge
         for edges in self.edges.values_mut() {
-            edges.remove(&scene_id);
+            edges.remove(scene_id);
         }
 
-        Ok(StoryboardUpdate::SceneDeleted(scene_id))
+        Ok(StoryboardUpdate::SceneDeleted(scene_id.clone()))
     }
 
     /// Removes a directed edge from one scene to another.
@@ -198,17 +209,20 @@ impl SceneGraph {
     /// exist in the graph.
     pub fn delete_edge(
         &mut self,
-        from: Id<Scene>,
-        to: Id<Scene>,
+        from: &Id<Scene>,
+        to: &Id<Scene>,
     ) -> Result<StoryboardUpdate, StoryboardError> {
         let edges = self
             .edges
-            .get_mut(&from)
+            .get_mut(from)
             .ok_or(StoryboardError::SceneNotInGraph(from.clone()))?;
 
-        edges.remove(&to);
+        edges.remove(to);
 
-        Ok(StoryboardUpdate::EdgeDeleted { from, to })
+        Ok(StoryboardUpdate::EdgeDeleted {
+            from: from.clone(),
+            to: to.clone(),
+        })
     }
 
     /// Returns an iterator over all scenes that are direct successors of `scene_id`.  
@@ -264,9 +278,9 @@ impl SceneGraph {
     /// ```
     /// scene_graph.print_from(Some(scene_id));
     /// ```
-    pub fn print_from(&self, from: Option<Id<Scene>>) {
+    pub fn print_from(&self, from: Option<&Id<Scene>>) {
         if let Some(root) = from {
-            return self.print_subtree(&root);
+            return self.print_subtree(root);
         }
 
         for root in &self.roots {
