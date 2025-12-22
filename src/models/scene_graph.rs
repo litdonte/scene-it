@@ -54,15 +54,15 @@ impl SceneGraph {
         to: Id<Scene>,
     ) -> Result<StoryboardUpdate, StoryboardError> {
         if !self.edges.contains_key(&scene) {
-            return Err(StoryboardError::UnknownScene(scene));
+            return Err(StoryboardError::SceneNotInGraph(scene));
         }
 
         if !self.edges.contains_key(&from) {
-            return Err(StoryboardError::UnknownScene(from));
+            return Err(StoryboardError::SceneNotInGraph(from));
         }
 
         if !self.edges.contains_key(&to) {
-            return Err(StoryboardError::UnknownScene(to));
+            return Err(StoryboardError::SceneNotInGraph(to));
         }
 
         if let Some(edges) = self.edges.get_mut(&from) {
@@ -170,7 +170,7 @@ impl SceneGraph {
     ) -> Result<StoryboardUpdate, StoryboardError> {
         // Remove from edges
         if self.edges.remove(&scene_id).is_none() {
-            return Err(StoryboardError::UnknownScene(scene_id));
+            return Err(StoryboardError::SceneNotInGraph(scene_id));
         }
         // Remove from roots, if needed
         self.roots.remove(&scene_id);
@@ -204,7 +204,7 @@ impl SceneGraph {
         let edges = self
             .edges
             .get_mut(&from)
-            .ok_or(StoryboardError::UnknownScene(from.clone()))?;
+            .ok_or(StoryboardError::SceneNotInGraph(from.clone()))?;
 
         edges.remove(&to);
 
