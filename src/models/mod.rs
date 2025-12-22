@@ -3,14 +3,19 @@ mod character;
 mod metadata;
 mod scene;
 mod scene_elements;
+mod scene_graph;
 mod storyboard;
 mod title;
 
-use std::{fmt, marker::PhantomData};
+use std::{
+    fmt,
+    hash::{Hash, Hasher},
+    marker::PhantomData,
+};
 use uuid::Uuid;
 
-#[derive(Debug, Clone, Hash, PartialEq, Eq, Copy)]
-struct Id<T> {
+#[derive(Debug, Clone, Copy)]
+pub struct Id<T> {
     value: Uuid,
     _kind: PhantomData<T>,
 }
@@ -40,5 +45,19 @@ impl<T> From<Uuid> for Id<T> {
             value: uuid,
             _kind: PhantomData,
         }
+    }
+}
+
+impl<T> PartialEq for Id<T> {
+    fn eq(&self, other: &Self) -> bool {
+        self.value == other.value
+    }
+}
+
+impl<T> Eq for Id<T> {}
+
+impl<T> Hash for Id<T> {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        self.value.hash(state);
     }
 }

@@ -1,10 +1,12 @@
+use std::collections::HashMap;
+
 use crate::models::{
     Id,
-    metadata::Metadata,
+    metadata::{HasMetadata, Metadata},
     scene_elements::{SceneElement, heading::SceneHeading},
 };
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct SceneVariant {
     id: Id<Self>,
     heading: Option<SceneHeading>,
@@ -21,13 +23,17 @@ impl SceneVariant {
             metadata: Metadata::new(),
         }
     }
+
+    pub fn id(&self) -> Id<Self> {
+        self.id.clone()
+    }
 }
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct Scene {
     id: Id<Self>,
     active_variant: Id<SceneVariant>,
-    variants: Vec<SceneVariant>,
+    variants: HashMap<Id<SceneVariant>, SceneVariant>,
     metadata: Metadata,
 }
 
@@ -37,14 +43,23 @@ impl Scene {
 
         Self {
             id: Id::new(),
-            active_variant: variant.id.clone(),
-            variants: vec![variant],
+            active_variant: variant.id(),
+            variants: HashMap::from([(variant.id(), variant)]),
             metadata: Metadata::new(),
         }
     }
 
     pub fn id(&self) -> Id<Self> {
         self.id.clone()
+    }
+}
+
+impl HasMetadata for Scene {
+    fn metadata(&self) -> &Metadata {
+        &self.metadata
+    }
+    fn metadata_mut(&mut self) -> &mut Metadata {
+        &mut self.metadata
     }
 }
 

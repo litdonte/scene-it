@@ -11,7 +11,7 @@ pub enum TitleError {
 /// Represent the title of the user's story.
 /// By default, the title is 'Untitled Storyboard',
 /// unless provided during storyboard setup.
-#[derive(Debug, PartialEq, Eq, Clone, Hash)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct Title(String);
 
 impl Default for Title {

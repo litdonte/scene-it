@@ -9,7 +9,7 @@ pub enum CharacterError {
     NameContainsControlChars,
 }
 
-#[derive(Debug, PartialEq, Eq, Hash, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct CharacterName(String);
 
 impl CharacterName {
@@ -32,7 +32,7 @@ impl CharacterName {
     }
 }
 
-#[derive(Debug, Hash, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Character {
     id: Id<Self>,
     name: CharacterName,

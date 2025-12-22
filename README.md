@@ -73,7 +73,7 @@ At its core, **Scene It** treats a story as a **linear path of scenes** within a
 
 ### **v0.2 — Scene Graph & Story Flow (In Progress)**
 
-- [ ] Directed graph for scene ordering
+- [x] Directed graph for scene ordering
 - [ ] Tools for reordering scenes
 - [ ] Visual TUI graph exploration (terminal-based UI)
 

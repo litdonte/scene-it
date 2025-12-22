@@ -6,7 +6,7 @@ use crate::{
     utils::{self, trim_input},
 };
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct Parenthetical(String);
 
 impl Parenthetical {
@@ -25,7 +25,7 @@ impl Parenthetical {
     }
 }
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct DialogueText(String);
 
 impl DialogueText {
@@ -48,13 +48,13 @@ impl DialogueText {
     }
 }
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub enum DialogueBlock {
     Text(DialogueText),
     Parenthetical(Parenthetical),
 }
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct Dialogue {
     id: Id<Self>,
     scene: Id<Scene>,
