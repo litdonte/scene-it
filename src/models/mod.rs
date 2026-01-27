@@ -5,6 +5,7 @@ mod scene;
 mod scene_elements;
 mod scene_graph;
 mod storyboard;
+mod summary;
 mod title;
 
 use std::{
