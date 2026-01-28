@@ -1,12 +1,13 @@
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 use crate::models::{
-    Id,
     metadata::{HasMetadata, Metadata},
-    scene_elements::{SceneElement, heading::SceneHeading},
+    scene_elements::{heading::SceneHeading, SceneElement},
+    Id,
 };
 
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct SceneVariant {
     id: Id<Self>,
     heading: Option<SceneHeading>,
@@ -29,7 +30,7 @@ impl SceneVariant {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct Scene {
     id: Id<Self>,
     active_variant: Id<SceneVariant>,

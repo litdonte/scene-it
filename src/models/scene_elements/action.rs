@@ -1,6 +1,7 @@
 use crate::{models::scene_elements::SceneElementError, utils};
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct SceneAction(String);
 
 impl SceneAction {

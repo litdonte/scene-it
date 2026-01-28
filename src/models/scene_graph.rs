@@ -1,9 +1,10 @@
+use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet, VecDeque};
 
 use crate::models::{
-    Id,
     scene::Scene,
     storyboard::{StoryboardError, StoryboardUpdate},
+    Id,
 };
 
 /// An ordering and relationship model for scenes that expresses what can come next.
@@ -11,7 +12,7 @@ use crate::models::{
 /// This structure stores only scene relationships (edges and entry points),
 /// not scene content. It supports branching paths, optional transitions,
 /// and alternate story flows.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SceneGraph {
     edges: HashMap<Id<Scene>, HashSet<Id<Scene>>>,
     roots: HashSet<Id<Scene>>, // Optional story entry points

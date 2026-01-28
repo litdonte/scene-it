@@ -1,9 +1,10 @@
 [package]
-name = "scene-it"
+name = "scene-it-engine"
 authors = ["Donte Littlejohn <aerymisprime@gmail.com>"]
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-time = "0.3.44"
-uuid = { version = "1.19.0", features = ["v4"] }
+serde = { version = "1.0.228", features = ["derive"] }
+time = { version = "0.3.44", features = ["serde"] }
+uuid = { version = "1.19.0", features = ["v4", "serde"] }

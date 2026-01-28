@@ -8,6 +8,9 @@ mod storyboard;
 mod summary;
 mod title;
 
+pub use storyboard::Storyboard;
+
+use serde::{Deserialize, Serialize};
 use std::{
     fmt,
     hash::{Hash, Hasher},
@@ -15,7 +18,7 @@ use std::{
 };
 use uuid::Uuid;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize)]
 pub struct Id<T> {
     value: Uuid,
     _kind: PhantomData<T>,

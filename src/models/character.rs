@@ -1,7 +1,8 @@
 use crate::{
-    models::{Id, metadata::Metadata},
+    models::{metadata::Metadata, Id},
     utils,
 };
+use serde::{Deserialize, Serialize};
 
 pub enum CharacterError {
     NameEmpty,
@@ -9,7 +10,7 @@ pub enum CharacterError {
     NameContainsControlChars,
 }
 
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct CharacterName(String);
 
 impl CharacterName {
@@ -32,7 +33,7 @@ impl CharacterName {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Character {
     id: Id<Self>,
     name: CharacterName,

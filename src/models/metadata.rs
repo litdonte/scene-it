@@ -1,8 +1,9 @@
+use serde::{Deserialize, Serialize};
 use time::UtcDateTime;
 
 use crate::utils;
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, Hash, PartialEq, Eq, Clone, Deserialize, Serialize)]
 pub struct RevisionNote(String);
 
 impl RevisionNote {
@@ -27,7 +28,7 @@ pub enum MetadataError {
     RevisionNoteHasControlChars,
 }
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, Hash, PartialEq, Eq, Clone, Deserialize, Serialize)]
 pub struct Metadata {
     pub created_at: UtcDateTime,
     pub updated_at: UtcDateTime,

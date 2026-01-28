@@ -1,12 +1,13 @@
 use crate::{models::scene_elements::SceneElementError, utils};
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, Hash, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub enum CameraLocation {
     Interior,
     Exterior,
 }
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, Hash, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct SceneLocation(String);
 
 impl SceneLocation {
@@ -25,7 +26,7 @@ impl SceneLocation {
     }
 }
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
+#[derive(Debug, Hash, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub enum SceneTimeOfDay {
     Morning,
     Dawn,
@@ -37,7 +38,7 @@ pub enum SceneTimeOfDay {
     Continuous,
 }
 
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct SceneHeading {
     camera_location: CameraLocation,
     scene_location: SceneLocation,

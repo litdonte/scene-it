@@ -1,7 +1,8 @@
 use crate::{
-    models::{Id, metadata::Metadata},
+    models::{metadata::Metadata, Id},
     utils,
 };
+use serde::{Deserialize, Serialize};
 
 pub enum AuthorError {
     EmptyName,
@@ -9,7 +10,7 @@ pub enum AuthorError {
     NameContainsControlChars,
 }
 
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct AuthorName(String);
 
 impl AuthorName {
@@ -40,7 +41,7 @@ impl AuthorName {
 /// Currently, it only takes the name of the author as an argument.
 ///
 /// TODO: Expand to include a full public/private profile with metadata.
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct Author {
     id: Id<Self>,
     name: AuthorName,

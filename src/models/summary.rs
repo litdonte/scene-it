@@ -1,3 +1,4 @@
+use serde::{Deserialize, Serialize};
 use std::ops::Deref;
 
 use crate::utils;
@@ -12,7 +13,7 @@ pub enum SummaryError {
 /// Represent the summary of the user's story.
 /// By default, the summary is empty,
 /// unless provided during storyboard setup.
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct Summary(String);
 
 impl Default for Summary {

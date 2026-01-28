@@ -1,13 +1,15 @@
 use std::collections::{HashMap, HashSet};
 
+use serde::{Deserialize, Serialize};
+
 use crate::models::{
-    Id,
     author::Author,
     character::Character,
     metadata::{HasMetadata, Metadata},
     scene::Scene,
     scene_graph::SceneGraph,
     title::Title,
+    Id,
 };
 
 pub enum StoryboardError {
@@ -65,6 +67,7 @@ pub enum StoryboardUpdate {
 /// - Screenplay
 /// - Half-hour Sitcom
 /// - Novel
+#[derive(Serialize, Deserialize)]
 pub enum StoryTemplate {
     Teleplay,
     Screenplay,
@@ -81,6 +84,7 @@ pub enum StoryTemplate {
 /// - Select and update the `StoryTemplate`
 /// - Add and remove an `Author`
 /// - Generate a story outline
+#[derive(Serialize, Deserialize)]
 pub struct Storyboard {
     title: Option<Title>,
     authors: HashMap<Id<Author>, Author>,

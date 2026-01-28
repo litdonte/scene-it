@@ -1,12 +1,14 @@
 use crate::{
     models::{
-        Id, character::Character, metadata::Metadata, scene::Scene,
-        scene_elements::SceneElementError,
+        character::Character, metadata::Metadata, scene::Scene, scene_elements::SceneElementError,
+        Id,
     },
     utils::{self, trim_input},
 };
 
-#[derive(Debug, PartialEq, Eq, Clone)]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct Parenthetical(String);
 
 impl Parenthetical {
@@ -25,7 +27,7 @@ impl Parenthetical {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct DialogueText(String);
 
 impl DialogueText {
@@ -48,13 +50,13 @@ impl DialogueText {
     }
 }
 
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub enum DialogueBlock {
     Text(DialogueText),
     Parenthetical(Parenthetical),
 }
 
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct Dialogue {
     id: Id<Self>,
     scene: Id<Scene>,

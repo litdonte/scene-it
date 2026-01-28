@@ -1,3 +1,4 @@
+use serde::{Deserialize, Serialize};
 use std::ops::Deref;
 
 use crate::utils;
@@ -13,7 +14,7 @@ pub enum TitleError {
 /// Represent the title of the user's story.
 /// By default, the title is 'Untitled Storyboard',
 /// unless provided during storyboard setup.
-#[derive(Debug, PartialEq, Eq, Clone)]
+#[derive(Debug, PartialEq, Eq, Clone, Deserialize, Serialize)]
 pub struct Title(String);
 
 impl Default for Title {
