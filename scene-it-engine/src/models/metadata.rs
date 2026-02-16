@@ -53,6 +53,9 @@ impl Metadata {
 
     pub fn add_revision_note(&mut self, note: RevisionNote) {
         self.revision_notes.push(note);
+        let now = UtcDateTime::now();
+        self.updated_at = now;
+        self.version += 1;
     }
 }
 

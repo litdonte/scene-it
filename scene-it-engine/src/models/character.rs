@@ -1,5 +1,5 @@
 use crate::{
-    models::{metadata::Metadata, Id},
+    models::{Id, metadata::Metadata},
     utils,
 };
 use serde::{Deserialize, Serialize};
@@ -21,7 +21,7 @@ impl CharacterName {
             return Err(CharacterError::NameEmpty);
         }
 
-        if name.len() < 100 {
+        if name.len() > 100 {
             return Err(CharacterError::NameTooLong);
         }
 

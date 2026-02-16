@@ -3,13 +3,13 @@ use std::collections::{HashMap, HashSet};
 use serde::{Deserialize, Serialize};
 
 use crate::models::{
+    Id,
     author::Author,
     character::Character,
     metadata::{HasMetadata, Metadata},
     scene::Scene,
     scene_graph::SceneGraph,
     title::Title,
-    Id,
 };
 
 pub enum StoryboardError {
@@ -17,7 +17,7 @@ pub enum StoryboardError {
     InvalidMove {
         scene: Id<Scene>,
         from: Id<Scene>,
-        to: Id<Scene>,
+        dest: Id<Scene>,
     },
     CycleDetected(Id<Scene>, Id<Scene>),
     SceneNotInGraph(Id<Scene>),
@@ -44,18 +44,18 @@ pub enum StoryboardUpdate {
     Move {
         scene: Id<Scene>,
         from: Id<Scene>,
-        to: Id<Scene>,
+        dest: Id<Scene>,
     },
     SceneAdded(Id<Scene>),
     SceneSetAsRoot(Id<Scene>),
     LinkedScenes {
         from: Id<Scene>,
-        to: Id<Scene>,
+        dest: Id<Scene>,
     },
     SceneDeleted(Id<Scene>),
     EdgeDeleted {
         from: Id<Scene>,
-        to: Id<Scene>,
+        dest: Id<Scene>,
     },
 }
 
@@ -172,20 +172,20 @@ impl Storyboard {
     /// with graph-level changes without duplicating graph logic.
     fn apply_update(&mut self, update: StoryboardUpdate) {
         match update {
-            StoryboardUpdate::Move { scene, from, to } => {
+            StoryboardUpdate::Move { scene, from, dest } => {
                 self.update_metadata(&scene);
                 self.update_metadata(&from);
-                self.update_metadata(&to);
+                self.update_metadata(&dest);
             }
             StoryboardUpdate::SceneAdded(scene)
             | StoryboardUpdate::SceneSetAsRoot(scene)
             | StoryboardUpdate::SceneDeleted(scene) => {
                 self.update_metadata(&scene);
             }
-            StoryboardUpdate::LinkedScenes { from, to }
-            | StoryboardUpdate::EdgeDeleted { from, to } => {
+            StoryboardUpdate::LinkedScenes { from, dest }
+            | StoryboardUpdate::EdgeDeleted { from, dest } => {
                 self.update_metadata(&from);
-                self.update_metadata(&to);
+                self.update_metadata(&dest);
             }
         }
     }

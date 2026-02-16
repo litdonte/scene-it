@@ -2,9 +2,9 @@ use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet, VecDeque};
 
 use crate::models::{
+    Id,
     scene::Scene,
     storyboard::{StoryboardError, StoryboardUpdate},
-    Id,
 };
 
 /// An ordering and relationship model for scenes that expresses what can come next.
@@ -28,9 +28,9 @@ impl SceneGraph {
 
     /// Adds a scene to the `SceneGraph`.  
     /// If the scene does not exist, it is initialized with an empty set of edges.
-    pub fn add_scene(&mut self, scene_id: &Id<Scene>) {
+    pub fn add_scene(&mut self, scene_id: &Id<Scene>) -> StoryboardUpdate {
         self.edges.entry(scene_id.clone()).or_default();
-        StoryboardUpdate::SceneAdded(scene_id.clone());
+        StoryboardUpdate::SceneAdded(scene_id.clone())
     }
 
     /// Moves a scene from one parent scene to another.
@@ -38,60 +38,66 @@ impl SceneGraph {
     /// # Parameters
     /// - `scene`: The scene to move.
     /// - `from`: The current parent scene.
-    /// - `to`: The new parent scene.
+    /// - `dest`: The new parent scene.
     ///
     /// # Errors
     /// Returns `StoryboardError::UnknownScene` if any of the scenes are not present in the graph.
-    /// Optionally, could return an error if `scene` is not a child of `from`.
-    ///
-    /// # Example
-    /// ```
-    /// scene_graph.move_scene(scene3, scene1, scene2)?;
-    /// ```
+    /// Returns `StoryboardError::InvalidMove` if `scene` is not a child of `from`.
+    /// Returns `StoryboardError::CycleDetected` if moving would create a cycle.
     pub fn move_scene(
         &mut self,
         scene: &Id<Scene>,
         from: &Id<Scene>,
-        to: &Id<Scene>,
+        dest: &Id<Scene>,
     ) -> Result<StoryboardUpdate, StoryboardError> {
-        if !self.edges.contains_key(&scene) {
-            return Err(StoryboardError::SceneNotInGraph(scene.clone()));
-        }
-
-        if !self.edges.contains_key(&from) {
-            return Err(StoryboardError::SceneNotInGraph(from.clone()));
-        }
-
-        if !self.edges.contains_key(&to) {
-            return Err(StoryboardError::SceneNotInGraph(to.clone()));
-        }
-
-        if let Some(edges) = self.edges.get_mut(&from) {
-            if !edges.remove(&scene) {
-                return Err(StoryboardError::InvalidMove {
-                    scene: scene.clone(),
-                    from: from.clone(),
-                    to: to.clone(),
-                });
+        // Verify each node exists in the graph
+        for s in [scene, from, dest] {
+            if !self.edges.contains_key(s) {
+                return Err(StoryboardError::SceneNotInGraph(s.clone()));
             }
         }
 
-        if self.is_descendant(&scene, &to) {
-            if let Some(edges) = self.edges.get_mut(&from) {
-                edges.insert(scene.clone());
-            }
-
-            return Err(StoryboardError::CycleDetected(scene.clone(), to.clone()));
+        // If from and destination node are the same, avoid extra mutation and return
+        if from == dest {
+            return Ok(StoryboardUpdate::Move {
+                scene: scene.clone(),
+                from: from.clone(),
+                dest: dest.clone(),
+            });
         }
 
-        if let Some(edges) = self.edges.get_mut(&to) {
-            edges.insert(scene.clone());
+        let removed = self
+            .edges
+            .get_mut(from)
+            .expect("Parent existence already checked")
+            .remove(scene);
+
+        if !removed {
+            return Err(StoryboardError::InvalidMove {
+                scene: scene.clone(),
+                from: from.clone(),
+                dest: dest.clone(),
+            });
         }
+
+        if self.is_descendant(&dest, &scene) {
+            self.edges
+                .get_mut(from)
+                .expect("Parent existence already checked")
+                .insert(scene.clone());
+
+            return Err(StoryboardError::CycleDetected(scene.clone(), dest.clone()));
+        }
+
+        self.edges
+            .get_mut(dest)
+            .expect("Destination existence already checked")
+            .insert(scene.clone());
 
         Ok(StoryboardUpdate::Move {
             scene: scene.clone(),
             from: from.clone(),
-            to: to.clone(),
+            dest: dest.clone(),
         })
     }
 
@@ -148,17 +154,17 @@ impl SceneGraph {
     /// If the `to` scene does not exist in the graph, it is added automatically.  
     ///
     /// Example: Scene 3 -> Scene 4 or Scene 3 -> Scene 5
-    pub fn add_edge(&mut self, from: &Id<Scene>, to: &Id<Scene>) -> StoryboardUpdate {
+    pub fn add_edge(&mut self, from: &Id<Scene>, dest: &Id<Scene>) -> StoryboardUpdate {
         self.add_scene(from);
-        self.add_scene(to);
+        self.add_scene(dest);
 
         if let Some(node_edges) = self.edges.get_mut(&from) {
-            node_edges.insert(to.clone());
+            node_edges.insert(dest.clone());
         }
 
         StoryboardUpdate::LinkedScenes {
             from: from.clone(),
-            to: to.clone(),
+            dest: dest.clone(),
         }
     }
 
@@ -211,26 +217,26 @@ impl SceneGraph {
     pub fn delete_edge(
         &mut self,
         from: &Id<Scene>,
-        to: &Id<Scene>,
+        dest: &Id<Scene>,
     ) -> Result<StoryboardUpdate, StoryboardError> {
         let edges = self
             .edges
             .get_mut(from)
             .ok_or(StoryboardError::SceneNotInGraph(from.clone()))?;
 
-        edges.remove(to);
+        edges.remove(dest);
 
         Ok(StoryboardUpdate::EdgeDeleted {
             from: from.clone(),
-            to: to.clone(),
+            dest: dest.clone(),
         })
     }
 
     /// Returns an iterator over all scenes that are direct successors of `scene_id`.  
     /// These represent all possible "next" scenes in the procedural traversal of the graph.
-    pub fn next_scenes(&self, scene_id: Id<Scene>) -> impl Iterator<Item = &Id<Scene>> {
+    pub fn next_scenes(&self, scene_id: &Id<Scene>) -> impl Iterator<Item = &Id<Scene>> {
         self.edges
-            .get(&scene_id)
+            .get(scene_id)
             .into_iter()
             .flat_map(|set| set.iter())
     }
