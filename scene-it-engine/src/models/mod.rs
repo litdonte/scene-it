@@ -21,6 +21,7 @@ use uuid::Uuid;
 #[derive(Debug, Clone, Copy, Serialize, Deserialize)]
 pub struct Id<T> {
     value: Uuid,
+    #[serde(skip)]
     _kind: PhantomData<T>,
 }
 

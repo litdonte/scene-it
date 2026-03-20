@@ -9,6 +9,7 @@ use crate::models::{
     metadata::{HasMetadata, Metadata},
     scene::Scene,
     scene_graph::SceneGraph,
+    summary::Summary,
     title::Title,
 };
 
@@ -92,6 +93,7 @@ pub struct Storyboard {
     characters: HashMap<Id<Character>, Character>,
     template: Option<StoryTemplate>,
     scene_graph: SceneGraph,
+    summary: Summary,
     metadata: Metadata,
 }
 
@@ -347,6 +349,7 @@ impl Default for Storyboard {
             characters: HashMap::new(),
             template: None,
             scene_graph: SceneGraph::new(),
+            summary: Summary::default(),
             metadata: Metadata::new(),
         }
     }

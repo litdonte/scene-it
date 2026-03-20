@@ -1,5 +1,3 @@
-use std::io;
-
 pub fn trim_input(input: &str) -> String {
     input
         .trim()
