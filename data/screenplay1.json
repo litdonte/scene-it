@@ -1,0 +1,4435 @@
+{
+  "title": "Encryption",
+  "authors": {
+    "9b6b9de0-e95c-4f5f-a997-5ea11a9e4cc9": {
+      "id": "9b6b9de0-e95c-4f5f-a997-5ea11a9e4cc9",
+      "name": "Donte",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.765963+00:00",
+        "updated_at": "2026-03-20T20:28:38.765963+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    }
+  },
+  "scene_bank": {
+    "752ccb3e-bf7f-4bda-9cef-de23cadc8266": {
+      "id": "752ccb3e-bf7f-4bda-9cef-de23cadc8266",
+      "active_variant": "54c5c57b-fbb8-4e2e-8bdf-ad8b7dbcd66e",
+      "variants": {
+        "54c5c57b-fbb8-4e2e-8bdf-ad8b7dbcd66e": {
+          "id": "54c5c57b-fbb8-4e2e-8bdf-ad8b7dbcd66e",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "WHITE HOUSE - OVAL OFFICE",
+            "time_of_day": "Night"
+          },
+          "elements": [
+            {
+              "Action": "PRESIDENT MCKENZIE slouches in his chair, feet propped on the edge of the desk. A bright light saturates his face and desk. FIRST LADY MCKENZIE sits in a chair next to the light."
+            },
+            {
+              "Dialogue": {
+                "id": "eceb2b9a-4595-4295-8f82-a77c58bcde6b",
+                "scene": "752ccb3e-bf7f-4bda-9cef-de23cadc8266",
+                "speaker": "32c46b0a-a681-496f-a785-b5c842e3d028",
+                "content": [
+                  {
+                    "Text": "Kyle, this is too much."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763079+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763079+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "506a9121-8f8c-4617-81d0-93ac5cb61ccd",
+                "scene": "752ccb3e-bf7f-4bda-9cef-de23cadc8266",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Text": "What I do is in the best interest of the country. They elected me because they want change. They believe I can make a difference. I do too."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763114+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763114+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "9d48346c-335a-414f-af73-1216a71e8ef7",
+                "scene": "752ccb3e-bf7f-4bda-9cef-de23cadc8266",
+                "speaker": "32c46b0a-a681-496f-a785-b5c842e3d028",
+                "content": [
+                  {
+                    "Text": "Over a span of four years. Not your first day."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763168+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763168+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "60479d18-5d5f-4f41-a94d-9417190aab98",
+                "scene": "752ccb3e-bf7f-4bda-9cef-de23cadc8266",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Text": "The papers have been signed. My hands are tied. Once everything sets into place, you\u2019ll understand and so will everyone else."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763187+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763187+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "5315c320-bafd-4468-9402-4d08dc1b0c5e",
+                "scene": "752ccb3e-bf7f-4bda-9cef-de23cadc8266",
+                "speaker": "1e64eed6-e5fe-4d61-815c-e65ccc8fba0d",
+                "content": [
+                  {
+                    "Text": "Mr. President..."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763205+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763205+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "A SECRET SERVICE AGENT steps from behind the light and points to the camera."
+            },
+            {
+              "Dialogue": {
+                "id": "6182dd7a-ce5f-43d1-be24-10480866306b",
+                "scene": "752ccb3e-bf7f-4bda-9cef-de23cadc8266",
+                "speaker": "4eaa5419-4cd9-4bbf-83c1-41136243f7f0",
+                "content": [
+                  {
+                    "Text": "15 seconds."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763222+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763222+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "c97420a1-5168-4bdb-a2e9-a20fdd01463d",
+                "scene": "752ccb3e-bf7f-4bda-9cef-de23cadc8266",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Text": "Leave the politics and foreign affairs to me. What do women care about? Worry about making the country look pretty."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763263+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763263+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The First Lady storms out of the room, slamming the door behind her."
+            },
+            {
+              "Dialogue": {
+                "id": "96c9867b-c4de-49a0-9e2a-8c9813488a30",
+                "scene": "752ccb3e-bf7f-4bda-9cef-de23cadc8266",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Text": "It was a joke. She needs to take a Xanax and relax."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763295+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763295+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "f6c2f810-8ffd-412a-a35f-13a2a6ef60b3",
+                "scene": "752ccb3e-bf7f-4bda-9cef-de23cadc8266",
+                "speaker": "4eaa5419-4cd9-4bbf-83c1-41136243f7f0",
+                "content": [
+                  {
+                    "Text": "5 seconds."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763310+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763310+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "f8dfaef6-d477-4124-af4b-95844e7d28d3",
+                "scene": "752ccb3e-bf7f-4bda-9cef-de23cadc8266",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Text": "Ha! You see what I did there? I made a funny."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763325+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763325+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The Secret Service agent is not amused. President McKenzie sits up at attention. Clears his throat. The Secret Service Agent counts him and points him in. Eyes gazing deep into the camera -"
+            },
+            {
+              "Dialogue": {
+                "id": "8426eae8-91d6-45f3-a277-e9d97f986e56",
+                "scene": "752ccb3e-bf7f-4bda-9cef-de23cadc8266",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Text": "My fellow Americans, I come to you tonight with great news. You elected me because you believed in change. You believed I could make a difference."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763342+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763342+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:28:38.763350+00:00",
+            "updated_at": "2026-03-20T20:28:38.763350+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        }
+      },
+      "summary": "President McKenzie dismisses his wife's concerns about moving too fast, coldly shuts her out, and then pivots to address the nation on live television \u2014 announcing his decision to pardon six Iranian terrorists in exchange for peace.",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.763353+00:00",
+        "updated_at": "2026-03-20T20:28:38.763353+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "dabf9ac8-c7c6-4307-a66c-9a4509c5abd3": {
+      "id": "dabf9ac8-c7c6-4307-a66c-9a4509c5abd3",
+      "active_variant": "578cf26a-9de4-4906-ba88-859dc6c7c2ad",
+      "variants": {
+        "578cf26a-9de4-4906-ba88-859dc6c7c2ad": {
+          "id": "578cf26a-9de4-4906-ba88-859dc6c7c2ad",
+          "heading": {
+            "camera_location": "Exterior",
+            "scene_location": "AIRPORT HANGER",
+            "time_of_day": "Morning"
+          },
+          "elements": [
+            {
+              "Action": "A jet sits idle on the runway. Dark, gloomy clouds roll through the sky casting a shadow on the runway. A white SUV with dark tinted windows pulls up between the hangar and jet."
+            },
+            {
+              "Dialogue": {
+                "id": "8e728d16-aa34-4371-bbf3-fce97f032679",
+                "scene": "dabf9ac8-c7c6-4307-a66c-9a4509c5abd3",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Text": "You believed I could take what those before me have developed into hatred and create peace."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763416+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763416+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Six GUARDS step out of the vehicle, each of them holding on to a TERRORIST. The terrorists are dressed in a dirty orange jumpsuit and a black sack over their head."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:28:38.763424+00:00",
+            "updated_at": "2026-03-20T20:28:38.763424+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        }
+      },
+      "summary": "As McKenzie's address continues in voice-over, six government guards escort hooded Iranian prisoners across a rain-soaked runway toward a waiting jet \u2014 a visual counterpoint to the President's lofty words.",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.763427+00:00",
+        "updated_at": "2026-03-20T20:28:38.763427+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "c50fb239-03c2-4d71-b35a-7a269bb6d0dc": {
+      "id": "c50fb239-03c2-4d71-b35a-7a269bb6d0dc",
+      "active_variant": "4d19d81c-181c-4bfd-922f-9ea8bda9b7c1",
+      "variants": {
+        "4d19d81c-181c-4bfd-922f-9ea8bda9b7c1": {
+          "id": "4d19d81c-181c-4bfd-922f-9ea8bda9b7c1",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "WHITE HOUSE - OVAL OFFICE",
+            "time_of_day": "Continuous"
+          },
+          "elements": [
+            {
+              "Dialogue": {
+                "id": "d3d9aefa-fe60-4bdd-91a0-75aaee45cc52",
+                "scene": "c50fb239-03c2-4d71-b35a-7a269bb6d0dc",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Text": "A country envisioned as a safe home for our wives, husbands, children and our children\u2019s children. A nation no longer sought after for bullying the little people. I want that life for my family and each and every family across this great country. I want America to take a step forward. I want to  change the image of America around the globe. Tonight, we\u2019ve taken that step."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763477+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763477+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "First Lady McKenzie is back in the room. She looks on, shaking her head in disapproval and apparent disgust."
+            },
+            {
+              "Dialogue": {
+                "id": "cc2664ff-3990-44df-bf49-6f99e408da9c",
+                "scene": "c50fb239-03c2-4d71-b35a-7a269bb6d0dc",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Text": "I and Vice President  Miller meditated for hours upon hours and met countless times before making a decision."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763494+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763494+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:28:38.763498+00:00",
+            "updated_at": "2026-03-20T20:28:38.763498+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        }
+      },
+      "summary": "Still on air, McKenzie elaborates on the peace deal, crediting Vice President Miller, while the First Lady watches from the room with visible disgust.",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.763500+00:00",
+        "updated_at": "2026-03-20T20:28:38.763500+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "6937fb07-b1ca-43cc-84c2-2a5b04fabb6b": {
+      "id": "6937fb07-b1ca-43cc-84c2-2a5b04fabb6b",
+      "active_variant": "c1b7f4fc-3b14-4a77-ae4e-e0f39b8e6578",
+      "variants": {
+        "c1b7f4fc-3b14-4a77-ae4e-e0f39b8e6578": {
+          "id": "c1b7f4fc-3b14-4a77-ae4e-e0f39b8e6578",
+          "heading": {
+            "camera_location": "Exterior",
+            "scene_location": "AIRPORT HANGER",
+            "time_of_day": "Continuous"
+          },
+          "elements": [
+            {
+              "Action": "Speeding down the runway, a matte black government SUV pulls up between the plane and the terrorists. Four men step out of the SUV with silenced pistols and open fire, killing the six guards."
+            },
+            {
+              "Dialogue": {
+                "id": "de291a5d-be7b-4d76-a35a-91424cc2ee09",
+                "scene": "6937fb07-b1ca-43cc-84c2-2a5b04fabb6b",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Text": "Before more blood is shed and more loved ones lost, I and Vice President Miller spoke with Ali Khamenei, Supreme Leader of Iran. Tonight, America, I\u2019m happy to inform you we are no longer at war with Iran. We\u2019ve come to an agreement to grant a pardon to the group of six alleged Iranian terrorists we have in custody in exchange for peace. Six o\u2019clock tomorrow morning at an undisclosed location, they will board a plane heading home."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763563+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763563+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The terrorist, unaware of what just happened, are apprehended by the men in suits and directed into the SUV."
+            },
+            {
+              "Action": "The passenger side front window rolls down.  A man with dark hair and a peculiar strand of grey hair surveys the dead guards as the SUV pulls away."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:28:38.763574+00:00",
+            "updated_at": "2026-03-20T20:28:38.763574+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        }
+      },
+      "summary": "A matte black SUV speeds onto the runway and armed men execute all six guards. The terrorists are seized and loaded into the SUV \u2014 the pardon a cover for something far darker. A mysterious man with a streak of grey hair watches from the passenger window.",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.763579+00:00",
+        "updated_at": "2026-03-20T20:28:38.763579+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "1ecd622c-ef99-456d-8107-659b681cd884": {
+      "id": "1ecd622c-ef99-456d-8107-659b681cd884",
+      "active_variant": "33885f88-8a71-4c8c-9131-41dda2b6a5bc",
+      "variants": {
+        "33885f88-8a71-4c8c-9131-41dda2b6a5bc": {
+          "id": "33885f88-8a71-4c8c-9131-41dda2b6a5bc",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "WHITE HOUSE - OVAL OFFICE",
+            "time_of_day": "Continuous"
+          },
+          "elements": [
+            {
+              "Action": "President McKenzie glances over at his wife. She\u2019s now sitting in a chair, angrily tapping her feet against the floor."
+            },
+            {
+              "Dialogue": {
+                "id": "a29f7fac-d86b-43ac-91e1-f7ef8d509a3e",
+                "scene": "1ecd622c-ef99-456d-8107-659b681cd884",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Text": "I believe this is the foundation for a healthy relationship with countries in the Middle East. Repairing the image of America will be a monumental task, but if we all work together and take it one step at a time, the end result will be rewarding."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763651+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763651+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:28:38.763655+00:00",
+            "updated_at": "2026-03-20T20:28:38.763655+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        }
+      },
+      "summary": "McKenzie wraps his address with a call for unity and national healing, oblivious to \u2014 or complicit in \u2014 what is unfolding at the airstrip.",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.763662+00:00",
+        "updated_at": "2026-03-20T20:28:38.763662+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "0ba3601d-9acf-474f-9e9d-30f39cfffdb7": {
+      "id": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+      "active_variant": "e26e86cd-7bb9-4c96-8df0-0ee3e42e56f2",
+      "variants": {
+        "e26e86cd-7bb9-4c96-8df0-0ee3e42e56f2": {
+          "id": "e26e86cd-7bb9-4c96-8df0-0ee3e42e56f2",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "COFFEE SHOP",
+            "time_of_day": "Day"
+          },
+          "elements": [
+            {
+              "Action": "Pull out to reveal that ELLIOT is watching President McKenzie on television."
+            },
+            {
+              "Dialogue": {
+                "id": "7527f260-fadd-43c0-8a1f-dab6e7aea56f",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Parenthetical": "(on TV)"
+                  },
+                  {
+                    "Text": "I know that you will stand behind me in my decision because here in America we are a nation of the people, for the people, and by the people. We are a nation of one. May God bless America and have a great night."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763714+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763714+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "A WAITRESS pours Elliot some coffee. She slowly pulls back with a smile so wide it could brighten the darkest room."
+            },
+            {
+              "Dialogue": {
+                "id": "3b52e2f7-9305-4e3c-a1e0-339e72760e97",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "6af87d0f-ff9a-4c99-aa9d-a4025087e883",
+                "content": [
+                  {
+                    "Text": "Need anything else? Creamer? Sugar? A girlfriend?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763740+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763740+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "ed645ea9-70ca-4375-be73-bb3f18b21102",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "No beating around the bush with you, huh?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763756+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763756+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "He signals towards the TV."
+            },
+            {
+              "Dialogue": {
+                "id": "96db7435-a60d-45c2-bc7b-83f9a7f3d0a0",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Think you could change it? Channel 5."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763774+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763774+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "41ab34aa-e0f0-417a-8308-68f411a6bd17",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "6af87d0f-ff9a-4c99-aa9d-a4025087e883",
+                "content": [
+                  {
+                    "Text": "And?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763806+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763806+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "f2cfe0eb-24c2-4248-877f-967adbc31b9a",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Come back and see me later."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763824+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763824+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Somehow the smile on her face grows wider. She reaches up and changes the channel. On the screen, a REDNECK stands next to a cardboard cut out of President McKenzie burning in a barrel."
+            },
+            {
+              "Dialogue": {
+                "id": "cf7237d8-8b9c-472c-a3f5-576ce5ea160a",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "07c8d285-e472-47f8-ad52-45552f3394d6",
+                "content": [
+                  {
+                    "Parenthetical": "(on TV)"
+                  },
+                  {
+                    "Text": "Horse shit is what it is! We don\u2019t give shit, we kill shit. He\u2019s making \u2018Merica look weak. If I see him, I\u2019ll shove my double barrel so far up his ass he\u2019ll be shittin\u2019 bullets for weeks."
+                  },
+                  {
+                    "Parenthetical": "(walking away)"
+                  },
+                  {
+                    "Text": "Who the hell drank my Busch light?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763858+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763858+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "a8e7e5ae-6652-43e2-886b-6342753eab40",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "db4fe41f-98e4-4fcd-ae57-6aae27f2959f",
+                "content": [
+                  {
+                    "Text": "No filter with this guy. And it\u2019s quite apparent he doesn\u2019t approve. Back to you, Dan."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763883+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763883+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The television goes to commercial. The bell on the door rings and in walks ALEC, Elliot's fraternity brother."
+            },
+            {
+              "Dialogue": {
+                "id": "e0551c8b-696b-49d1-9b0b-d5f86421a04a",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "You're late. Some things never change, huh, Jerm?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763898+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763898+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "fb3cd1c3-5b56-4384-a281-cc9a47035138",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "47d8335e-4dca-4eba-b60d-aa9388891e7e",
+                "content": [
+                  {
+                    "Text": "This coming from the guy that was late to his own graduation."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763913+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763913+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Alec takes a seat across the table from Elliot. A big, creepy smile on his face."
+            },
+            {
+              "Dialogue": {
+                "id": "d1af4ef3-4e25-4eb2-a165-58d1ca2a715e",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Why are you smiling? You got one of those blow up dolls didn\u2019t you?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763928+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763928+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "5cc9045e-e6b7-4b9e-a728-90a3caa34355",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "47d8335e-4dca-4eba-b60d-aa9388891e7e",
+                "content": [
+                  {
+                    "Text": "Leah's pregnant. I'm going to be a dad!"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763943+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763943+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "1c969e82-6255-4735-84dc-fbd46c5120be",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "You need me to take her out? I work for the CIA. One call and it over."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763974+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763974+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "02c1c852-248b-40be-83ca-d32ce6472947",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "47d8335e-4dca-4eba-b60d-aa9388891e7e",
+                "content": [
+                  {
+                    "Text": "Dude."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.763989+00:00",
+                  "updated_at": "2026-03-20T20:28:38.763989+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Alec\u2019s smile vanishes from his face."
+            },
+            {
+              "Dialogue": {
+                "id": "5909c88f-b947-4221-995c-50d5bad13dfc",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Aw, come on. You know I\u2019m happy for you. If you\u2019re half the man my dad wasn\u2019t, you deserve a \u201cWorld\u2019s Greatest Dad\u201d mug."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764017+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764017+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "71ef671d-7f5b-4148-aecb-fec8dea36b91",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "47d8335e-4dca-4eba-b60d-aa9388891e7e",
+                "content": [
+                  {
+                    "Text": "He wasn't that bad."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764045+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764045+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "e97345a6-ddb3-475d-943a-752b637421f6",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "He left me and my mom when I was 2. She had to work two jobs just to keep the lights on and food on the table."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764061+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764061+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "b8d3d2c6-667f-44f4-b378-1877e48d6f55",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "47d8335e-4dca-4eba-b60d-aa9388891e7e",
+                "content": [
+                  {
+                    "Text": "You turned out fine. But I see where the asshole part comes from."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764075+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764075+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "a2999167-3736-439c-b9da-793601c02b2f",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "I turned out great. No thanks to him."
+                  },
+                  {
+                    "Parenthetical": "(beat)"
+                  },
+                  {
+                    "Text": "But hey man, congrats. I can\u2019t of think of anyone better to knock Leah up."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764127+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764127+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "On the television, Jade interviews a GHETTO BLACK MAN. Elliot points to the television."
+            },
+            {
+              "Dialogue": {
+                "id": "d7b86626-674d-419c-b8b3-a68291e79261",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "47d8335e-4dca-4eba-b60d-aa9388891e7e",
+                "content": [
+                  {
+                    "Text": "You're next. I can see you balding and changing a diaper."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764155+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764155+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Alec laughs. Elliot\u2019s not amused."
+            },
+            {
+              "Dialogue": {
+                "id": "65594de3-1b39-46dc-b08d-2f7099ba6194",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "db4fe41f-98e4-4fcd-ae57-6aae27f2959f",
+                "content": [
+                  {
+                    "Parenthetical": "(on TV )"
+                  },
+                  {
+                    "Text": "What are your views on the President?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764179+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764179+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "39c5e547-68c3-44c0-aaf4-cb55b12b793c",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "892925c3-78f3-4c41-9fc5-9898547b4748",
+                "content": [
+                  {
+                    "Parenthetical": "(on TV)"
+                  },
+                  {
+                    "Text": "We got another black president, na'mean? It\u2019s all good. My president is black and my Lambo is blue, na'mean. This one gone legalize weed though. You know he smoke... look at his lips."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764207+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764207+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "5ca8c543-139b-4975-8bf3-21b3e112d03e",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "db4fe41f-98e4-4fcd-ae57-6aae27f2959f",
+                "content": [
+                  {
+                    "Parenthetical": "(on TV)"
+                  },
+                  {
+                    "Text": "But what do you think of him pardoning the Iranian terrorists?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764227+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764227+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "fbf2fb91-a863-488d-8507-994667364c14",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "892925c3-78f3-4c41-9fc5-9898547b4748",
+                "content": [
+                  {
+                    "Parenthetical": "(on TV)"
+                  },
+                  {
+                    "Text": "Pardon? Ain\u2019t that French? I don't speak French."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764278+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764278+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "a984909a-a0a6-4abe-b530-ea530585dbe4",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "db4fe41f-98e4-4fcd-ae57-6aae27f2959f",
+                "content": [
+                  {
+                    "Parenthetical": "(on TV)"
+                  },
+                  {
+                    "Text": "Well there you are, Dan. Some people simply don\u2019t like the President or his policies and others... don\u2019t speak French. This is Jade Morgan, KTLX news channel 10 signing off."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764308+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764308+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The television goes to another commercial. Elliot looks up to see the waitress preying on him from behind the counter. His cell phone rings."
+            },
+            {
+              "Dialogue": {
+                "id": "c16e9a15-ad4d-44d4-b931-7eed00430a26",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "How about that. It\u2019s Jade."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764324+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764324+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "fa1f1cca-0be1-480c-8750-667e95c36919",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "47d8335e-4dca-4eba-b60d-aa9388891e7e",
+                "content": [
+                  {
+                    "Text": "Now\u2019s a great time to talk about that baby!"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764352+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764352+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Elliot mocks Alec\u2019s excitement, pulls cash out of his wallet, and drops it on the table."
+            },
+            {
+              "Dialogue": {
+                "id": "813e1deb-bd22-40c6-9d99-9aaffb7e2da2",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Leave her a tip."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764368+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764368+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Elliot hints toward the waitress. Alec looks over and doesn\u2019t find her attractive. Elliot answers his phone."
+            },
+            {
+              "Dialogue": {
+                "id": "6910744b-47bf-41b2-a3e8-8ebfa222c8ab",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Hey babe. Saw you on TV."
+                  },
+                  {
+                    "Parenthetical": "(beat)"
+                  },
+                  {
+                    "Text": "Of course I remembered. Dinner at 7. I\u2019ll be there."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764391+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764391+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Elliot speeds out the coffee shop and the waitress walks over confused."
+            },
+            {
+              "Dialogue": {
+                "id": "08bf6d97-12b6-48fc-8321-df2aa3a9eae3",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "6af87d0f-ff9a-4c99-aa9d-a4025087e883",
+                "content": [
+                  {
+                    "Text": "Where did the cute guy go? Did he leave his number?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764419+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764419+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "92a4f494-946a-423b-a298-4b881e7dcc12",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "47d8335e-4dca-4eba-b60d-aa9388891e7e",
+                "content": [
+                  {
+                    "Parenthetical": "(shouting)"
+                  },
+                  {
+                    "Text": "He\u2019s having a baby!"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764447+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764447+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:28:38.764450+00:00",
+            "updated_at": "2026-03-20T20:28:38.764450+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        },
+        "8b986424-c5ae-4cde-90ea-b90da721bb86": {
+          "id": "8b986424-c5ae-4cde-90ea-b90da721bb86",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "COFFEE SHOP",
+            "time_of_day": "Day"
+          },
+          "elements": [
+            {
+              "Action": "Pull out to reveal ELLIOT watching President McKenzie on television, arms crossed, jaw tight."
+            },
+            {
+              "Dialogue": {
+                "id": "0e1e34fc-2c52-4c89-9c8e-2745411a5d00",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Parenthetical": "on TV"
+                  },
+                  {
+                    "Text": "I know that you will stand behind me in my decision because here in America we are a nation of the people, for the people, and by the people."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.402765+00:00",
+                  "updated_at": "2026-03-20T20:38:46.402765+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Elliot stares at the screen. He doesn't buy a word of it."
+            },
+            {
+              "Dialogue": {
+                "id": "2ef8ca3d-b80d-4e78-9b6c-89de51dec49c",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Six terrorists on a plane home. Yeah, that ends well."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.402847+00:00",
+                  "updated_at": "2026-03-20T20:38:46.402847+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "A WAITRESS refills his coffee without asking. He doesn't notice."
+            },
+            {
+              "Dialogue": {
+                "id": "7f5ff22f-3e2a-46ac-adb5-72c8382998af",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "6af87d0f-ff9a-4c99-aa9d-a4025087e883",
+                "content": [
+                  {
+                    "Text": "You always talk to the TV?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.402935+00:00",
+                  "updated_at": "2026-03-20T20:38:46.402935+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "d7e38033-4102-4c8e-942f-4f532a2982fb",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Only when it's lying to me."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403106+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403106+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The bell on the door rings. ALEC walks in, drops into the seat across from Elliot."
+            },
+            {
+              "Dialogue": {
+                "id": "a7ef1093-0198-4157-80c0-9f1b2550b0ac",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "47d8335e-4dca-4eba-b60d-aa9388891e7e",
+                "content": [
+                  {
+                    "Text": "Leah's pregnant."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403174+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403174+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "69bc141b-39e4-449c-b3f3-5d71f0ebcee8",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Parenthetical": "not looking away from the TV"
+                  },
+                  {
+                    "Text": "How sure are you it's yours?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403188+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403188+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "a60c422f-5580-478b-b773-e15ca539a95a",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "47d8335e-4dca-4eba-b60d-aa9388891e7e",
+                "content": [
+                  {
+                    "Text": "Wow. Okay."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403199+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403199+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "f83f9362-e9bb-4e20-99f6-7bbb35288d86",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "I'm kidding. Mostly. Congrats, man."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403209+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403209+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Elliot's phone buzzes. Jade's name on the screen. He stares at it one beat too long before answering."
+            },
+            {
+              "Dialogue": {
+                "id": "195f96c4-1892-4aa2-904b-3ef658b7edf5",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Hey. Yeah. I'll be there."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403296+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403296+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "He drops cash on the table and heads for the door without another word."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:38:46.403349+00:00",
+            "updated_at": "2026-03-20T20:38:46.403349+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        },
+        "333806da-cf23-4b31-9d4f-f12486d906f5": {
+          "id": "333806da-cf23-4b31-9d4f-f12486d906f5",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "COFFEE SHOP",
+            "time_of_day": "Day"
+          },
+          "elements": [
+            {
+              "Action": "ELLIOT sits alone at the counter, coffee untouched, eyes fixed on the President's address playing on the TV above the bar."
+            },
+            {
+              "Dialogue": {
+                "id": "851ddb2f-bc02-454b-9b5a-95de75d10c51",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+                "content": [
+                  {
+                    "Parenthetical": "on TV"
+                  },
+                  {
+                    "Text": "May God bless America and have a great night."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403386+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403386+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The TV cuts to Jade reporting live. Elliot's expression shifts \u2014 something between pride and worry."
+            },
+            {
+              "Dialogue": {
+                "id": "11e081ef-db3c-4b13-ba46-17612b1796e4",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "6af87d0f-ff9a-4c99-aa9d-a4025087e883",
+                "content": [
+                  {
+                    "Text": "Need anything else?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403405+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403405+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "24fd651f-85e2-4179-a261-6c074340b288",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Just the check."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403415+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403415+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "His phone rings. Jade. He answers, already standing."
+            },
+            {
+              "Dialogue": {
+                "id": "ea3c0a4a-ea47-4231-820a-15430e241fb7",
+                "scene": "0ba3601d-9acf-474f-9e9d-30f39cfffdb7",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "I saw you. You looked great. I'll explain when I get there."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403424+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403424+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "He's out the door before she can respond."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:38:46.403434+00:00",
+            "updated_at": "2026-03-20T20:38:46.403434+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        }
+      },
+      "summary": "CIA cryptographer Elliot Taylor watches McKenzie's speech from a coffee shop, flirts with a waitress, and reunites with his old fraternity brother Alec, who reveals his girlfriend is pregnant. The TV cuts to street interviews about the pardon, including a report by Jade Morgan \u2014 Elliot's girlfriend \u2014 who calls in just as Elliot bolts to make their dinner reservation.",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.764453+00:00",
+        "updated_at": "2026-03-20T20:28:38.764453+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "d7228352-d1e3-4d45-9329-d183bbe30e70": {
+      "id": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+      "active_variant": "531670c3-17ab-4782-a1c7-628425a56101",
+      "variants": {
+        "531670c3-17ab-4782-a1c7-628425a56101": {
+          "id": "531670c3-17ab-4782-a1c7-628425a56101",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "DARK CONFERENCE ROOM",
+            "time_of_day": "Day"
+          },
+          "elements": [
+            {
+              "Action": "Tinted windows from ceiling to floor shield the room from beaming rays of sun outside. The little light that seeps through the cracks between each window light the room."
+            },
+            {
+              "Action": "The silhouette of a well-groomed middle-aged man sits on the edge of the conference room table in the shadows of the room. Victor storms in carrying a small manila envelope in hand."
+            },
+            {
+              "Dialogue": {
+                "id": "ffadbc86-f1f8-4269-a3c6-6106743430a2",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "Absolutely not. Have you lost your mind?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764504+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764504+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "He slaps the envelope on the table and pushes it towards the man."
+            },
+            {
+              "Dialogue": {
+                "id": "1ef6693f-e224-428a-8612-fafb189dc816",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "What makes you think this is going to work? There\u2019s no way you could pull this off."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764521+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764521+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "c826312a-28ce-43f3-9692-9e52e13e5ead",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "1e64eed6-e5fe-4d61-815c-e65ccc8fba0d",
+                "content": [
+                  {
+                    "Parenthetical": "(calmly)"
+                  },
+                  {
+                    "Text": "Victor, this is the CIA. We can do anything."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764537+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764537+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "6a851488-e6e6-40ff-99b9-51b6ea935c76",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "And you expect everyone to just sit around and watch this happen? They\u2019ll know-"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764555+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764555+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "ce96ded1-128c-4803-adb0-6908cc5ef85d",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "1e64eed6-e5fe-4d61-815c-e65ccc8fba0d",
+                "content": [
+                  {
+                    "Text": "People will know what we allow them know."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764585+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764585+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "1a122c3e-c140-429e-aebb-b494ca6de3f1",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "People will know whatever the media reports."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764624+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764624+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "c93a9371-b355-4ae2-8b1a-af73bb7fb9a7",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "1e64eed6-e5fe-4d61-815c-e65ccc8fba0d",
+                "content": [
+                  {
+                    "Text": "And how do you think they get their information? Do you honestly believe the government has no say in what\u2019s broadcast to our citizens? Every bit of information that\u2019s recorded, every bit of news your daughter reports is in some form or fashion dictated by the government. Jesus man, you\u2019re Secretary of State. Open your eyes."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764665+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764665+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "d7d5856e-1c9b-4ec2-8a4a-77d5b466a8ba",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "He\u2019s the President of the United States, the most protected man in America. You can\u2019t -"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764712+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764712+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "2a5769e2-eb85-4106-8fcc-c1e91303fda0",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "1e64eed6-e5fe-4d61-815c-e65ccc8fba0d",
+                "content": [
+                  {
+                    "Text": "- I can do whatever I want. Who\u2019s to tell me I can\u2019t. Who\u2019s going to stop me? One by one they\u2019ll drop like flies. When you\u2019re next in line, we\u2019ll take him out and the seats all yours."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764728+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764728+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "bc21c0f8-31bc-4e39-bf42-3e897883c33a",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "Why me?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764743+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764743+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "b4d6eada-1eed-4d40-b7c3-7dbef7d709dd",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "1e64eed6-e5fe-4d61-815c-e65ccc8fba0d",
+                "content": [
+                  {
+                    "Text": "Why not? You\u2019ve got a great family, the country loves you, and you can\u2019t say no."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764758+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764758+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "63d638cb-63c3-428a-8073-3bc5af24f2fc",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "How do I know you won\u2019t kill me, too?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764773+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764773+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "66c46b81-16ad-4fb0-a3a8-807ec1bff2cb",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "1e64eed6-e5fe-4d61-815c-e65ccc8fba0d",
+                "content": [
+                  {
+                    "Text": "You\u2019re standing here aren\u2019t you?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764790+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764790+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The man leans up off the table and walks out of the shadows towards Victor. It\u2019s RYAN KING, head of the CIA."
+            },
+            {
+              "Dialogue": {
+                "id": "cda895e2-25dc-48cb-b75f-9f40cf9469c3",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "ef5babdd-ff7e-4117-99cb-734d44a52930",
+                "content": [
+                  {
+                    "Text": "You know Victor, Ariana and Jade are lovely. I sure would hate for something to happen to them."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764824+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764824+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "c53d4d51-7383-428c-92be-631e9a25ece0",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "You threaten my family?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764840+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764840+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "9fa8d8f2-7935-459d-b52d-b4ddfb6bb230",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "ef5babdd-ff7e-4117-99cb-734d44a52930",
+                "content": [
+                  {
+                    "Text": "If you\u2019re not going to cooperate I can\u2019t guarantee the safety of you or your family. The choice is yours."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764854+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764854+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Victor, upset, steps towards the door."
+            },
+            {
+              "Dialogue": {
+                "id": "b040ca12-1dac-4397-aee0-ad1723e3a546",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "ef5babdd-ff7e-4117-99cb-734d44a52930",
+                "content": [
+                  {
+                    "Text": "Victor."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764870+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764870+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Victor turns. Disgusted look on his face."
+            },
+            {
+              "Dialogue": {
+                "id": "0e6cd53e-8cae-468a-b4ed-3b76d4d3403f",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "ef5babdd-ff7e-4117-99cb-734d44a52930",
+                "content": [
+                  {
+                    "Text": "Tell Ari and Jade I said hello at dinner tonight."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764901+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764901+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Victors\u2019 eyes widen. A smile creeps across Ryan\u2019s face."
+            },
+            {
+              "Dialogue": {
+                "id": "579d9171-de0c-4707-843f-10b8b5d17f31",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "ef5babdd-ff7e-4117-99cb-734d44a52930",
+                "content": [
+                  {
+                    "Text": "We\u2019re the CIA. We know everything."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764918+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764918+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Victor, uneasy and a little frightened, slides out of the conference room. Ryan leans against the table. A devilish grin on his face."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:28:38.764925+00:00",
+            "updated_at": "2026-03-20T20:28:38.764925+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        },
+        "69152caa-e310-4d4e-bd68-fec2e2999bae": {
+          "id": "69152caa-e310-4d4e-bd68-fec2e2999bae",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "DARK CONFERENCE ROOM",
+            "time_of_day": "Day"
+          },
+          "elements": [
+            {
+              "Action": "The conference room is completely dark save for a thin blade of light cutting across the table. VICTOR stands at the door, manila envelope in hand, breathing hard."
+            },
+            {
+              "Dialogue": {
+                "id": "b3a6336b-a641-4992-bdf9-22302693fa4a",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "I won't do it. You can find someone else."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403452+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403452+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Silence. Then, from the shadows \u2014"
+            },
+            {
+              "Dialogue": {
+                "id": "c32dfbf6-b8ee-470e-a2a0-0e3952687102",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "1e64eed6-e5fe-4d61-815c-e65ccc8fba0d",
+                "content": [
+                  {
+                    "Parenthetical": "measured"
+                  },
+                  {
+                    "Text": "You've already done it, Victor. You just don't know it yet."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403463+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403463+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "e2306e1a-b71e-4a68-b8c3-b53c65dc8e1c",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "What does that mean?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403473+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403473+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "6b2652de-9d0d-4942-a03d-30a1fe290b8d",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "1e64eed6-e5fe-4d61-815c-e65ccc8fba0d",
+                "content": [
+                  {
+                    "Text": "It means the envelope in your hand has already been opened. Your fingerprints are on every page. Whatever happens next, you're in it."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403489+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403489+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Victor looks down at the envelope. His hands are shaking."
+            },
+            {
+              "Dialogue": {
+                "id": "b23373b7-2648-423e-b00c-a80e3e1f760b",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "You set me up."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403505+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403505+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The man steps out of the shadows. RYAN KING. A thin smile on his face."
+            },
+            {
+              "Dialogue": {
+                "id": "3f6ab9c8-6dba-43b2-947a-d0e93ddbc290",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "ef5babdd-ff7e-4117-99cb-734d44a52930",
+                "content": [
+                  {
+                    "Text": "I prefer 'positioned you for success.' You'll be President, Victor. Most men would kill for that."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403514+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403514+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "e0a76fd2-515e-42ec-8c68-3bd9d4c8482c",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Parenthetical": "quiet, dangerous"
+                  },
+                  {
+                    "Text": "Most men aren't me."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403523+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403523+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "fee8f662-4802-49f0-a69d-cfeec6bae6b9",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "ef5babdd-ff7e-4117-99cb-734d44a52930",
+                "content": [
+                  {
+                    "Text": "No. But most men don't have a daughter named Jade either. Go home. Kiss your family. We'll be in touch."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403533+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403533+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Victor stands frozen as Ryan walks out. The door clicks shut. He's alone in the dark."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:38:46.403543+00:00",
+            "updated_at": "2026-03-20T20:38:46.403543+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        },
+        "2dff1a53-bfe2-4881-90e9-d9f45b63c9fc": {
+          "id": "2dff1a53-bfe2-4881-90e9-d9f45b63c9fc",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "DARK CONFERENCE ROOM",
+            "time_of_day": "Day"
+          },
+          "elements": [
+            {
+              "Action": "VICTOR slaps a manila envelope on the conference table. A figure sits in the shadows."
+            },
+            {
+              "Dialogue": {
+                "id": "e54f2845-8e4f-4efc-b598-081c546ba18f",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "This is insane. You can't assassinate the President of the United States."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403553+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403553+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "cbaa6e3d-ecc3-493b-a621-702331457e3f",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "1e64eed6-e5fe-4d61-815c-e65ccc8fba0d",
+                "content": [
+                  {
+                    "Parenthetical": "calmly"
+                  },
+                  {
+                    "Text": "We already have a plan. We just need you to stay out of the way."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403566+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403566+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "0ca38608-fd01-46bf-8370-6383dceeb5a6",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "949e5108-396a-439b-bc2d-791b9c1456bc",
+                "content": [
+                  {
+                    "Text": "And if I refuse?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403578+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403578+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The figure leans forward into the light. RYAN KING."
+            },
+            {
+              "Dialogue": {
+                "id": "8a7f9bfd-ffb9-4639-8319-8b40e9a12d45",
+                "scene": "d7228352-d1e3-4d45-9329-d183bbe30e70",
+                "speaker": "ef5babdd-ff7e-4117-99cb-734d44a52930",
+                "content": [
+                  {
+                    "Text": "Tell Ari and Jade I said hello at dinner."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403587+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403587+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Victor's face goes white. Ryan smiles and walks out."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:38:46.403596+00:00",
+            "updated_at": "2026-03-20T20:38:46.403596+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        }
+      },
+      "summary": "CIA Director Ryan King emerges from the shadows to coerce Secretary of State Victor into cooperating with a plot to assassinate the President. When Victor resists, Ryan makes the threat personal \u2014 dropping details about Victor's family dinner plans to prove the CIA is watching.",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.764928+00:00",
+        "updated_at": "2026-03-20T20:28:38.764928+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "0e026d89-1256-47c3-995c-403093bcb242": {
+      "id": "0e026d89-1256-47c3-995c-403093bcb242",
+      "active_variant": "3aafcf37-dac0-4f55-ac8d-396428bd5476",
+      "variants": {
+        "3aafcf37-dac0-4f55-ac8d-396428bd5476": {
+          "id": "3aafcf37-dac0-4f55-ac8d-396428bd5476",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "CIA HEADQUARTERS",
+            "time_of_day": "Evening"
+          },
+          "elements": [
+            {
+              "Action": "Elliot sits in his cubicle hunched over his computer, his fingers moving as fast as lightning. Two of his coworkers observe from their cubicle, amazed. Elliot sits up at attention and pushes his away from the computer."
+            },
+            {
+              "Dialogue": {
+                "id": "5df67873-9705-42ee-a1d1-86db9970ea81",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Done."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.764983+00:00",
+                  "updated_at": "2026-03-20T20:28:38.764983+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "His coworkers slide over in their chairs to check his work. He lounges back in his chair."
+            },
+            {
+              "Dialogue": {
+                "id": "fc711910-b483-45aa-8522-e353d9c14450",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "That, my friends, is how you crack a code in less than a minute. Now pay up."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765002+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765002+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "One of the coworkers pulls money out of his wallet and pays Elliot. The other continues to study the cracked file."
+            },
+            {
+              "Dialogue": {
+                "id": "667a811c-4e44-4937-9a19-0b040c2ded62",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "79074d20-83e9-4d3e-9ef8-d7eb3fa89694",
+                "content": [
+                  {
+                    "Text": "Wait a second. This is a level one encryption. No wonder you cracked it in less than a minute."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765018+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765018+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "dc674559-6de4-4862-9049-ae7a301f2587",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "I asked if there were any rules and you said no. I cracked the file in less than a minute no matter the security level. You lose, I win. Now pay up."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765052+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765052+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "His coworker is reluctant to pay him but pulls out his wallet and gives him the money."
+            },
+            {
+              "Dialogue": {
+                "id": "e0af69b6-4f36-4eba-94b8-7bd71ed8eced",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "That\u2019s how you play the game. Outsmart your opponent before they outsmart you."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765068+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765068+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "029a76ec-f14b-445c-aafc-cd2c26a4686e",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "33d21abb-aa2c-428e-9363-3f8255ae29b2",
+                "content": [
+                  {
+                    "Text": "You\u2019re games won\u2019t work forever."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765095+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765095+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "997c1b41-8a61-421f-aab9-fe32c20c7660",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "The day someone outsmarts me is the day I go home in a box."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765110+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765110+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Elliot pulls the USB drive out of his computer and tosses it into a waste bin. He glances up at the clock above. It reads 6:30."
+            },
+            {
+              "Dialogue": {
+                "id": "883dcbe9-076d-486a-a326-8cd090747e28",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Shit."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765125+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765125+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Elliot hops up and clears his desk. His two coworkers nervously scoot away in their chairs. Elliot shuts off his computer monitor, grabs his satchel, and sprints to the elevator."
+            },
+            {
+              "Action": "Waiting on the elevator to arrive, he pulls out his phone and browses his text messages and call log. The elevator dings and the doors open. Without looking up, he rushes onto the elevator bumping into AGENT MARSHALL."
+            },
+            {
+              "Dialogue": {
+                "id": "984982d5-48ef-49a7-ae04-bc64f448aea1",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "50008a07-a6a3-447b-b144-ab4c8fbc3ca3",
+                "content": [
+                  {
+                    "Text": "Damnit Taylor."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765145+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765145+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Elliot\u2019s head drops. Agent Marshall squats to pick up some of the files knocked out his hand. Elliot pushes the button for the lobby and leans against the wall."
+            },
+            {
+              "Dialogue": {
+                "id": "49d11784-6c49-451b-a705-43f3a54f4f97",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "50008a07-a6a3-447b-b144-ab4c8fbc3ca3",
+                "content": [
+                  {
+                    "Text": "Well don\u2019t just sit there like an incompetent dumb ass, help me pick this up."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765170+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765170+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Elliot squats and picks up two article of paper and a manila envelope."
+            },
+            {
+              "Dialogue": {
+                "id": "9d11c4fd-d781-49f1-b018-c781094ca17a",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "You\u2019re welcome."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765188+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765188+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Agent Marshall scoops the rest of the papers into a pile and pops back up. Elliot hands over the papers and envelope. Agent Marshall eyes the envelope for a second. His face relaxes and creepy smiles grows the longer he looks at it."
+            },
+            {
+              "Dialogue": {
+                "id": "2189fb8f-ef82-4fea-b5d4-0d5059420062",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "50008a07-a6a3-447b-b144-ab4c8fbc3ca3",
+                "content": [
+                  {
+                    "Text": "Where are you rushing off to?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765203+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765203+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "5a7b64f4-80d0-430e-a722-d31af3a629cd",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Dinner. I\u2019m late."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765218+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765218+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "727fd4ef-11cd-4307-8b7a-ca06f86cade4",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "50008a07-a6a3-447b-b144-ab4c8fbc3ca3",
+                "content": [
+                  {
+                    "Text": "With Jade?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765237+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765237+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Elliot glances at Agent Marshall but doesn\u2019t answer."
+            },
+            {
+              "Dialogue": {
+                "id": "3648306d-46f5-4031-b145-849346f8ce90",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "50008a07-a6a3-447b-b144-ab4c8fbc3ca3",
+                "content": [
+                  {
+                    "Text": "Cool. I understand."
+                  },
+                  {
+                    "Parenthetical": "(handing Elliot the envelope)"
+                  },
+                  {
+                    "Text": "But before you go, extract this and leave it on my desk. I, myself, have a hot date tonight."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765275+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765275+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "7dd5b4de-0c1b-4841-af9e-e49b0a4c7735",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "That\u2019s bullshit. Do it yourself. I\u2019m already late."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765301+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765301+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "35d7faa8-f56c-4eec-9e54-3847a5580928",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "50008a07-a6a3-447b-b144-ab4c8fbc3ca3",
+                "content": [
+                  {
+                    "Text": "Listen here you little shit. I don\u2019t give a damn how long it takes, that file better be on my desk by the time I reach my desk Monday morning."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765317+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765317+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "2d9e87af-5df3-4b71-8f79-500f80d81534",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Nope."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765346+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765346+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Agent Marshall fights with himself to hold in his emotions."
+            },
+            {
+              "Dialogue": {
+                "id": "afb51bde-1f2b-4d60-938d-8a6077d76872",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "50008a07-a6a3-447b-b144-ab4c8fbc3ca3",
+                "content": [
+                  {
+                    "Text": "Fine. Don\u2019t do it and you\u2019re fired. See you Monday... maybe."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765364+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765364+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The elevator doors open. Agent Marshall laughs and steps off. Elliot looks down at the envelope and angrily mocks Agent Ashley as he steps into the lobby."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:28:38.765367+00:00",
+            "updated_at": "2026-03-20T20:28:38.765367+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        },
+        "92906226-7422-4bfb-99b6-ff04e755e296": {
+          "id": "92906226-7422-4bfb-99b6-ff04e755e296",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "CIA HEADQUARTERS",
+            "time_of_day": "Evening"
+          },
+          "elements": [
+            {
+              "Action": "Elliot sits alone at his desk after hours, the office dark except for his monitor. He turns the manila envelope over in his hands."
+            },
+            {
+              "Dialogue": {
+                "id": "9c665342-edb3-4f17-809d-8ab162cf062c",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Parenthetical": "to himself"
+                  },
+                  {
+                    "Text": "One peek won't kill me."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403613+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403613+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "He slides the contents out. His expression goes flat. He reads. He reads again."
+            },
+            {
+              "Action": "He sets the papers down slowly and stares at the wall. On the page: a surveillance photo of JADE at a press event \u2014 circled in red marker. Beneath it, a name: VICTOR MORGAN. Her father."
+            },
+            {
+              "Dialogue": {
+                "id": "53a3713a-e972-4060-9432-7fda7c36a8f1",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Parenthetical": "barely audible"
+                  },
+                  {
+                    "Text": "What the hell is this?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403626+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403626+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "He shoves everything back in the envelope. Sits very still. Then he picks up his phone and dials."
+            },
+            {
+              "Dialogue": {
+                "id": "ee88441b-1507-4249-91d3-9b750323db33",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Hey. Don't go anywhere tonight. I'm on my way."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403636+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403636+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "He grabs his satchel and moves fast toward the exit."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:38:46.403649+00:00",
+            "updated_at": "2026-03-20T20:38:46.403649+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        },
+        "9183dbc1-222d-44bd-bde4-04d9b4c97575": {
+          "id": "9183dbc1-222d-44bd-bde4-04d9b4c97575",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "CIA HEADQUARTERS",
+            "time_of_day": "Evening"
+          },
+          "elements": [
+            {
+              "Action": "Elliot grabs his satchel and sprints for the elevator. The doors open \u2014 AGENT MARSHALL steps out, files in hand. They collide."
+            },
+            {
+              "Dialogue": {
+                "id": "77253c3e-e1f2-46e8-bf74-f75c0b9753de",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "50008a07-a6a3-447b-b144-ab4c8fbc3ca3",
+                "content": [
+                  {
+                    "Text": "Damnit, Taylor."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403659+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403659+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Papers everywhere. Elliot helps gather them, spots a manila envelope in the pile. Marshall snatches it back quickly."
+            },
+            {
+              "Dialogue": {
+                "id": "8b3b843c-ccb9-49b8-9254-8a68bec81543",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "50008a07-a6a3-447b-b144-ab4c8fbc3ca3",
+                "content": [
+                  {
+                    "Text": "Extract this. My desk. Monday morning."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403669+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403669+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "a583c2e2-fd77-48e2-b40c-a741407ffd05",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "I have plans."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403678+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403678+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "c6bf89de-b45e-47f9-811a-dcd6b38466ea",
+                "scene": "0e026d89-1256-47c3-995c-403093bcb242",
+                "speaker": "50008a07-a6a3-447b-b144-ab4c8fbc3ca3",
+                "content": [
+                  {
+                    "Text": "Had plans. Move."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.403767+00:00",
+                  "updated_at": "2026-03-20T20:38:46.403767+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Marshall steps off. The elevator doors close on Elliot, envelope in hand, jaw tight."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:38:46.403995+00:00",
+            "updated_at": "2026-03-20T20:38:46.403995+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        }
+      },
+      "summary": "Elliot wins a bet by cracking an encryption file in under a minute, then races to make his dinner with Jade. On the elevator, his supervisor Agent Marshall intercepts him and strong-arms him into extracting a classified file from a manila envelope \u2014 threatening his job if it isn't done by Monday.",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.765369+00:00",
+        "updated_at": "2026-03-20T20:28:38.765369+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "b1091198-b36b-494d-9efc-d6c4f67c2a58": {
+      "id": "b1091198-b36b-494d-9efc-d6c4f67c2a58",
+      "active_variant": "a2df13b2-1d9a-4c38-ac00-58563cd8d298",
+      "variants": {
+        "a2df13b2-1d9a-4c38-ac00-58563cd8d298": {
+          "id": "a2df13b2-1d9a-4c38-ac00-58563cd8d298",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "CONDO",
+            "time_of_day": "Evening"
+          },
+          "elements": [
+            {
+              "Action": "JADE leans over her bathroom sink, her head down, hair covering her face and hands firmly pressed against the counter. The mirror is slightly foggy. It\u2019s evident she recently took a shower."
+            },
+            {
+              "Action": "She lifts her head, hair still covering half of her face, and clears the mirror. She combs her back through her fingers revealing her puffy eyes loaded with tears."
+            },
+            {
+              "Action": "Below her is a pregnancy test. It reads positive. She looks into the mirror, confused. In a waste bin below, pregnancy test and tissues lie on top. Each pregnancy test reads positive like the previous."
+            },
+            {
+              "Action": "She looks back down at the pregnancy test in front of her. Almost simultaneously, her cell phone starts ringing. Elliot\u2019s name and picture flashes on the screen. She groans and tosses the phone on the bed. Tears roll to her chin, dropping one by one."
+            },
+            {
+              "Action": "Suddenly, the house alarm beeps and the front door closes. Elliot\u2019s home. She quickly swipes everything off the counter into the waste bin and pulls it out, sealing the bag."
+            },
+            {
+              "Action": "Elliot rushes into the room startled to see Jade quickly walking towards him, bag in hand."
+            },
+            {
+              "Dialogue": {
+                "id": "534320f9-c39f-4d1d-8082-4044459cbe9a",
+                "scene": "b1091198-b36b-494d-9efc-d6c4f67c2a58",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "I didn\u2019t know you were home. I called. Got caught up at work. Sorry I\u2019m late."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765428+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765428+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Jade brushes his shoulder as she passes into the living room."
+            },
+            {
+              "Dialogue": {
+                "id": "6f18a6d9-04cc-4b1a-af05-e39bcc7f7dda",
+                "scene": "b1091198-b36b-494d-9efc-d6c4f67c2a58",
+                "speaker": "db4fe41f-98e4-4fcd-ae57-6aae27f2959f",
+                "content": [
+                  {
+                    "Text": "I\u2019ll be in the car."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765456+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765456+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The house alarm beeps and we hear the front door opening and closing. Elliot stands, befuddled."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:28:38.765463+00:00",
+            "updated_at": "2026-03-20T20:28:38.765463+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        },
+        "edc463d6-2566-4cf8-a772-3fa3f590a38d": {
+          "id": "edc463d6-2566-4cf8-a772-3fa3f590a38d",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "CONDO",
+            "time_of_day": "Evening"
+          },
+          "elements": [
+            {
+              "Action": "JADE sits on the edge of the bed, pregnancy test in hand, when Elliot walks in. She doesn't hide it."
+            },
+            {
+              "Dialogue": {
+                "id": "5a1a76f0-ec52-4010-9736-f74a955ba951",
+                "scene": "b1091198-b36b-494d-9efc-d6c4f67c2a58",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Hey \u2014 what's wrong?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.404108+00:00",
+                  "updated_at": "2026-03-20T20:38:46.404108+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "She holds up the test. He stops in the doorway."
+            },
+            {
+              "Dialogue": {
+                "id": "9663cd65-78c3-41a1-893a-3c3a09b87f63",
+                "scene": "b1091198-b36b-494d-9efc-d6c4f67c2a58",
+                "speaker": "db4fe41f-98e4-4fcd-ae57-6aae27f2959f",
+                "content": [
+                  {
+                    "Text": "Don't say anything stupid."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.404173+00:00",
+                  "updated_at": "2026-03-20T20:38:46.404173+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "309bd95d-20d9-4bfc-b13b-05a7f62b1203",
+                "scene": "b1091198-b36b-494d-9efc-d6c4f67c2a58",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Parenthetical": "after a long beat"
+                  },
+                  {
+                    "Text": "How long have you known?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.404201+00:00",
+                  "updated_at": "2026-03-20T20:38:46.404201+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "73ff3444-0791-4919-bf2d-b1066e9bafe6",
+                "scene": "b1091198-b36b-494d-9efc-d6c4f67c2a58",
+                "speaker": "db4fe41f-98e4-4fcd-ae57-6aae27f2959f",
+                "content": [
+                  {
+                    "Text": "An hour. Maybe two."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.404212+00:00",
+                  "updated_at": "2026-03-20T20:38:46.404212+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "41ef0545-3e18-4322-a477-1c6623b84dbc",
+                "scene": "b1091198-b36b-494d-9efc-d6c4f67c2a58",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Okay."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.404222+00:00",
+                  "updated_at": "2026-03-20T20:38:46.404222+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "45d79b03-b827-4faa-b23d-33f7551b6f01",
+                "scene": "b1091198-b36b-494d-9efc-d6c4f67c2a58",
+                "speaker": "db4fe41f-98e4-4fcd-ae57-6aae27f2959f",
+                "content": [
+                  {
+                    "Text": "That's all you've got? Okay?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.404235+00:00",
+                  "updated_at": "2026-03-20T20:38:46.404235+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "caa85544-c90f-414b-98b5-95eaaf587b47",
+                "scene": "b1091198-b36b-494d-9efc-d6c4f67c2a58",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "I mean... yeah. We'll figure it out. Together."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.404245+00:00",
+                  "updated_at": "2026-03-20T20:38:46.404245+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Jade stares at him. She expected a fight. He crosses the room and sits beside her."
+            },
+            {
+              "Dialogue": {
+                "id": "31d0221b-7772-4d6b-9bfb-b0be51c04939",
+                "scene": "b1091198-b36b-494d-9efc-d6c4f67c2a58",
+                "speaker": "db4fe41f-98e4-4fcd-ae57-6aae27f2959f",
+                "content": [
+                  {
+                    "Parenthetical": "quietly"
+                  },
+                  {
+                    "Text": "I'm scared, Elliot."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.404256+00:00",
+                  "updated_at": "2026-03-20T20:38:46.404256+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "7c248486-f905-4a2f-9692-464dbb7425a2",
+                "scene": "b1091198-b36b-494d-9efc-d6c4f67c2a58",
+                "speaker": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+                "content": [
+                  {
+                    "Text": "Me too. But I'm not going anywhere."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:38:46.404268+00:00",
+                  "updated_at": "2026-03-20T20:38:46.404268+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "She leans into him. Neither of them speaks. Outside, the city hums on without them."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:38:46.404280+00:00",
+            "updated_at": "2026-03-20T20:38:46.404280+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        },
+        "6b93983c-d3a4-4051-82d9-e974604af59a": {
+          "id": "6b93983c-d3a4-4051-82d9-e974604af59a",
+          "heading": {
+            "camera_location": "Interior",
+            "scene_location": "CONDO",
+            "time_of_day": "Evening"
+          },
+          "elements": [
+            {
+              "Action": "JADE stands at the bathroom sink, a positive pregnancy test on the counter. Multiple others fill the waste bin."
+            },
+            {
+              "Action": "Her phone lights up. Elliot's name. She lets it ring."
+            },
+            {
+              "Action": "The front door alarm beeps. She sweeps everything into the waste bin and ties the bag."
+            },
+            {
+              "Action": "Elliot appears in the doorway. She walks past him without a word, bag in hand, and out the front door."
+            },
+            {
+              "Action": "Elliot stands alone in the middle of the room, completely in the dark."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:38:46.404301+00:00",
+            "updated_at": "2026-03-20T20:38:46.404301+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        }
+      },
+      "summary": "Jade discovers she is pregnant after multiple positive tests. She ignores Elliot's calls, hastily hides the evidence, and coldly brushes past him when he arrives home late \u2014 leaving for the car without a word.",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.765465+00:00",
+        "updated_at": "2026-03-20T20:28:38.765465+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "d1eeafc3-2574-4c3c-a695-2304695e4e1a": {
+      "id": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+      "active_variant": "08cc5235-b721-4236-8598-73a316a09a12",
+      "variants": {
+        "08cc5235-b721-4236-8598-73a316a09a12": {
+          "id": "08cc5235-b721-4236-8598-73a316a09a12",
+          "heading": {
+            "camera_location": "Exterior",
+            "scene_location": "HOUSE",
+            "time_of_day": "Night"
+          },
+          "elements": [
+            {
+              "Action": "Rick parks his car along the curb. Rain beats against the roof of his car. He hops out and rushes to the front porch locking the door behind him. JORDAN, his ex-wife, stands in the screen door."
+            },
+            {
+              "Dialogue": {
+                "id": "6398a222-0282-4d4f-b17f-c47898fe0c40",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Text": "You\u2019re late."
+                  },
+                  {
+                    "Parenthetical": "(sarcasm)"
+                  },
+                  {
+                    "Text": "What a surprise."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765519+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765519+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "c44e1f53-52c0-4c63-bba9-03cab4d51ec1",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "Some of us have jobs. I wouldn\u2019t expect you to understand."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765550+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765550+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Rick peaks through the door into the living room."
+            },
+            {
+              "Dialogue": {
+                "id": "6bd1c626-85e6-44e3-931a-b558a2172326",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "Where\u2019s Kat?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765565+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765565+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "c54d8c64-cf83-4465-b48c-0bba564a2caa",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Text": "Thomas took her for ice cream."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765579+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765579+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "662b78a2-f4b4-49aa-a71e-cf3e0d513a01",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "It\u2019s 7 o\u2019clock."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765597+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765597+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "dca5432a-831a-4826-9f4d-e9beb09a93ec",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Text": "Don\u2019t go all daddy mode on me. She didn\u2019t think you would come. Can\u2019t blame her. Took her three years before she knew who her father was."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765621+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765621+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "211d9248-46d7-4bea-b182-a2337c6370cf",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "And you\u2019re blaming that on me? You brought that on yourself. How many guys did you sleep with while we were married?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765635+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765635+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "ae3030df-978c-4c0d-bba2-c946a7578939",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Text": "That\u2019s not the point."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765650+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765650+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "7722db10-deaf-46b0-bdef-c9b292ffa8ad",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "That\u2019s exactly the point. You expected me to roll over and accept her as my daughter. I had every right to a paternity test."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765667+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765667+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "4112e804-37a0-4b26-969d-d3448954a457",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Text": "I got lonely. You were never around. Work from sun up to sun down. Then you\u2019d come home and act like I didn\u2019t exist."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765705+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765705+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "1c66124d-81ee-4a6e-8a66-4f07e4219d81",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "I was tired! I worked! Plus I didn\u2019t hear you complaining when you was running around spending my money on clothes or that horse shit you call hair."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765722+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765722+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "5b59a3e5-6e67-485c-ba1b-5b98dd0571b1",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Text": "Horse shit? I vaguely remember you parading me around at the office Christmas party each year. You wanted a trophy and that\u2019s what you got."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765752+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765752+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "556b25b8-536f-400c-af2d-a68009f13083",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "All I wanted was your support, Jordan. The Jordan I fell in love with."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765784+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765784+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "At that moment, THOMAS pulls into the driveway. KAT jumps out and sprints to Rick, hugging him tightly."
+            },
+            {
+              "Dialogue": {
+                "id": "a44b4ac2-4d56-40d0-b13e-9768b6551489",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "c5b6abf9-2054-4f05-a221-7b1c14f7bda5",
+                "content": [
+                  {
+                    "Text": "I thought you forgot about me."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765814+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765814+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "e70c4d5f-392a-48b8-86cd-4728db6482e4",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "What? I couldn\u2019t forget about you if I tried. You\u2019re all I got."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765830+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765830+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "9529b6e0-3171-4324-bdca-72eb35c591cf",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "c5b6abf9-2054-4f05-a221-7b1c14f7bda5",
+                "content": [
+                  {
+                    "Text": "And mommy."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765871+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765871+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Rick glances up at Jordan. Kat pulls back. A smile stretches across her face from ear to ear."
+            },
+            {
+              "Dialogue": {
+                "id": "c2863adc-a5fa-45ce-b638-f93a8fcda021",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "Mommy\u2019s with Thomas now, remember?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765887+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765887+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Kat gives Rick a rather disappointed look."
+            },
+            {
+              "Dialogue": {
+                "id": "bc0227af-4f68-4c91-9a92-01541b330172",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "Now run inside and get your things. I\u2019ve got a surprise for you. Hurry."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:28:38.765918+00:00",
+                  "updated_at": "2026-03-20T20:28:38.765918+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Kat nods and dashes into the house."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:28:38.765925+00:00",
+            "updated_at": "2026-03-20T20:28:38.765925+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        },
+        "b4580a42-184d-4050-9d98-276d8b5116b3": {
+          "id": "b4580a42-184d-4050-9d98-276d8b5116b3",
+          "heading": {
+            "camera_location": "Exterior",
+            "scene_location": "HOUSE",
+            "time_of_day": "Night"
+          },
+          "elements": [
+            {
+              "Action": "Rick's car pulls up to the curb in the rain. He sits a moment before getting out. JORDAN watches from the screen door."
+            },
+            {
+              "Dialogue": {
+                "id": "537628de-16d4-4bdc-938f-996040e86a23",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Text": "You came."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906340+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906340+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "3afa52b3-ed25-4fa7-80e7-956d9655a197",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Parenthetical": "surprised"
+                  },
+                  {
+                    "Text": "Of course I came."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906407+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906407+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "An awkward silence. Neither wants to start the usual fight."
+            },
+            {
+              "Dialogue": {
+                "id": "114323ee-1cb8-4981-a70f-d2a843c0fb20",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Text": "She's been asking about you."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906421+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906421+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "d987510f-305a-4931-beb4-4abed64dc666",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "I know. I've been trying to do better."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906431+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906431+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Jordan looks at him. Something softens, just slightly."
+            },
+            {
+              "Dialogue": {
+                "id": "60fdc98e-bb6e-4c52-ab01-e0253147d081",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Text": "Thomas took her for ice cream. They'll be back soon."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906451+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906451+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "241ca940-3b4f-4346-b141-326325d98d62",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "I can wait."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906463+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906463+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Jordan holds the screen door open."
+            },
+            {
+              "Dialogue": {
+                "id": "b395217a-c23b-4918-bb6c-57971fc60be1",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Text": "There's coffee."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906475+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906475+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Rick hesitates. Then steps inside. The door closes gently behind them."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:39:34.906488+00:00",
+            "updated_at": "2026-03-20T20:39:34.906488+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        },
+        "b8e09874-f46b-4f5f-96be-4a16f52284ad": {
+          "id": "b8e09874-f46b-4f5f-96be-4a16f52284ad",
+          "heading": {
+            "camera_location": "Exterior",
+            "scene_location": "HOUSE",
+            "time_of_day": "Night"
+          },
+          "elements": [
+            {
+              "Action": "Rick storms up the porch steps. JORDAN blocks the screen door."
+            },
+            {
+              "Dialogue": {
+                "id": "c3f7cf3d-9e4a-4b77-a044-cb350c37041d",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Parenthetical": "sarcasm"
+                  },
+                  {
+                    "Text": "An hour late. New record."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906504+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906504+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "4d98b0ac-105d-4b0a-8d1b-59d88dd23fce",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "Where is she?"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906517+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906517+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "b65dbed0-ee04-4d55-bb3d-1938ddd7635f",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Text": "Out with Thomas. Like she always is when you don't show."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906532+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906532+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "15a564a2-f6ed-486d-bf7d-045930d761bb",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "I said I'd be here and I'm here. That's more than Thomas has ever done."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906542+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906542+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "0fe4cb24-1748-470d-9441-17973580259e",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Text": "Thomas shows up every day, Rick. Every single day."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906552+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906552+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "1c1587bc-fd72-44c1-88e9-077d0742adb0",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "You made me wait three years to find out she was even mine!"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906561+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906561+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "The words land hard. Jordan goes still."
+            },
+            {
+              "Dialogue": {
+                "id": "8dae574a-30ea-4093-9611-6746c2382fab",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+                "content": [
+                  {
+                    "Parenthetical": "low"
+                  },
+                  {
+                    "Text": "You need to leave."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906570+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906570+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Dialogue": {
+                "id": "914b1882-6c4b-45d8-b845-a82e99b013ed",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+                "content": [
+                  {
+                    "Text": "I'm not leaving without my daughter."
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906587+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906587+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Headlights sweep the porch. THOMAS's car pulls in. KAT sprints to Rick."
+            },
+            {
+              "Dialogue": {
+                "id": "1b6f4e4d-e72c-42bf-9337-de64a75b24c7",
+                "scene": "d1eeafc3-2574-4c3c-a695-2304695e4e1a",
+                "speaker": "c5b6abf9-2054-4f05-a221-7b1c14f7bda5",
+                "content": [
+                  {
+                    "Text": "Daddy!"
+                  }
+                ],
+                "metadata": {
+                  "created_at": "2026-03-20T20:39:34.906596+00:00",
+                  "updated_at": "2026-03-20T20:39:34.906596+00:00",
+                  "version": 1,
+                  "revision_notes": [],
+                  "tags": [],
+                  "locked": false
+                }
+              }
+            },
+            {
+              "Action": "Rick catches her. Over her shoulder, he and Jordan lock eyes \u2014 the argument swallowed whole."
+            }
+          ],
+          "metadata": {
+            "created_at": "2026-03-20T20:39:34.906607+00:00",
+            "updated_at": "2026-03-20T20:39:34.906607+00:00",
+            "version": 1,
+            "revision_notes": [],
+            "tags": [],
+            "locked": false
+          }
+        }
+      },
+      "summary": "CIA agent Rick arrives late to pick up his daughter Kat from his ex-wife Jordan's house. Their exchange quickly escalates into a bitter argument over infidelity, neglect, and the years-long question of Kat's paternity \u2014 until Kat herself rushes out to greet her father, momentarily cutting the tension.",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.765927+00:00",
+        "updated_at": "2026-03-20T20:28:38.765927+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    }
+  },
+  "characters": {
+    "50008a07-a6a3-447b-b144-ab4c8fbc3ca3": {
+      "id": "50008a07-a6a3-447b-b144-ab4c8fbc3ca3",
+      "name": "AGENT MARSHALL",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762190+00:00",
+        "updated_at": "2026-03-20T20:28:38.762190+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "47d8335e-4dca-4eba-b60d-aa9388891e7e": {
+      "id": "47d8335e-4dca-4eba-b60d-aa9388891e7e",
+      "name": "ALEC",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762267+00:00",
+        "updated_at": "2026-03-20T20:28:38.762267+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "79074d20-83e9-4d3e-9ef8-d7eb3fa89694": {
+      "id": "79074d20-83e9-4d3e-9ef8-d7eb3fa89694",
+      "name": "COWORKER #1",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762294+00:00",
+        "updated_at": "2026-03-20T20:28:38.762294+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "33d21abb-aa2c-428e-9363-3f8255ae29b2": {
+      "id": "33d21abb-aa2c-428e-9363-3f8255ae29b2",
+      "name": "COWORKER #2",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762308+00:00",
+        "updated_at": "2026-03-20T20:28:38.762308+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "e2e8c219-0cc8-4846-b751-0fce78fdcc6e": {
+      "id": "e2e8c219-0cc8-4846-b751-0fce78fdcc6e",
+      "name": "ELLIOT",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762322+00:00",
+        "updated_at": "2026-03-20T20:28:38.762322+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "32c46b0a-a681-496f-a785-b5c842e3d028": {
+      "id": "32c46b0a-a681-496f-a785-b5c842e3d028",
+      "name": "FIRST LADY MCKENZIE",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762344+00:00",
+        "updated_at": "2026-03-20T20:28:38.762344+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "892925c3-78f3-4c41-9fc5-9898547b4748": {
+      "id": "892925c3-78f3-4c41-9fc5-9898547b4748",
+      "name": "GHETTO BLACK MAN",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762368+00:00",
+        "updated_at": "2026-03-20T20:28:38.762368+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "db4fe41f-98e4-4fcd-ae57-6aae27f2959f": {
+      "id": "db4fe41f-98e4-4fcd-ae57-6aae27f2959f",
+      "name": "JADE",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762381+00:00",
+        "updated_at": "2026-03-20T20:28:38.762381+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "43697c57-b3b0-4bd9-927e-32aef8048db2": {
+      "id": "43697c57-b3b0-4bd9-927e-32aef8048db2",
+      "name": "JORDAN",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762397+00:00",
+        "updated_at": "2026-03-20T20:28:38.762397+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "c5b6abf9-2054-4f05-a221-7b1c14f7bda5": {
+      "id": "c5b6abf9-2054-4f05-a221-7b1c14f7bda5",
+      "name": "KAT",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762409+00:00",
+        "updated_at": "2026-03-20T20:28:38.762409+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "2d58f4d6-50c9-48ae-979d-83f7dace162a": {
+      "id": "2d58f4d6-50c9-48ae-979d-83f7dace162a",
+      "name": "PRESIDENT MCKENZIE",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762422+00:00",
+        "updated_at": "2026-03-20T20:28:38.762422+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "07c8d285-e472-47f8-ad52-45552f3394d6": {
+      "id": "07c8d285-e472-47f8-ad52-45552f3394d6",
+      "name": "REDNECK",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762437+00:00",
+        "updated_at": "2026-03-20T20:28:38.762437+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1": {
+      "id": "f8c43a3d-e8ec-44aa-9a6b-3d504f9a16b1",
+      "name": "RICK",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762456+00:00",
+        "updated_at": "2026-03-20T20:28:38.762456+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "ef5babdd-ff7e-4117-99cb-734d44a52930": {
+      "id": "ef5babdd-ff7e-4117-99cb-734d44a52930",
+      "name": "RYAN",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762475+00:00",
+        "updated_at": "2026-03-20T20:28:38.762475+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "4eaa5419-4cd9-4bbf-83c1-41136243f7f0": {
+      "id": "4eaa5419-4cd9-4bbf-83c1-41136243f7f0",
+      "name": "S.S. AGENT",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762505+00:00",
+        "updated_at": "2026-03-20T20:28:38.762505+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "949e5108-396a-439b-bc2d-791b9c1456bc": {
+      "id": "949e5108-396a-439b-bc2d-791b9c1456bc",
+      "name": "VICTOR",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762539+00:00",
+        "updated_at": "2026-03-20T20:28:38.762539+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "1e64eed6-e5fe-4d61-815c-e65ccc8fba0d": {
+      "id": "1e64eed6-e5fe-4d61-815c-e65ccc8fba0d",
+      "name": "VOICE",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762565+00:00",
+        "updated_at": "2026-03-20T20:28:38.762565+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    },
+    "6af87d0f-ff9a-4c99-aa9d-a4025087e883": {
+      "id": "6af87d0f-ff9a-4c99-aa9d-a4025087e883",
+      "name": "WAITRESS",
+      "metadata": {
+        "created_at": "2026-03-20T20:28:38.762578+00:00",
+        "updated_at": "2026-03-20T20:28:38.762578+00:00",
+        "version": 1,
+        "revision_notes": [],
+        "tags": [],
+        "locked": false
+      }
+    }
+  },
+  "template": "Teleplay",
+  "scene_graph": {
+    "edges": {
+      "752ccb3e-bf7f-4bda-9cef-de23cadc8266": [
+        "dabf9ac8-c7c6-4307-a66c-9a4509c5abd3"
+      ],
+      "dabf9ac8-c7c6-4307-a66c-9a4509c5abd3": [
+        "c50fb239-03c2-4d71-b35a-7a269bb6d0dc"
+      ],
+      "c50fb239-03c2-4d71-b35a-7a269bb6d0dc": [
+        "6937fb07-b1ca-43cc-84c2-2a5b04fabb6b"
+      ],
+      "6937fb07-b1ca-43cc-84c2-2a5b04fabb6b": [
+        "1ecd622c-ef99-456d-8107-659b681cd884"
+      ],
+      "1ecd622c-ef99-456d-8107-659b681cd884": [
+        "0ba3601d-9acf-474f-9e9d-30f39cfffdb7"
+      ],
+      "0ba3601d-9acf-474f-9e9d-30f39cfffdb7": [
+        "d7228352-d1e3-4d45-9329-d183bbe30e70"
+      ],
+      "d7228352-d1e3-4d45-9329-d183bbe30e70": [
+        "0e026d89-1256-47c3-995c-403093bcb242"
+      ],
+      "0e026d89-1256-47c3-995c-403093bcb242": [
+        "b1091198-b36b-494d-9efc-d6c4f67c2a58"
+      ],
+      "b1091198-b36b-494d-9efc-d6c4f67c2a58": [
+        "d1eeafc3-2574-4c3c-a695-2304695e4e1a"
+      ],
+      "d1eeafc3-2574-4c3c-a695-2304695e4e1a": []
+    },
+    "roots": ["752ccb3e-bf7f-4bda-9cef-de23cadc8266"]
+  },
+  "summary": "A political thriller pilot set against the backdrop of a controversial presidential pardon of Iranian terrorists. While President McKenzie publicly champions peace, a shadow operation orchestrated by CIA Director Ryan King moves to assassinate him \u2014 using Secretary of State Victor as a reluctant pawn. Meanwhile, CIA cryptographer Elliot Taylor navigates a fractured personal life: his relationship with journalist Jade Morgan, who is secretly pregnant, and his unresolved history with his absent father. A parallel thread follows CIA agent Rick, caught between a custody dispute with his ex-wife Jordan and his devotion to their daughter Kat. The pilot weaves together power, betrayal, and private fracture points into an escalating web of conspiracy.",
+  "metadata": {
+    "created_at": "2026-03-20T20:28:38.765967+00:00",
+    "updated_at": "2026-03-20T20:28:38.765967+00:00",
+    "version": 1,
+    "revision_notes": [],
+    "tags": [],
+    "locked": false
+  }
+}

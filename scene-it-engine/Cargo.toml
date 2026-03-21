@@ -1,11 +1,19 @@
 [package]
 name = "scene-it-engine"
-authors = ["Donte Littlejohn <aerymisprime@gmail.com>"]
+authors = ["Donte Ravae <donteravae@gmail.com>"]
 version = "0.1.0"
 edition = "2024"
+
+[lib]
+name = "scene_it_engine"
 
 [dependencies]
 serde = { version = "1.0.228", features = ["derive"] }
 serde_json = "1.0.149"
-time = { version = "0.3.44", features = ["serde"] }
-uuid = { version = "1.19.0", features = ["v4", "serde"] }
+time = { version = "0.3.47", features = [
+    "serde",
+    "serde-well-known",
+    "formatting",
+    "parsing",
+] }
+uuid = { version = "1.22.0", features = ["v4", "serde"] }
