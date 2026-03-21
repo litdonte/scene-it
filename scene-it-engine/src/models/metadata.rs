@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use time::UtcDateTime;
+use time::{OffsetDateTime, UtcDateTime};
 
 use crate::utils;
 
@@ -30,8 +30,10 @@ pub enum MetadataError {
 
 #[derive(Debug, Hash, PartialEq, Eq, Clone, Deserialize, Serialize)]
 pub struct Metadata {
-    pub created_at: UtcDateTime,
-    pub updated_at: UtcDateTime,
+    #[serde(with = "time::serde::iso8601")]
+    pub created_at: OffsetDateTime,
+    #[serde(with = "time::serde::iso8601")]
+    pub updated_at: OffsetDateTime,
     pub version: u32,
     pub revision_notes: Vec<RevisionNote>,
     pub tags: Vec<String>, // Optional
@@ -42,8 +44,8 @@ impl Metadata {
     pub fn new() -> Self {
         let now = UtcDateTime::now();
         Self {
-            created_at: now,
-            updated_at: now,
+            created_at: OffsetDateTime::now_utc(),
+            updated_at: OffsetDateTime::now_utc(),
             version: 1,
             revision_notes: Vec::new(),
             tags: Vec::new(),
@@ -54,7 +56,7 @@ impl Metadata {
     pub fn add_revision_note(&mut self, note: RevisionNote) {
         self.revision_notes.push(note);
         let now = UtcDateTime::now();
-        self.updated_at = now;
+        self.updated_at = OffsetDateTime::now_utc();
         self.version += 1;
     }
 }
@@ -66,7 +68,7 @@ pub trait HasMetadata {
     fn touch(&mut self) {
         let now = UtcDateTime::now();
         let meta = self.metadata_mut();
-        meta.updated_at = now;
+        meta.updated_at = OffsetDateTime::now_utc();
         meta.version += 1;
     }
 }
