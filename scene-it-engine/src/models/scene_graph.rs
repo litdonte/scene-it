@@ -150,7 +150,7 @@ impl SceneGraph {
         StoryboardUpdate::SceneSetAsRoot(scene_id.clone())
     }
 
-    /// Adds a directed edge from `from` to `to` in the graph, representing a possible next scene.  
+    /// Adds a directed edge from `from` to `dest` in the graph, representing a possible next scene.  
     /// If the `to` scene does not exist in the graph, it is added automatically.  
     ///
     /// Example: Scene 3 -> Scene 4 or Scene 3 -> Scene 5
@@ -203,7 +203,7 @@ impl SceneGraph {
 
     /// Removes a directed edge from one scene to another.
     ///
-    /// This operation removes a single possible transition (`from -> to`)
+    /// This operation removes a single possible transition (`from -> dest`)
     /// without deleting either scene from the graph. Other outgoing or
     /// incoming edges remain unchanged.
     ///

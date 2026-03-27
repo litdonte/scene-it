@@ -13,6 +13,7 @@ pub struct SceneVariant {
     id: Id<Self>,
     heading: Option<SceneHeading>,
     elements: Vec<SceneElement>,
+    summary: Summary,
     metadata: Metadata,
 }
 
@@ -22,12 +23,17 @@ impl SceneVariant {
             id: Id::new(),
             heading: None,
             elements: Vec::new(),
+            summary: Summary::default(),
             metadata: Metadata::new(),
         }
     }
 
     pub fn id(&self) -> Id<Self> {
         self.id.clone()
+    }
+
+    pub fn summary(&self) -> &Summary {
+        &self.summary
     }
 }
 
@@ -36,7 +42,6 @@ pub struct Scene {
     id: Id<Self>,
     active_variant: Id<SceneVariant>,
     variants: HashMap<Id<SceneVariant>, SceneVariant>,
-    summary: Summary,
     metadata: Metadata,
 }
 
@@ -48,13 +53,21 @@ impl Scene {
             id: Id::new(),
             active_variant: variant.id(),
             variants: HashMap::from([(variant.id(), variant)]),
-            summary: Summary::default(),
             metadata: Metadata::new(),
         }
     }
 
     pub fn id(&self) -> Id<Self> {
         self.id.clone()
+    }
+
+    pub fn summary(&self) -> Summary {
+        self.variants
+            .get(&self.active_variant)
+            .map(|var| var.summary().clone())
+            .unwrap_or_else(|| {
+                Summary::new("Summary not available.").expect("Fallback summary is valid")
+            })
     }
 }
 
