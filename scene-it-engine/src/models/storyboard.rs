@@ -7,7 +7,7 @@ use crate::models::{
     author::Author,
     character::Character,
     metadata::{HasMetadata, Metadata},
-    scene::Scene,
+    scene::{Scene, SceneVariant},
     scene_graph::SceneGraph,
     summary::Summary,
     title::Title,
@@ -15,13 +15,14 @@ use crate::models::{
 
 pub enum StoryboardError {
     UnknownScene(Id<Scene>),
+    UnknownVariant(Id<SceneVariant>),
     InvalidMove {
-        scene: Id<Scene>,
-        from: Id<Scene>,
-        dest: Id<Scene>,
+        scene: Id<SceneVariant>,
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
     },
-    CycleDetected(Id<Scene>, Id<Scene>),
-    SceneNotInGraph(Id<Scene>),
+    CycleDetected(Id<SceneVariant>, Id<SceneVariant>),
+    SceneVariantNotInGraph(Id<SceneVariant>),
 }
 
 /// Represents a structural change to a `Storyboard` caused by an operation on
@@ -43,20 +44,20 @@ pub enum StoryboardError {
 /// - **Composable**: callers can pattern-match and react selectively
 pub enum StoryboardUpdate {
     Move {
-        scene: Id<Scene>,
-        from: Id<Scene>,
-        dest: Id<Scene>,
+        variant: Id<SceneVariant>,
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
     },
-    SceneAdded(Id<Scene>),
-    SceneSetAsRoot(Id<Scene>),
-    LinkedScenes {
-        from: Id<Scene>,
-        dest: Id<Scene>,
+    SceneVariantAdded(Id<SceneVariant>),
+    SceneVariantSetAsRoot(Id<SceneVariant>),
+    LinkedSceneVariants {
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
     },
-    SceneDeleted(Id<Scene>),
+    SceneVariantDeleted(Id<SceneVariant>),
     EdgeDeleted {
-        from: Id<Scene>,
-        dest: Id<Scene>,
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
     },
 }
 
@@ -148,7 +149,9 @@ impl Storyboard {
     /// This registers the scene in both the scene graph (for ordering and
     /// relationships) and the scene bank (for scene data storage).
     pub fn add_scene(&mut self, scene: Scene) {
-        self.scene_graph.add_scene(&scene.id());
+        for variant_id in scene.variant_ids() {
+            self.scene_graph.add_variant(variant_id);
+        }
         self.scene_bank.insert(scene.id(), scene);
     }
 
@@ -159,13 +162,38 @@ impl Storyboard {
     /// On success, affected scenes have their metadata updated.
     pub fn move_scene(
         &mut self,
-        scene: &Id<Scene>,
-        from: &Id<Scene>,
-        to: &Id<Scene>,
+        scene: &Id<SceneVariant>,
+        src: &Id<SceneVariant>,
+        to: &Id<SceneVariant>,
     ) -> Result<(), StoryboardError> {
-        let graph_update = self.scene_graph.move_scene(scene, from, to)?;
+        let graph_update = self.scene_graph.move_variant(scene, src, to)?;
         self.apply_update(graph_update);
         Ok(())
+    }
+
+    pub fn linearize_from<'a>(
+        &'a self,
+        root: &'a Id<SceneVariant>,
+    ) -> impl Iterator<Item = &'a Scene> {
+        let mut current = Some(root);
+        let mut visited = HashSet::new();
+        let mut order = Vec::new();
+
+        while let Some(variant_id) = current {
+            if !visited.insert(variant_id) {
+                break;
+            }
+
+            if let Some(scene) = self.scene_bank.values().find(|s| s.has_variant(variant_id)) {
+                order.push(scene);
+
+                current = scene.variants().get(variant_id).and_then(|v| v.next());
+            } else {
+                eprintln!("Warning: variant ID {variant_id} found in graph but not in any scene");
+            }
+        }
+
+        order.into_iter()
     }
 
     /// Applies a structural update emitted by the scene graph.
@@ -174,19 +202,19 @@ impl Storyboard {
     /// with graph-level changes without duplicating graph logic.
     fn apply_update(&mut self, update: StoryboardUpdate) {
         match update {
-            StoryboardUpdate::Move { scene, from, dest } => {
-                self.update_metadata(&scene);
-                self.update_metadata(&from);
+            StoryboardUpdate::Move { variant, src, dest } => {
+                self.update_metadata(&variant);
+                self.update_metadata(&src);
                 self.update_metadata(&dest);
             }
-            StoryboardUpdate::SceneAdded(scene)
-            | StoryboardUpdate::SceneSetAsRoot(scene)
-            | StoryboardUpdate::SceneDeleted(scene) => {
-                self.update_metadata(&scene);
+            StoryboardUpdate::SceneVariantAdded(variant)
+            | StoryboardUpdate::SceneVariantSetAsRoot(variant)
+            | StoryboardUpdate::SceneVariantDeleted(variant) => {
+                self.update_metadata(&variant);
             }
-            StoryboardUpdate::LinkedScenes { from, dest }
-            | StoryboardUpdate::EdgeDeleted { from, dest } => {
-                self.update_metadata(&from);
+            StoryboardUpdate::LinkedSceneVariants { src, dest }
+            | StoryboardUpdate::EdgeDeleted { src, dest } => {
+                self.update_metadata(&src);
                 self.update_metadata(&dest);
             }
         }
@@ -196,9 +224,11 @@ impl Storyboard {
     ///
     /// This is typically called after structural changes such as moves,
     /// edge updates, or deletions.
-    fn update_metadata(&mut self, scene: &Id<Scene>) {
-        if let Some(scene) = self.scene_bank.get_mut(scene) {
-            scene.touch();
+    fn update_metadata(&mut self, variant_id: &Id<SceneVariant>) {
+        for scene in self.scene_bank.values_mut() {
+            if scene.has_variant(variant_id) {
+                scene.touch();
+            }
         }
     }
 
@@ -234,8 +264,10 @@ impl Storyboard {
     /// ```
     pub fn delete_scene(&mut self, scene: &Id<Scene>) -> Result<(), StoryboardError> {
         if let Some(scene) = self.scene_bank.remove(scene) {
-            let graph_update = self.scene_graph.delete_scene(&scene.id())?;
-            self.apply_update(graph_update);
+            for variant in scene.variant_ids() {
+                let graph_update = self.scene_graph.delete_variant(variant)?;
+                self.apply_update(graph_update);
+            }
         }
         Ok(())
     }
@@ -243,8 +275,8 @@ impl Storyboard {
     /// Marks a scene as a root entry point in the scene graph.
     ///
     /// Root scenes represent valid starting points for story traversal.
-    pub fn set_scene_as_root(&mut self, scene_id: &Id<Scene>) {
-        self.scene_graph.add_root(scene_id);
+    pub fn set_variant_as_root(&mut self, variant_id: &Id<SceneVariant>) {
+        self.scene_graph.add_root(variant_id);
     }
 
     /// Adds a character to the storyboard.
@@ -258,18 +290,13 @@ impl Storyboard {
     ///
     /// The `from` scene will be considered a predecessor of the `to` scene
     /// during traversal and linearization. Both scenes must already exist.
-    pub fn link_scenes(&mut self, from: &Id<Scene>, to: &Id<Scene>) -> Result<(), StoryboardError> {
-        if !self.scene_bank.contains_key(&from) {
-            return Err(StoryboardError::UnknownScene(from.clone()));
-        }
-
-        if !self.scene_bank.contains_key(&to) {
-            return Err(StoryboardError::UnknownScene(to.clone()));
-        }
-
-        let graph_update = self.scene_graph.add_edge(from, to);
+    pub fn link_variants(
+        &mut self,
+        src: &Id<SceneVariant>,
+        to: &Id<SceneVariant>,
+    ) -> Result<(), StoryboardError> {
+        let graph_update = self.scene_graph.add_edge(src, to);
         self.apply_update(graph_update);
-
         Ok(())
     }
 
@@ -301,18 +328,18 @@ impl Storyboard {
     /// - Allowing users to manually prune narrative branches
     pub fn unlink_scenes(
         &mut self,
-        from: &Id<Scene>,
-        to: &Id<Scene>,
+        src: &Id<SceneVariant>,
+        dest: &Id<SceneVariant>,
     ) -> Result<(), StoryboardError> {
-        if !self.scene_bank.contains_key(&from) {
-            return Err(StoryboardError::UnknownScene(from.clone()));
+        if !self.scene_bank.values().any(|s| s.has_variant(src)) {
+            return Err(StoryboardError::UnknownVariant(src.clone()));
         }
 
-        if !self.scene_bank.contains_key(&to) {
-            return Err(StoryboardError::UnknownScene(to.clone()));
+        if !self.scene_bank.values().any(|s| s.has_variant(dest)) {
+            return Err(StoryboardError::UnknownVariant(src.clone()));
         }
 
-        let graph_update = self.scene_graph.delete_edge(from, to)?;
+        let graph_update = self.scene_graph.delete_edge(src, dest)?;
         self.apply_update(graph_update);
         Ok(())
     }
@@ -336,7 +363,8 @@ impl Storyboard {
     /// - Providing UI warnings or cleanup suggestions
     /// - Helping users identify narrative dead ends
     pub fn standalone_scenes(&self) -> HashSet<Id<Scene>> {
-        self.scene_graph.unreachable_scenes()
+        self.scene_graph.unreachable_variants();
+        todo!()
     }
 }
 
@@ -357,13 +385,92 @@ impl Default for Storyboard {
 
 #[cfg(test)]
 mod tests {
-    use crate::models::storyboard::Storyboard;
+    use crate::models::{scene::Scene, storyboard::Storyboard};
 
     #[test]
-    fn creating_storyboard_works() {
-        // Arrange & Act
-        let sb = Storyboard::default();
+    fn linearize_from_returns_scenes_in_order() {
+        // Arrange
+        let mut storyboard = Storyboard::default();
+
+        let mut scene1 = Scene::new();
+        let mut scene2 = Scene::new();
+        let scene3 = Scene::new();
+
+        // Get the active variant ID from each scene
+        let variant1_id = scene1.active_variant().clone();
+        let variant2_id = scene2.active_variant().clone();
+        let variant3_id = scene3.active_variant().clone();
+
+        // Wire up next pointers
+        scene1
+            .variants_mut()
+            .get_mut(&variant1_id)
+            .unwrap()
+            .set_next(variant2_id.clone());
+
+        scene2
+            .variants_mut()
+            .get_mut(&variant2_id)
+            .unwrap()
+            .set_next(variant3_id.clone());
+
+        // Add scenes to storyboard
+        storyboard.add_scene(scene1);
+        storyboard.add_scene(scene2);
+        storyboard.add_scene(scene3);
+
+        // Act
+        let result: Vec<&Scene> = storyboard.linearize_from(&variant1_id).collect();
+
         // Assert
-        assert_eq!(sb.title, None);
+        assert_eq!(result.len(), 3);
+        assert!(result[0].has_variant(&variant1_id));
+        assert!(result[1].has_variant(&variant2_id));
+        assert!(result[2].has_variant(&variant3_id));
+    }
+
+    #[test]
+    fn linearize_from_breaks_when_cycle_detected() {
+        // Arrange
+        let mut storyboard = Storyboard::default();
+
+        let mut scene1 = Scene::new();
+        let mut scene2 = Scene::new();
+        let mut scene3 = Scene::new();
+
+        // Get the active variant ID from each scene
+        let variant1_id = scene1.active_variant().clone();
+        let variant2_id = scene2.active_variant().clone();
+        let variant3_id = scene3.active_variant().clone();
+
+        // Wire up next pointers
+        scene1
+            .variants_mut()
+            .get_mut(&variant1_id)
+            .unwrap()
+            .set_next(variant2_id.clone());
+
+        scene2
+            .variants_mut()
+            .get_mut(&variant2_id)
+            .unwrap()
+            .set_next(variant3_id.clone());
+
+        scene3
+            .variants_mut()
+            .get_mut(&variant3_id)
+            .unwrap()
+            .set_next(variant1_id.clone());
+
+        // Add scenes to storyboard
+        storyboard.add_scene(scene1);
+        storyboard.add_scene(scene2);
+        storyboard.add_scene(scene3);
+
+        // Act
+        let result: Vec<&Scene> = storyboard.linearize_from(&variant1_id).collect();
+
+        // Assert
+        assert_eq!(result.len(), 3)
     }
 }

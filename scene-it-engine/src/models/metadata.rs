@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use time::{OffsetDateTime, UtcDateTime};
+use time::OffsetDateTime;
 
 use crate::utils;
 
@@ -42,10 +42,10 @@ pub struct Metadata {
 
 impl Metadata {
     pub fn new() -> Self {
-        let now = UtcDateTime::now();
+        let now = OffsetDateTime::now_utc();
         Self {
-            created_at: OffsetDateTime::now_utc(),
-            updated_at: OffsetDateTime::now_utc(),
+            created_at: now,
+            updated_at: now,
             version: 1,
             revision_notes: Vec::new(),
             tags: Vec::new(),
@@ -54,9 +54,9 @@ impl Metadata {
     }
 
     pub fn add_revision_note(&mut self, note: RevisionNote) {
+        let now = OffsetDateTime::now_utc();
         self.revision_notes.push(note);
-        let now = UtcDateTime::now();
-        self.updated_at = OffsetDateTime::now_utc();
+        self.updated_at = now;
         self.version += 1;
     }
 }
@@ -66,7 +66,6 @@ pub trait HasMetadata {
     fn metadata_mut(&mut self) -> &mut Metadata;
 
     fn touch(&mut self) {
-        let now = UtcDateTime::now();
         let meta = self.metadata_mut();
         meta.updated_at = OffsetDateTime::now_utc();
         meta.version += 1;
