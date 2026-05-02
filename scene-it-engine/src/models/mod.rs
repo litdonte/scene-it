@@ -2,7 +2,7 @@ mod author;
 mod character;
 mod metadata;
 mod scene;
-mod scene_elements;
+mod scene_element;
 mod scene_graph;
 mod storyboard;
 mod summary;

@@ -4,7 +4,7 @@ use std::collections::HashMap;
 use crate::models::{
     Id,
     metadata::{HasMetadata, Metadata},
-    scene_elements::{SceneElement, heading::SceneHeading},
+    scene_element::{SceneElement, SceneHeading},
     summary::Summary,
 };
 
