@@ -1,15 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::ops::Deref;
 
-use crate::utils;
-
-// Until I move errors into their own module, they'll live in the module for which the error represents
-#[derive(Debug)]
-pub enum TitleError {
-    EmptyTitle,
-    TooLong,
-    ContainsControlChars,
-}
+use crate::utils::{InputError, validate_input};
 
 /// Represent the title of the user's story.
 /// By default, the title is 'Untitled Storyboard',
@@ -24,22 +16,8 @@ impl Default for Title {
 }
 
 impl Title {
-    pub fn new(input: &str) -> Result<Self, TitleError> {
-        let trimmed = utils::trim_input(input);
-
-        if trimmed.is_empty() {
-            return Err(TitleError::EmptyTitle);
-        }
-
-        if trimmed.chars().count() > 100 {
-            return Err(TitleError::TooLong);
-        }
-
-        if trimmed.chars().any(|c| c.is_control()) {
-            return Err(TitleError::ContainsControlChars);
-        }
-
-        Ok(Self(trimmed.to_owned()))
+    pub fn new(input: &str) -> Result<Self, InputError> {
+        Ok(Self(validate_input(input, Some(100))?))
     }
 
     pub fn as_str(&self) -> &str {
@@ -48,7 +26,7 @@ impl Title {
 }
 
 impl TryFrom<&str> for Title {
-    type Error = TitleError;
+    type Error = InputError;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         Self::new(value)
@@ -75,7 +53,4 @@ mod tests {
         // Assert
         assert_eq!("Scott Pilgrim vs. The World", title.unwrap().as_str())
     }
-
-    #[test]
-    fn creating_title_with_invalid_name_returns_default_title() {}
 }

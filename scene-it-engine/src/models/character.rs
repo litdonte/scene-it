@@ -1,35 +1,14 @@
 use crate::{
     models::{Id, metadata::Metadata},
-    utils,
+    utils::{InputError, validate_input},
 };
 use serde::{Deserialize, Serialize};
-
-pub enum CharacterError {
-    NameEmpty,
-    NameTooLong,
-    NameContainsControlChars,
-}
-
 #[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
 pub struct CharacterName(String);
 
 impl CharacterName {
-    pub fn new(input: &str) -> Result<Self, CharacterError> {
-        let name = utils::trim_input(input);
-
-        if name.is_empty() {
-            return Err(CharacterError::NameEmpty);
-        }
-
-        if name.len() > 100 {
-            return Err(CharacterError::NameTooLong);
-        }
-
-        if name.chars().any(|c| c.is_control()) {
-            return Err(CharacterError::NameContainsControlChars);
-        }
-
-        Ok(Self(name.to_owned()))
+    pub fn new(input: &str) -> Result<Self, InputError> {
+        Ok(Self(validate_input(input, Some(100))?))
     }
 }
 

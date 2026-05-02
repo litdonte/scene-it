@@ -1,31 +1,15 @@
 use serde::{Deserialize, Serialize};
 use time::OffsetDateTime;
 
-use crate::utils;
+use crate::utils::{InputError, validate_input};
 
 #[derive(Debug, Hash, PartialEq, Eq, Clone, Deserialize, Serialize)]
 pub struct RevisionNote(String);
 
 impl RevisionNote {
-    pub fn new(input: &str) -> Result<Self, MetadataError> {
-        let note = utils::trim_input(input);
-
-        if note.is_empty() {
-            return Err(MetadataError::EmptyRevisionNote);
-        }
-
-        if note.chars().any(|c| c.is_control()) {
-            return Err(MetadataError::RevisionNoteHasControlChars);
-        }
-
-        Ok(Self(note))
+    pub fn new(input: &str) -> Result<Self, InputError> {
+        Ok(Self(validate_input(input, None)?))
     }
-}
-
-#[derive(Debug, Hash, PartialEq, Eq, Clone)]
-pub enum MetadataError {
-    EmptyRevisionNote,
-    RevisionNoteHasControlChars,
 }
 
 #[derive(Debug, Hash, PartialEq, Eq, Clone, Deserialize, Serialize)]
