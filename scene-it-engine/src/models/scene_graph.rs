@@ -1,11 +1,36 @@
 use serde::{Deserialize, Serialize};
 use std::collections::{HashMap, HashSet};
 
-use crate::models::{
-    Id,
-    scene::SceneVariant,
-    storyboard::{StoryboardError, StoryboardUpdate},
-};
+use crate::models::{Id, scene::SceneVariant};
+
+pub enum SceneGraphUpdate {
+    Move {
+        variant: Id<SceneVariant>,
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
+    },
+    SceneVariantAdded(Id<SceneVariant>),
+    SceneVariantSetAsRoot(Id<SceneVariant>),
+    LinkedSceneVariants {
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
+    },
+    SceneVariantDeleted(Id<SceneVariant>),
+    EdgeDeleted {
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
+    },
+}
+
+pub enum SceneGraphError {
+    UnknownVariant(Id<SceneVariant>),
+    InvalidMove {
+        scene: Id<SceneVariant>,
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
+    },
+    CycleDetected(Id<SceneVariant>, Id<SceneVariant>),
+}
 
 /// An ordering and relationship model for scenes that expresses what can come next.
 ///
@@ -13,7 +38,7 @@ use crate::models::{
 /// not scene content. It supports branching paths, optional transitions,
 /// and alternate story flows.
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct SceneGraph {
+pub(crate) struct SceneGraph {
     edges: HashMap<Id<SceneVariant>, HashSet<Id<SceneVariant>>>,
     roots: HashSet<Id<SceneVariant>>, // Optional story entry points
 }
@@ -28,9 +53,9 @@ impl SceneGraph {
 
     /// Adds a scene to the `SceneGraph`.  
     /// If the scene does not exist, it is initialized with an empty set of edges.
-    pub fn add_variant(&mut self, variant_id: &Id<SceneVariant>) -> StoryboardUpdate {
+    pub fn add_variant(&mut self, variant_id: &Id<SceneVariant>) -> SceneGraphUpdate {
         self.edges.entry(variant_id.clone()).or_default();
-        StoryboardUpdate::SceneVariantAdded(variant_id.clone())
+        SceneGraphUpdate::SceneVariantAdded(variant_id.clone())
     }
 
     /// Moves a scene from one parent scene to another.
@@ -41,25 +66,25 @@ impl SceneGraph {
     /// - `dest`: The new parent scene.
     ///
     /// # Errors
-    /// Returns `StoryboardError::UnknownScene` if any of the scenes are not present in the graph.
-    /// Returns `StoryboardError::InvalidMove` if `scene` is not a child of `from`.
-    /// Returns `StoryboardError::CycleDetected` if moving would create a cycle.
+    /// Returns `SceneGraphError::UnknownScene` if any of the scenes are not present in the graph.
+    /// Returns `SceneGraphError::InvalidMove` if `scene` is not a child of `from`.
+    /// Returns `SceneGraphError::CycleDetected` if moving would create a cycle.
     pub fn move_variant(
         &mut self,
         variant: &Id<SceneVariant>,
         src: &Id<SceneVariant>,
         dest: &Id<SceneVariant>,
-    ) -> Result<StoryboardUpdate, StoryboardError> {
+    ) -> Result<SceneGraphUpdate, SceneGraphError> {
         // Verify each node exists in the graph
         for s in [variant, src, dest] {
             if !self.edges.contains_key(s) {
-                return Err(StoryboardError::SceneVariantNotInGraph(s.clone()));
+                return Err(SceneGraphError::UnknownVariant(s.clone()));
             }
         }
 
         // If from and destination node are the same, avoid extra mutation and return
         if src == dest {
-            return Ok(StoryboardUpdate::Move {
+            return Ok(SceneGraphUpdate::Move {
                 variant: variant.clone(),
                 src: src.clone(),
                 dest: dest.clone(),
@@ -73,7 +98,7 @@ impl SceneGraph {
             .remove(variant);
 
         if !removed {
-            return Err(StoryboardError::InvalidMove {
+            return Err(SceneGraphError::InvalidMove {
                 scene: variant.clone(),
                 src: src.clone(),
                 dest: dest.clone(),
@@ -86,7 +111,7 @@ impl SceneGraph {
                 .expect("Parent existence already checked")
                 .insert(variant.clone());
 
-            return Err(StoryboardError::CycleDetected(
+            return Err(SceneGraphError::CycleDetected(
                 variant.clone(),
                 dest.clone(),
             ));
@@ -97,7 +122,7 @@ impl SceneGraph {
             .expect("Destination existence already checked")
             .insert(variant.clone());
 
-        Ok(StoryboardUpdate::Move {
+        Ok(SceneGraphUpdate::Move {
             variant: variant.clone(),
             src: src.clone(),
             dest: dest.clone(),
@@ -147,10 +172,10 @@ impl SceneGraph {
 
     /// Marks a scene variant as a root (entry point) in the `SceneGraph`.  
     /// The scene variant is added to the graph if it doesn't already exist.
-    pub fn add_root(&mut self, variant_id: &Id<SceneVariant>) -> StoryboardUpdate {
+    pub fn add_root(&mut self, variant_id: &Id<SceneVariant>) -> SceneGraphUpdate {
         self.add_variant(variant_id);
         self.roots.insert(variant_id.clone());
-        StoryboardUpdate::SceneVariantSetAsRoot(variant_id.clone())
+        SceneGraphUpdate::SceneVariantSetAsRoot(variant_id.clone())
     }
 
     /// Adds a directed edge from `from` to `dest` in the graph, representing a possible next scene.  
@@ -161,7 +186,7 @@ impl SceneGraph {
         &mut self,
         src: &Id<SceneVariant>,
         dest: &Id<SceneVariant>,
-    ) -> StoryboardUpdate {
+    ) -> SceneGraphUpdate {
         self.add_variant(src);
         self.add_variant(dest);
 
@@ -169,7 +194,7 @@ impl SceneGraph {
             node_edges.insert(dest.clone());
         }
 
-        StoryboardUpdate::LinkedSceneVariants {
+        SceneGraphUpdate::LinkedSceneVariants {
             src: src.clone(),
             dest: dest.clone(),
         }
@@ -187,15 +212,15 @@ impl SceneGraph {
     ///
     /// # Errors
     ///
-    /// Returns `StoryboardError::UnknownScene` if the scene does not exist
+    /// Returns `SceneGraphError::UnknownScene` if the scene does not exist
     /// in the graph.
     pub fn delete_variant(
         &mut self,
         variant_id: &Id<SceneVariant>,
-    ) -> Result<StoryboardUpdate, StoryboardError> {
+    ) -> Result<SceneGraphUpdate, SceneGraphError> {
         // Remove from edges
         if self.edges.remove(&variant_id).is_none() {
-            return Err(StoryboardError::SceneVariantNotInGraph(variant_id.clone()));
+            return Err(SceneGraphError::UnknownVariant(variant_id.clone()));
         }
         // Remove from roots, if needed
         self.roots.remove(variant_id);
@@ -205,7 +230,7 @@ impl SceneGraph {
             edges.remove(variant_id);
         }
 
-        Ok(StoryboardUpdate::SceneVariantDeleted(variant_id.clone()))
+        Ok(SceneGraphUpdate::SceneVariantDeleted(variant_id.clone()))
     }
 
     /// Removes a directed edge from one scene variant to another.
@@ -219,21 +244,21 @@ impl SceneGraph {
     ///
     /// # Errors
     ///
-    /// Returns `StoryboardError::UnknownScene` if the `src` scene does not
+    /// Returns `SceneGraphError::UnknownScene` if the `src` scene does not
     /// exist in the graph.
     pub fn delete_edge(
         &mut self,
         src: &Id<SceneVariant>,
         dest: &Id<SceneVariant>,
-    ) -> Result<StoryboardUpdate, StoryboardError> {
+    ) -> Result<SceneGraphUpdate, SceneGraphError> {
         let edges = self
             .edges
             .get_mut(src)
-            .ok_or(StoryboardError::SceneVariantNotInGraph(src.clone()))?;
+            .ok_or(SceneGraphError::UnknownVariant(src.clone()))?;
 
         edges.remove(dest);
 
-        Ok(StoryboardUpdate::EdgeDeleted {
+        Ok(SceneGraphUpdate::EdgeDeleted {
             src: src.clone(),
             dest: dest.clone(),
         })
@@ -294,11 +319,4 @@ impl SceneGraph {
 }
 
 #[cfg(test)]
-mod tests {
-    #[test]
-    fn cycle_detection_prevents_invalid_move() {}
-    #[test]
-    fn unreachable_variants_returns_orphans() {}
-    #[test]
-    fn delete_variant_removes_incoming_edges() {}
-}
+mod tests {}

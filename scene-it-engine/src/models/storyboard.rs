@@ -8,57 +8,20 @@ use crate::models::{
     character::Character,
     metadata::{HasMetadata, Metadata},
     scene::{Scene, SceneVariant},
-    scene_graph::SceneGraph,
+    scene_graph::{SceneGraph, SceneGraphError, SceneGraphUpdate},
     summary::Summary,
     title::Title,
 };
 
-pub enum StoryboardError {
+pub(crate) enum StoryboardError {
     UnknownScene(Id<Scene>),
-    UnknownVariant(Id<SceneVariant>),
-    InvalidMove {
-        scene: Id<SceneVariant>,
-        src: Id<SceneVariant>,
-        dest: Id<SceneVariant>,
-    },
-    CycleDetected(Id<SceneVariant>, Id<SceneVariant>),
-    SceneVariantNotInGraph(Id<SceneVariant>),
+    SceneGraph(SceneGraphError),
 }
 
-/// Represents a structural change to a `Storyboard` caused by an operation on
-/// the underlying `SceneGraph`.
-///
-/// `StoryboardUpdate` acts as a **change notification** rather than a command.
-/// The `SceneGraph` produces updates describing *what changed*, and the
-/// `Storyboard` decides *how to react* (e.g., touching metadata, invalidating
-/// caches, triggering UI refreshes, etc.).
-///
-/// This separation ensures:
-/// - The `SceneGraph` remains purely structural (IDs and relationships only)
-/// - The `Storyboard` remains the single owner of scene data and metadata
-/// - Side effects (timestamps, revision tracking) are centralized
-///
-/// Updates are intended to be:
-/// - **Exhaustive**: every meaningful graph mutation emits one
-/// - **Deterministic**: no hidden side effects
-/// - **Composable**: callers can pattern-match and react selectively
-pub enum StoryboardUpdate {
-    Move {
-        variant: Id<SceneVariant>,
-        src: Id<SceneVariant>,
-        dest: Id<SceneVariant>,
-    },
-    SceneVariantAdded(Id<SceneVariant>),
-    SceneVariantSetAsRoot(Id<SceneVariant>),
-    LinkedSceneVariants {
-        src: Id<SceneVariant>,
-        dest: Id<SceneVariant>,
-    },
-    SceneVariantDeleted(Id<SceneVariant>),
-    EdgeDeleted {
-        src: Id<SceneVariant>,
-        dest: Id<SceneVariant>,
-    },
+impl From<SceneGraphError> for StoryboardError {
+    fn from(value: SceneGraphError) -> Self {
+        Self::SceneGraph(value)
+    }
 }
 
 /// Represents the different types of script formats available.
@@ -70,7 +33,7 @@ pub enum StoryboardUpdate {
 /// - Half-hour Sitcom
 /// - Novel
 #[derive(Serialize, Deserialize)]
-pub enum StoryTemplate {
+pub(crate) enum StoryTemplate {
     Teleplay,
     Screenplay,
     HalfHourSitcom,
@@ -87,7 +50,7 @@ pub enum StoryTemplate {
 /// - Add and remove an `Author`
 /// - Generate a story outline
 #[derive(Serialize, Deserialize)]
-pub struct Storyboard {
+pub(crate) struct Storyboard {
     title: Option<Title>,
     authors: HashMap<Id<Author>, Author>,
     scene_bank: HashMap<Id<Scene>, Scene>,
@@ -167,7 +130,7 @@ impl Storyboard {
         to: &Id<SceneVariant>,
     ) -> Result<(), StoryboardError> {
         let graph_update = self.scene_graph.move_variant(scene, src, to)?;
-        self.apply_update(graph_update);
+        self.apply_scene_graph_update(graph_update);
         Ok(())
     }
 
@@ -200,20 +163,20 @@ impl Storyboard {
     ///
     /// This method synchronizes storyboard-owned data (such as scene metadata)
     /// with graph-level changes without duplicating graph logic.
-    fn apply_update(&mut self, update: StoryboardUpdate) {
+    fn apply_scene_graph_update(&mut self, update: SceneGraphUpdate) {
         match update {
-            StoryboardUpdate::Move { variant, src, dest } => {
+            SceneGraphUpdate::Move { variant, src, dest } => {
                 self.update_metadata(&variant);
                 self.update_metadata(&src);
                 self.update_metadata(&dest);
             }
-            StoryboardUpdate::SceneVariantAdded(variant)
-            | StoryboardUpdate::SceneVariantSetAsRoot(variant)
-            | StoryboardUpdate::SceneVariantDeleted(variant) => {
+            SceneGraphUpdate::SceneVariantAdded(variant)
+            | SceneGraphUpdate::SceneVariantSetAsRoot(variant)
+            | SceneGraphUpdate::SceneVariantDeleted(variant) => {
                 self.update_metadata(&variant);
             }
-            StoryboardUpdate::LinkedSceneVariants { src, dest }
-            | StoryboardUpdate::EdgeDeleted { src, dest } => {
+            SceneGraphUpdate::LinkedSceneVariants { src, dest }
+            | SceneGraphUpdate::EdgeDeleted { src, dest } => {
                 self.update_metadata(&src);
                 self.update_metadata(&dest);
             }
@@ -254,19 +217,16 @@ impl Storyboard {
     ///
     /// # Side Effects
     ///
-    /// - Applies a [`StoryboardUpdate::SceneDeleted`] update
-    /// - Touches metadata for affected scenes via `apply_update`
+    /// - Applies a [`SceneGraphUpdate::SceneVariantDeleted`] update
+    /// - Touches metadata for affected scenes via `apply_scene_graph_update`
     ///
     /// # Examples
     ///
-    /// ```rust
-    /// storyboard.delete_scene(&scene_id)?;
-    /// ```
     pub fn delete_scene(&mut self, scene: &Id<Scene>) -> Result<(), StoryboardError> {
         if let Some(scene) = self.scene_bank.remove(scene) {
             for variant in scene.variant_ids() {
                 let graph_update = self.scene_graph.delete_variant(variant)?;
-                self.apply_update(graph_update);
+                self.apply_scene_graph_update(graph_update);
             }
         }
         Ok(())
@@ -296,7 +256,7 @@ impl Storyboard {
         to: &Id<SceneVariant>,
     ) -> Result<(), StoryboardError> {
         let graph_update = self.scene_graph.add_edge(src, to);
-        self.apply_update(graph_update);
+        self.apply_scene_graph_update(graph_update);
         Ok(())
     }
 
@@ -307,11 +267,8 @@ impl Storyboard {
     ///
     /// # Errors
     ///
-    /// Returns [`StoryboardError::UnknownScene`] if either `from` or `to`
-    /// does not exist in the storyboard.
-    ///
-    /// Returns [`StoryboardError::SceneNotInGraph`] if either `from` or `to`
-    /// does not exist in the scene graph.
+    /// Returns [`SceneGraphError::UnknownVariant`] if either `from` or `to`
+    /// does not exist in the storyboard or the scene graph.
     ///
     /// Returns a graph-level error if the edge does not exist or cannot
     /// be removed (for example, due to internal graph invariants).
@@ -319,7 +276,7 @@ impl Storyboard {
     /// # Side Effects
     ///
     /// - Updates the scene graph structure
-    /// - Applies metadata updates to the affected scenes via `apply_update`
+    /// - Applies metadata updates to the affected scenes via `apply_scene_graph_update`
     ///
     /// # Use Cases
     ///
@@ -332,15 +289,15 @@ impl Storyboard {
         dest: &Id<SceneVariant>,
     ) -> Result<(), StoryboardError> {
         if !self.scene_bank.values().any(|s| s.has_variant(src)) {
-            return Err(StoryboardError::UnknownVariant(src.clone()));
+            return Err(SceneGraphError::UnknownVariant(src.clone()).into());
         }
 
         if !self.scene_bank.values().any(|s| s.has_variant(dest)) {
-            return Err(StoryboardError::UnknownVariant(src.clone()));
+            return Err(SceneGraphError::UnknownVariant(dest.clone()).into());
         }
 
         let graph_update = self.scene_graph.delete_edge(src, dest)?;
-        self.apply_update(graph_update);
+        self.apply_scene_graph_update(graph_update);
         Ok(())
     }
 
@@ -385,7 +342,11 @@ impl Default for Storyboard {
 
 #[cfg(test)]
 mod tests {
-    use crate::models::{scene::Scene, storyboard::Storyboard};
+    use crate::models::{
+        Id,
+        scene::{Scene, SceneVariant},
+        storyboard::Storyboard,
+    };
 
     #[test]
     fn linearize_from_returns_scenes_in_order() {
@@ -472,5 +433,34 @@ mod tests {
 
         // Assert
         assert_eq!(result.len(), 3)
+    }
+
+    #[test]
+    fn linearize_from_single_scene_returns_one_scene() {
+        // Arrange
+        let mut storyboard = Storyboard::default();
+        let scene = Scene::new();
+        let variant_id = scene.active_variant().clone();
+        storyboard.add_scene(scene);
+
+        // Act
+        let result: Vec<&Scene> = storyboard.linearize_from(&variant_id).collect();
+
+        // Assert
+        assert_eq!(result.len(), 1);
+        assert!(result[0].has_variant(&variant_id));
+    }
+
+    #[test]
+    fn linearize_from_missing_variant_returns_empty() {
+        // Arrange
+        let storyboard = Storyboard::default();
+        let phantom_id = Id::<SceneVariant>::new();
+
+        // Act
+        let result: Vec<&Scene> = storyboard.linearize_from(&phantom_id).collect();
+
+        // Assert
+        assert_eq!(result.len(), 0);
     }
 }
