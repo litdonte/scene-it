@@ -327,17 +327,17 @@ impl SceneGraph {
         let mut stack: Vec<_> = self.roots.iter().cloned().collect();
 
         while let Some(variant) = stack.pop() {
-            if visited.insert(variant.clone()) {
-                if let Some(edges) = self.edges.get(&variant) {
-                    stack.extend(edges.iter().cloned())
-                }
+            if visited.insert(variant.clone())
+                && let Some(edges) = self.edges.get(&variant)
+            {
+                stack.extend(edges.iter().cloned())
             }
         }
 
         self.edges
             .keys()
-            .cloned()
             .filter(|id| !visited.contains(id))
+            .cloned()
             .collect()
     }
 
@@ -394,10 +394,10 @@ impl SceneGraph {
                 return true;
             }
 
-            if visited.insert(node) {
-                if let Some(edges) = self.edges.get(node) {
-                    stack.extend(edges);
-                }
+            if visited.insert(node)
+                && let Some(edges) = self.edges.get(node)
+            {
+                stack.extend(edges);
             }
         }
 

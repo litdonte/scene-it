@@ -21,7 +21,7 @@ impl Title {
     }
 
     pub fn as_str(&self) -> &str {
-        return &self.0;
+        &self.0
     }
 }
 

@@ -5,16 +5,8 @@ pub enum InputError {
     ContainsControlChars,
 }
 
-fn trim_input(input: &str) -> String {
-    input
-        .trim()
-        .split_whitespace()
-        .collect::<Vec<_>>()
-        .join(" ")
-}
-
 pub fn validate_input(input: &str, size_limit: Option<usize>) -> Result<String, InputError> {
-    let trimmed = trim_input(input);
+    let trimmed = input.split_whitespace().collect::<Vec<_>>().join(" ");
 
     if trimmed.is_empty() {
         return Err(InputError::EmptyInput);
