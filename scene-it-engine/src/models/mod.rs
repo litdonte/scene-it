@@ -1,6 +1,7 @@
 mod author;
 mod character;
 mod metadata;
+mod narrative;
 mod scene;
 mod scene_element;
 mod scene_graph;
@@ -8,7 +9,10 @@ mod storyboard;
 mod summary;
 mod title;
 
-pub use storyboard::Storyboard;
+pub use {
+    metadata::HasMetadata,
+    scene::{Scene, SceneVariant},
+};
 
 use serde::{Deserialize, Serialize};
 use std::{
