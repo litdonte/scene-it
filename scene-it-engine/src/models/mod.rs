@@ -22,7 +22,7 @@ use std::{
 };
 use uuid::Uuid;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug)]
 pub struct Id<T> {
     value: Uuid,
     _kind: PhantomData<T>,
@@ -90,5 +90,13 @@ impl<'de, T> Deserialize<'de> for Id<T> {
             value,
             _kind: PhantomData,
         })
+    }
+}
+
+impl<T> Copy for Id<T> {}
+
+impl<T> Clone for Id<T> {
+    fn clone(&self) -> Self {
+        *self
     }
 }

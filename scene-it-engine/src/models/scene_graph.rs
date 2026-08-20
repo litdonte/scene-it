@@ -55,8 +55,41 @@ pub enum SceneGraphError {
 /// This structure stores only scene relationships (edges and entry points),
 /// not scene content. It supports branching paths, optional transitions,
 /// and alternate story flows.
+///
+/// # Updates
+///
+/// Every mutation returns the [`SceneGraphUpdate`]s describing what changed.
+/// The graph is the sole producer of these; [`Narrative`] forwards them upward
+/// so the UI can patch its view incrementally rather than refetching.
+///
+/// Because they drive that patching, updates report only real changes. An
+/// operation whose effect was already achieved returns `None` (or an empty
+/// `Vec`) rather than an update for a graph that did not move.
+///
+/// # Option versus Result
+///
+/// The two outcomes are distinct and both are represented:
+///
+/// - `Ok(None)` means the request was valid and its effect already held. Adding
+///   an existing variant, linking an already-linked pair, removing an absent
+///   edge: nothing to do, nothing to report.
+/// - `Err(SceneGraphError)` means the request could not be honored. An
+///   unrecognized id, a move that would create a cycle, a variant that is not a
+///   child of the parent it is being moved from.
+///
+/// Nothing is created implicitly to make a request succeed. An id the graph
+/// does not recognize is an error rather than a node to materialize, since
+/// every id a caller holds originated here.
+///
+/// [`Narrative`] layers a stricter contract on top: several of these no-ops
+/// become errors there, because a frontend asking to unlink an edge it can see
+/// has a view that has diverged from the engine. That distinction belongs at
+/// the boundary where requests arrive from outside. Inside the graph, no-ops
+/// stay quiet — [`SceneGraph::remove_variant`] calls
+/// [`SceneGraph::remove_edge_unchecked`] in loops where absence is expected,
+/// and a self-loop legitimately visits the same pair twice.
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
-pub(crate) struct SceneGraph {
+pub struct SceneGraph {
     /// Adjacency list mapping each scene variant to its direct successors.
     edges: HashMap<Id<SceneVariant>, HashSet<Id<SceneVariant>>>,
     /// Scene variants that are valid starting points for traversal.
@@ -72,34 +105,38 @@ impl SceneGraph {
         }
     }
 
-    /// Adds a scene to the `SceneGraph`.  
-    /// If the scene does not exist, it is initialized with an empty set of edges.
-    pub fn add_variant(&mut self, variant_id: &Id<SceneVariant>) -> Option<SceneGraphUpdate> {
-        match self.edges.entry(variant_id.clone()) {
+    /// Adds a scene variant to the `SceneGraph`, initialized with no outgoing edges.
+    ///
+    /// Returns `None` if the variant is already in the graph, since nothing changed.
+    pub fn add_variant(&mut self, variant_id: Id<SceneVariant>) -> Option<SceneGraphUpdate> {
+        match self.edges.entry(variant_id) {
             Entry::Vacant(entry) => {
                 entry.insert(HashSet::new());
-                Some(SceneGraphUpdate::SceneVariantAdded(variant_id.clone()))
+                Some(SceneGraphUpdate::SceneVariantAdded(variant_id))
             }
             Entry::Occupied(_) => None,
         }
     }
 
-    /// Removes a scene from the `SceneGraph`.
+    /// Removes a scene variant from the `SceneGraph`.
     ///
     /// This operation:
-    /// - Removes the scene itself from the graph.
-    /// - Removes the scene from the set of root entry points, if present.
-    /// - Removes all incoming edges that reference this scene from other scenes.
+    /// - Removes every edge into or out of the variant
+    /// - Removes the variant from the set of root entry points, if present
+    /// - Removes the variant itself
     ///
-    /// After this call, the scene will no longer participate in traversal,
-    /// linearization, or reachability analysis.
-    pub fn remove_variant(&mut self, variant_id: &Id<SceneVariant>) -> Vec<SceneGraphUpdate> {
+    /// Returns one update per change, ordered so that edge and root removals
+    /// precede the variant's own removal. Callers patching a rendered graph can
+    /// apply them in order without ever referencing a variant that no longer exists.
+    ///
+    /// Returns an empty `Vec` if the variant is not in the graph.
+    pub fn remove_variant(&mut self, variant_id: Id<SceneVariant>) -> Vec<SceneGraphUpdate> {
         let mut variant_deletion_updates = Vec::new();
 
         // Outgoing
         let outgoing_edges: Vec<_> = self
             .edges
-            .get(variant_id)
+            .get(&variant_id)
             .map(|dests| dests.iter().cloned().collect())
             .unwrap_or_default();
 
@@ -107,34 +144,31 @@ impl SceneGraph {
         let incoming_edges: Vec<_> = self
             .edges
             .iter()
-            .filter(|(_, dests)| dests.contains(variant_id))
-            .map(|(src, _)| src.clone())
+            .filter(|(_, dests)| dests.contains(&variant_id))
+            .map(|(src, _)| *src)
             .collect();
 
         // Delete edges
         variant_deletion_updates.extend(
             outgoing_edges
                 .iter()
-                .filter_map(|dest| self.remove_edge_unchecked(variant_id, dest)),
+                .filter_map(|dest| self.remove_edge_unchecked(variant_id, *dest)),
         );
 
         variant_deletion_updates.extend(
             incoming_edges
                 .iter()
-                .filter_map(|src| self.remove_edge_unchecked(src, variant_id)),
+                .filter_map(|src| self.remove_edge_unchecked(*src, variant_id)),
         );
 
         // Remove from roots, if exists
-        if self.roots.remove(variant_id) {
-            variant_deletion_updates.push(SceneGraphUpdate::SceneVariantRemovedAsRoot(
-                variant_id.clone(),
-            ))
+        if self.roots.remove(&variant_id) {
+            variant_deletion_updates.push(SceneGraphUpdate::SceneVariantRemovedAsRoot(variant_id))
         }
 
         // Remove from edges
-        if self.edges.remove(variant_id).is_some() {
-            variant_deletion_updates
-                .push(SceneGraphUpdate::SceneVariantRemoved(variant_id.clone()));
+        if self.edges.remove(&variant_id).is_some() {
+            variant_deletion_updates.push(SceneGraphUpdate::SceneVariantRemoved(variant_id));
         }
 
         variant_deletion_updates
@@ -148,71 +182,71 @@ impl SceneGraph {
     /// - `dest`: The new parent scene variant.
     ///
     /// # Errors
-    /// Returns `SceneGraphError::UnknownVariant` if any of the scenes variants are not present in the graph.
-    /// Returns `SceneGraphError::InvalidMove` if `variant` is not a child of `from`.
-    /// Returns `SceneGraphError::CycleDetected` if moving would create a cycle.
+    /// Returns `SceneGraphError::UnknownVariant` if `variant`, `src`, or `dest`
+    /// is not present in the graph.
+    /// Returns `SceneGraphError::InvalidMove` if `variant` is not a child of `src`.
+    /// Returns `SceneGraphError::CycleDetected` if the move would create a cycle.
+    /// On either failure the graph is left unchanged.
     pub fn move_variant(
         &mut self,
-        variant: &Id<SceneVariant>,
-        src: &Id<SceneVariant>,
-        dest: &Id<SceneVariant>,
+        variant: Id<SceneVariant>,
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
     ) -> Result<SceneGraphUpdate, SceneGraphError> {
         // Verify each node exists in the graph
         for s in [variant, src, dest] {
-            if !self.edges.contains_key(s) {
-                return Err(SceneGraphError::UnknownVariant(s.clone()));
+            if !self.edges.contains_key(&s) {
+                return Err(SceneGraphError::UnknownVariant(s));
             }
         }
 
         if !self
             .edges
-            .get_mut(src)
-            .is_some_and(|edges| edges.remove(variant))
+            .get_mut(&src)
+            .is_some_and(|edges| edges.remove(&variant))
         {
-            return Err(SceneGraphError::InvalidMove {
-                variant: variant.clone(),
-                src: src.clone(),
-                dest: dest.clone(),
-            });
+            return Err(SceneGraphError::InvalidMove { variant, src, dest });
         }
 
+        // Argument order matters. This asks whether dest is reachable from variant.
+        // The move adds dest -> variant, so a forward path from variant back to dest
+        // would close a loop. The reverse question (is variant reachable from dest)
+        // only detects a redundant path, which is legal.
         if self.is_descendant(variant, dest) {
             // Getting the edges for the source should always return as Some
-            if let Some(edges) = self.edges.get_mut(src) {
-                edges.insert(variant.clone());
+            if let Some(edges) = self.edges.get_mut(&src) {
+                edges.insert(variant);
             }
 
-            return Err(SceneGraphError::CycleDetected {
-                variant: variant.clone(),
-                dest: dest.clone(),
-            });
+            return Err(SceneGraphError::CycleDetected { variant, dest });
         }
 
-        if let Some(edges) = self.edges.get_mut(dest) {
-            edges.insert(variant.clone());
+        if let Some(edges) = self.edges.get_mut(&dest) {
+            edges.insert(variant);
         }
 
-        Ok(SceneGraphUpdate::Move {
-            variant: variant.clone(),
-            src: src.clone(),
-            dest: dest.clone(),
-        })
+        Ok(SceneGraphUpdate::Move { variant, src, dest })
     }
 
-    /// Marks a scene variant as a root (entry point) in the `SceneGraph`.  
-    /// The scene variant is added to the graph if it doesn't already exist.
+    /// Marks a scene variant as a root (entry point) in the `SceneGraph`.
+    ///
+    /// Returns `Ok(None)` if the variant is already a root, since nothing changed.
+    ///
+    /// # Errors
+    ///
+    /// Returns `SceneGraphError::UnknownVariant` if the variant is not in the
+    /// graph. Roots are never created implicitly: an unrecognized id means the
+    /// caller's view of the graph has diverged, which is worth surfacing.
     pub fn add_root(
         &mut self,
-        variant_id: &Id<SceneVariant>,
+        variant_id: Id<SceneVariant>,
     ) -> Result<Option<SceneGraphUpdate>, SceneGraphError> {
-        if !self.edges.contains_key(variant_id) {
-            return Err(SceneGraphError::UnknownVariant(variant_id.clone()));
+        if !self.edges.contains_key(&variant_id) {
+            return Err(SceneGraphError::UnknownVariant(variant_id));
         }
 
-        if self.roots.insert(variant_id.clone()) {
-            return Ok(Some(SceneGraphUpdate::SceneVariantSetAsRoot(
-                variant_id.clone(),
-            )));
+        if self.roots.insert(variant_id) {
+            return Ok(Some(SceneGraphUpdate::SceneVariantSetAsRoot(variant_id)));
         }
 
         Ok(None)
@@ -221,42 +255,48 @@ impl SceneGraph {
     /// Unmarks a scene variant as a root (entry point) in the `SceneGraph`.
     ///
     /// Returns `None` if the variant was not registered as a root.
-    pub fn remove_root(&mut self, variant_id: &Id<SceneVariant>) -> Option<SceneGraphUpdate> {
-        if self.roots.remove(variant_id) {
-            return Some(SceneGraphUpdate::SceneVariantRemovedAsRoot(
-                variant_id.clone(),
-            ));
+    pub fn remove_root(
+        &mut self,
+        variant_id: Id<SceneVariant>,
+    ) -> Result<Option<SceneGraphUpdate>, SceneGraphError> {
+        if !self.edges.contains_key(&variant_id) {
+            return Err(SceneGraphError::UnknownVariant(variant_id));
         }
 
-        None
+        if self.roots.remove(&variant_id) {
+            return Ok(Some(SceneGraphUpdate::SceneVariantRemovedAsRoot(
+                variant_id,
+            )));
+        }
+
+        Ok(None)
     }
 
-    /// Adds a directed edge from `src` to `dest` in the graph, representing a possible next scene.  
-    /// If the `to` scene does not exist in the graph, it is added automatically.  
+    /// Adds a directed edge from `src` to `dest`, representing a possible next scene.
+    ///
+    /// Returns `Ok(None)` if the edge already exists, since nothing changed.
     ///
     /// Example: Scene 3 -> Scene 4 or Scene 3 -> Scene 5
+    ///
+    /// # Errors
+    ///
+    /// Returns `SceneGraphError::UnknownVariant` if either `src` or `dest` is
+    /// not in the graph. Neither is created implicitly.
     pub fn add_edge(
         &mut self,
-        src: &Id<SceneVariant>,
-        dest: &Id<SceneVariant>,
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
     ) -> Result<Option<SceneGraphUpdate>, SceneGraphError> {
-        if !self.edges.contains_key(src) {
-            return Err(SceneGraphError::UnknownVariant(src.clone()));
+        if !self.edges.contains_key(&src) {
+            return Err(SceneGraphError::UnknownVariant(src));
         }
 
-        if !self.edges.contains_key(dest) {
-            return Err(SceneGraphError::UnknownVariant(dest.clone()));
+        if !self.edges.contains_key(&dest) {
+            return Err(SceneGraphError::UnknownVariant(dest));
         }
 
-        if self
-            .edges
-            .get_mut(src)
-            .is_some_and(|e| e.insert(dest.clone()))
-        {
-            return Ok(Some(SceneGraphUpdate::EdgeAdded {
-                src: src.clone(),
-                dest: dest.clone(),
-            }));
+        if self.edges.get_mut(&src).is_some_and(|e| e.insert(dest)) {
+            return Ok(Some(SceneGraphUpdate::EdgeAdded { src, dest }));
         }
 
         Ok(None)
@@ -273,19 +313,20 @@ impl SceneGraph {
     ///
     /// # Errors
     ///
-    /// Returns `SceneGraphError::UnknownScene` if the `src` scene does not
-    /// exist in the graph.
+    /// Returns `SceneGraphError::UnknownVariant` if either `src` or `dest` is
+    /// not in the graph. Returns `Ok(None)` if both exist but no edge connects
+    /// them, since nothing changed.
     pub fn remove_edge(
         &mut self,
-        src: &Id<SceneVariant>,
-        dest: &Id<SceneVariant>,
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
     ) -> Result<Option<SceneGraphUpdate>, SceneGraphError> {
-        if !self.edges.contains_key(src) {
-            return Err(SceneGraphError::UnknownVariant(src.clone()));
+        if !self.edges.contains_key(&src) {
+            return Err(SceneGraphError::UnknownVariant(src));
         }
 
-        if !self.edges.contains_key(dest) {
-            return Err(SceneGraphError::UnknownVariant(dest.clone()));
+        if !self.edges.contains_key(&dest) {
+            return Err(SceneGraphError::UnknownVariant(dest));
         }
 
         Ok(self.remove_edge_unchecked(src, dest))
@@ -295,42 +336,39 @@ impl SceneGraph {
     /// scene variant exists in the graph.
     fn remove_edge_unchecked(
         &mut self,
-        src: &Id<SceneVariant>,
-        dest: &Id<SceneVariant>,
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
     ) -> Option<SceneGraphUpdate> {
-        if self.edges.get_mut(src).is_some_and(|e| e.remove(dest)) {
-            return Some(SceneGraphUpdate::EdgeRemoved {
-                src: src.clone(),
-                dest: dest.clone(),
-            });
+        if self.edges.get_mut(&src).is_some_and(|e| e.remove(&dest)) {
+            return Some(SceneGraphUpdate::EdgeRemoved { src, dest });
         }
 
         None
     }
 
-    /// Returns an iterator over all scenes that are direct successors of `scene_id`.  
+    /// Returns an iterator over all scenes that are direct successors of `variant_id`.  
     /// These represent all possible "next" scenes in the procedural traversal of the graph.
     pub fn next_variants(
         &self,
-        variant_id: &Id<SceneVariant>,
-    ) -> impl Iterator<Item = &Id<SceneVariant>> {
+        variant_id: Id<SceneVariant>,
+    ) -> impl Iterator<Item = Id<SceneVariant>> {
         self.edges
-            .get(variant_id)
+            .get(&variant_id)
             .into_iter()
-            .flat_map(|set| set.iter())
+            .flat_map(|set| set.iter().cloned())
     }
 
-    /// Returns all scenes in the graph that cannot be reached from any root.  
-    /// These are "orphaned" scenes with no path from a root node, useful for detecting disconnected content.
+    /// Returns all scene variants in the graph that cannot be reached from any root.  
+    /// These are "orphaned" scene variant with no path from a root node, useful for detecting disconnected content.
     pub fn unreachable_variants(&self) -> HashSet<Id<SceneVariant>> {
         let mut visited = HashSet::new();
-        let mut stack: Vec<_> = self.roots.iter().cloned().collect();
+        let mut stack: Vec<_> = self.roots.iter().collect();
 
         while let Some(variant) = stack.pop() {
-            if visited.insert(variant.clone())
+            if visited.insert(variant)
                 && let Some(edges) = self.edges.get(&variant)
             {
-                stack.extend(edges.iter().cloned())
+                stack.extend(edges.iter())
             }
         }
 
@@ -345,8 +383,8 @@ impl SceneGraph {
     /// depth-first traversal order (including `root` itself).
     pub fn reachable_from<'a>(
         &'a self,
-        root: &'a Id<SceneVariant>,
-    ) -> impl Iterator<Item = &'a Id<SceneVariant>> {
+        root: Id<SceneVariant>,
+    ) -> impl Iterator<Item = Id<SceneVariant>> {
         let mut visited = HashSet::new();
         let mut order = Vec::new();
         let mut stack = vec![root];
@@ -354,7 +392,7 @@ impl SceneGraph {
         while let Some(current) = stack.pop() {
             if visited.insert(current) {
                 order.push(current);
-                if let Some(children) = self.edges.get(current) {
+                if let Some(children) = self.edges.get(&current) {
                     stack.extend(children);
                 }
             }
@@ -385,7 +423,7 @@ impl SceneGraph {
     /// - The traversal short-circuits as soon as `target` is found.
     /// - Visited scenes are tracked to avoid infinite loops in cyclic graphs.
     /// - This method does not mutate the graph.
-    fn is_descendant(&self, start: &Id<SceneVariant>, target: &Id<SceneVariant>) -> bool {
+    fn is_descendant(&self, start: Id<SceneVariant>, target: Id<SceneVariant>) -> bool {
         let mut visited = HashSet::new();
         let mut stack = vec![start];
 
@@ -395,7 +433,7 @@ impl SceneGraph {
             }
 
             if visited.insert(node)
-                && let Some(edges) = self.edges.get(node)
+                && let Some(edges) = self.edges.get(&node)
             {
                 stack.extend(edges);
             }
@@ -406,4 +444,338 @@ impl SceneGraph {
 }
 
 #[cfg(test)]
-mod tests {}
+mod tests {
+    use crate::models::{
+        Id, SceneVariant,
+        scene_graph::{SceneGraph, SceneGraphError, SceneGraphUpdate},
+    };
+
+    fn generate_test_components() -> (SceneGraph, Vec<Id<SceneVariant>>) {
+        let variant_ids: Vec<Id<SceneVariant>> = (0..3).map(|_| Id::new()).collect();
+        let mut scene_graph = SceneGraph::default();
+        for id in &variant_ids {
+            scene_graph.add_variant(*id);
+        }
+
+        scene_graph.add_root(variant_ids[0]).unwrap();
+
+        scene_graph
+            .add_edge(variant_ids[0], variant_ids[1])
+            .unwrap();
+        scene_graph
+            .add_edge(variant_ids[1], variant_ids[2])
+            .unwrap();
+
+        (scene_graph, variant_ids)
+    }
+
+    #[test]
+    fn test_adding_a_variant_works() {
+        // ARRANGE
+        let (mut graph, _) = generate_test_components();
+        let variant_to_add = Id::new();
+        // ACT
+        let response = graph.add_variant(variant_to_add);
+        // ASSERT
+        assert_eq!(
+            response,
+            Some(SceneGraphUpdate::SceneVariantAdded(variant_to_add))
+        )
+    }
+
+    #[test]
+    fn test_adding_a_variant_that_already_exists_is_a_no_op() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.add_variant(variant_ids[0]);
+        // ASSERT
+        assert!(response.is_none())
+    }
+
+    #[test]
+    fn test_removing_a_variant_works() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        let variant_to_remove = variant_ids[1];
+        // ACT
+        let response = graph.remove_variant(variant_to_remove);
+        // ARRANGE
+        assert_eq!(response.len(), 3);
+        assert_eq!(
+            response.last().unwrap(),
+            &SceneGraphUpdate::SceneVariantRemoved(variant_to_remove)
+        );
+        assert!(!graph.edges.contains_key(&variant_to_remove))
+    }
+
+    #[test]
+    fn test_removing_a_variant_that_does_not_exist_is_a_no_op() {
+        // ARRANGE
+        let (mut graph, _) = generate_test_components();
+        let random_id = Id::new();
+        // ACT
+        let response = graph.remove_variant(random_id);
+        // ASSERT
+        assert_eq!(response.len(), 0)
+    }
+
+    #[test]
+    fn test_cycle_detected_for_invalid_variant_move() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.move_variant(variant_ids[1], variant_ids[0], variant_ids[2]);
+        // ASSERT
+        assert_eq!(
+            response,
+            Err(SceneGraphError::CycleDetected {
+                variant: variant_ids[1],
+                dest: variant_ids[2]
+            })
+        );
+    }
+
+    #[test]
+    fn test_rollback_works_when_cycle_detected() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.move_variant(variant_ids[1], variant_ids[0], variant_ids[2]);
+        // ASSERT
+        assert_eq!(
+            response,
+            Err(SceneGraphError::CycleDetected {
+                variant: variant_ids[1],
+                dest: variant_ids[2]
+            })
+        );
+        assert!(
+            graph
+                .next_variants(variant_ids[0])
+                .collect::<Vec<_>>()
+                .contains(&variant_ids[1])
+        )
+    }
+
+    #[test]
+    fn test_cycle_not_detected_for_valid_variant_move() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.move_variant(variant_ids[2], variant_ids[1], variant_ids[0]);
+        // ASSERT
+        assert_eq!(
+            response,
+            Ok(SceneGraphUpdate::Move {
+                variant: variant_ids[2],
+                src: variant_ids[1],
+                dest: variant_ids[0]
+            })
+        );
+    }
+
+    #[test]
+    fn test_move_when_variant_is_not_child_of_src_throws_invalid_move_error() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.move_variant(variant_ids[2], variant_ids[0], variant_ids[1]);
+        //ASSERT
+        assert_eq!(
+            response,
+            Err(SceneGraphError::InvalidMove {
+                variant: variant_ids[2],
+                src: variant_ids[0],
+                dest: variant_ids[1]
+            })
+        )
+    }
+
+    #[test]
+    fn test_move_with_invalid_variants_throws_unknown_variant_error() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        let random_variant = Id::new();
+        // ACT
+        let invalid_variant_move =
+            graph.move_variant(random_variant, variant_ids[0], variant_ids[1]);
+        let invalid_src_move = graph.move_variant(variant_ids[0], random_variant, variant_ids[1]);
+        let invalid_dest_move = graph.move_variant(variant_ids[0], variant_ids[1], random_variant);
+        // ASSERT
+        assert_eq!(
+            invalid_variant_move,
+            Err(SceneGraphError::UnknownVariant(random_variant))
+        );
+        assert_eq!(
+            invalid_src_move,
+            Err(SceneGraphError::UnknownVariant(random_variant))
+        );
+        assert_eq!(
+            invalid_dest_move,
+            Err(SceneGraphError::UnknownVariant(random_variant))
+        );
+    }
+
+    #[test]
+    fn test_marking_a_valid_variant_as_root_works() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.add_root(variant_ids[2]);
+        // ASSERT
+        assert_eq!(
+            response,
+            Ok(Some(SceneGraphUpdate::SceneVariantSetAsRoot(
+                variant_ids[2]
+            )))
+        )
+    }
+
+    #[test]
+    fn test_marking_a_variant_already_marked_as_root_is_a_no_op() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.add_root(variant_ids[0]);
+        // ASSERT
+        assert_eq!(response, Ok(None))
+    }
+
+    #[test]
+    fn test_marking_an_invalid_variant_as_root_throws_unknown_variant_error() {
+        // ARRANGE
+        let (mut graph, _) = generate_test_components();
+        let random_id = Id::new();
+        // ACT
+        let response = graph.add_root(random_id);
+        // ASSERT
+        assert_eq!(response, Err(SceneGraphError::UnknownVariant(random_id)))
+    }
+
+    #[test]
+    fn test_unmarking_a_valid_variant_as_root_works() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.remove_root(variant_ids[0]);
+        // ASSERT
+        assert_eq!(
+            response,
+            Ok(Some(SceneGraphUpdate::SceneVariantRemovedAsRoot(
+                variant_ids[0]
+            )))
+        )
+    }
+
+    #[test]
+    fn test_unmarking_a_valid_variant_not_marked_as_root_is_a_no_op() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.remove_root(variant_ids[2]);
+        // ASSERT
+        assert_eq!(response, Ok(None))
+    }
+
+    #[test]
+    fn test_unmarking_an_invalid_variant_as_root_throws_unknown_variant_error() {
+        // ARRANGE
+        let (mut graph, _) = generate_test_components();
+        let random_id = Id::new();
+        // ACT
+        let response = graph.remove_root(random_id);
+        // ASSERT
+        assert_eq!(response, Err(SceneGraphError::UnknownVariant(random_id)))
+    }
+
+    #[test]
+    fn test_adding_an_edge_works() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.add_edge(variant_ids[0], variant_ids[2]);
+        //ASSERT
+        assert_eq!(
+            response,
+            Ok(Some(SceneGraphUpdate::EdgeAdded {
+                src: variant_ids[0],
+                dest: variant_ids[2]
+            }))
+        )
+    }
+
+    #[test]
+    fn test_adding_edge_that_already_exists_is_a_no_op() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.add_edge(variant_ids[0], variant_ids[1]);
+        //ASSERT
+        assert_eq!(response, Ok(None))
+    }
+
+    #[test]
+    fn test_adding_edge_with_invalid_nodes_throws_unknown_variant_error() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        let random_id = Id::new();
+        // ACT
+        let invalid_src_response = graph.add_edge(random_id, variant_ids[0]);
+        let invalid_dest_response = graph.add_edge(variant_ids[1], random_id);
+        // ASSERT
+        assert_eq!(
+            invalid_src_response,
+            Err(SceneGraphError::UnknownVariant(random_id))
+        );
+        assert_eq!(
+            invalid_dest_response,
+            Err(SceneGraphError::UnknownVariant(random_id))
+        )
+    }
+
+    #[test]
+    fn test_removing_an_edge_works() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.remove_edge(variant_ids[0], variant_ids[1]);
+        //ASSERT
+        assert_eq!(
+            response,
+            Ok(Some(SceneGraphUpdate::EdgeRemoved {
+                src: variant_ids[0],
+                dest: variant_ids[1]
+            }))
+        )
+    }
+
+    #[test]
+    fn test_removing_edge_that_does_not_exist_is_a_no_op() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        // ACT
+        let response = graph.remove_edge(variant_ids[0], variant_ids[2]);
+        //ASSERT
+        assert_eq!(response, Ok(None))
+    }
+
+    #[test]
+    fn test_removing_edge_with_invalid_nodes_throws_unknown_variant_error() {
+        // ARRANGE
+        let (mut graph, variant_ids) = generate_test_components();
+        let random_id = Id::new();
+        // ACT
+        let invalid_src_response = graph.remove_edge(random_id, variant_ids[0]);
+        let invalid_dest_response = graph.remove_edge(variant_ids[1], random_id);
+        // ASSERT
+        assert_eq!(
+            invalid_src_response,
+            Err(SceneGraphError::UnknownVariant(random_id))
+        );
+        assert_eq!(
+            invalid_dest_response,
+            Err(SceneGraphError::UnknownVariant(random_id))
+        )
+    }
+}

@@ -63,10 +63,19 @@ pub struct Narrative {
 }
 
 impl Narrative {
-    /// Adds a new scene to the storyboard.
+    /// Adds a new scene to the narrative.
     ///
-    /// This registers the scene in both the scene graph (for ordering and
-    /// relationships) and the scene bank (for scene data storage).
+    /// Registers the scene in the scene bank and each of its variants in the
+    /// [`SceneGraph`], returning one update per variant that was newly added.
+    ///
+    /// A new scene has no prior metadata to touch, so no updates are applied
+    /// to it here.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`NarrativeError::SceneAlreadyExists`] if a scene with this ID
+    /// is already in the narrative. Overwriting would orphan the previous
+    /// scene's variants in the graph with no owner to remove them.
     pub fn add_scene(&mut self, scene: Scene) -> Result<Vec<NarrativeUpdate>, NarrativeError> {
         if self.scenes.contains_key(&scene.id()) {
             return Err(NarrativeError::SceneAlreadyExists(scene.id()));
@@ -75,7 +84,7 @@ impl Narrative {
         // Because the scene is new, updates for added variants won't be recorded in scene metadata.
         let updates: Vec<_> = scene
             .variant_ids()
-            .filter_map(|v| self.graph.add_variant(v))
+            .filter_map(|v| self.graph.add_variant(*v))
             .collect();
 
         self.scenes.insert(scene.id(), scene);
@@ -104,28 +113,25 @@ impl Narrative {
     /// - Applies scene graph updates for the removed variants, edges, and roots
     /// - Touches metadata for affected scenes via `apply_scene_graph_update`
     ///
-    /// # Examples
-    /// ```ignore
-    /// narrative.remove_scene(&scene_id)?;
     /// ```
     pub fn remove_scene(
         &mut self,
-        scene: &Id<Scene>,
+        scene: Id<Scene>,
     ) -> Result<Vec<NarrativeUpdate>, NarrativeError> {
-        if let Some(scene) = self.scenes.remove(scene) {
+        if let Some(scene) = self.scenes.remove(&scene) {
             let updates: Vec<_> = scene
                 .variant_ids()
-                .flat_map(|v| self.graph.remove_variant(v))
+                .flat_map(|v| self.graph.remove_variant(*v))
                 .collect();
 
             updates
                 .iter()
-                .for_each(|u| self.apply_scene_graph_update(u));
+                .for_each(|u| self.apply_scene_graph_update(u.clone()));
 
             return Ok(updates.into_iter().map(NarrativeUpdate::from).collect());
         }
 
-        Err(NarrativeError::UnknownScene(scene.clone()))
+        Err(NarrativeError::UnknownScene(scene))
     }
 
     /// Marks a scene as a root entry point in the scene graph.
@@ -138,14 +144,14 @@ impl Narrative {
     /// already registered as a root.
     pub fn set_variant_as_root(
         &mut self,
-        variant_id: &Id<SceneVariant>,
+        variant_id: Id<SceneVariant>,
     ) -> Result<NarrativeUpdate, NarrativeError> {
         if let Some(update) = self.graph.add_root(variant_id)? {
-            self.apply_scene_graph_update(&update);
+            self.apply_scene_graph_update(update.clone());
             return Ok(update.into());
         }
 
-        Err(NarrativeError::RootAlreadyExists(variant_id.clone()))
+        Err(NarrativeError::RootAlreadyExists(variant_id))
     }
 
     /// Unmarks a scene as a root entry point in the scene graph.
@@ -156,14 +162,14 @@ impl Narrative {
     /// not currently registered as a root.
     pub fn remove_variant_as_root(
         &mut self,
-        variant_id: &Id<SceneVariant>,
+        variant_id: Id<SceneVariant>,
     ) -> Result<NarrativeUpdate, NarrativeError> {
-        if let Some(update) = self.graph.remove_root(variant_id) {
-            self.apply_scene_graph_update(&update);
+        if let Some(update) = self.graph.remove_root(variant_id)? {
+            self.apply_scene_graph_update(update.clone());
             return Ok(update.into());
         }
 
-        Err(NarrativeError::RootAlreadyRemoved(variant_id.clone()))
+        Err(NarrativeError::RootAlreadyRemoved(variant_id))
     }
 
     /// Creates a directional link between two scenes.
@@ -179,39 +185,38 @@ impl Narrative {
     /// Returns [`NarrativeError::VariantsAlreadyLinked`] if the edge already exists.
     pub fn link_variants(
         &mut self,
-        src: &Id<SceneVariant>,
-        dest: &Id<SceneVariant>,
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
     ) -> Result<NarrativeUpdate, NarrativeError> {
         let graph_update = self.graph.add_edge(src, dest)?;
 
         if let Some(update) = graph_update {
-            self.apply_scene_graph_update(&update);
+            self.apply_scene_graph_update(update.clone());
             return Ok(update.into());
         }
 
-        Err(NarrativeError::VariantsAlreadyLinked {
-            src: src.clone(),
-            dest: dest.clone(),
-        })
+        Err(NarrativeError::VariantsAlreadyLinked { src, dest })
     }
 
-    /// Removes a directed edge between two scenes in the scene graph.
+    /// Removes a directed edge between two scene variants.
     ///
-    /// This operation disconnects `to` as a possible successor of `from`,
-    /// without deleting either scene from the storyboard.
+    /// Disconnects `dest` as a possible successor of `src` without removing
+    /// either variant from the narrative. Other edges into or out of both
+    /// variants are unaffected.
     ///
     /// # Errors
     ///
-    /// Returns [`SceneGraphError::UnknownVariant`] if either `from` or `to`
-    /// does not exist in the storyboard or the scene graph.
+    /// Returns [`NarrativeError::Graph`] with [`SceneGraphError::UnknownVariant`]
+    /// if either `src` or `dest` is not in the graph.
     ///
-    /// Returns a graph-level error if the edge does not exist or cannot
-    /// be removed (for example, due to internal graph invariants).
+    /// Returns [`NarrativeError::UnknownEdge`] if both exist but no edge
+    /// connects them. The graph treats this as a no-op; here it means the
+    /// caller asked to remove an edge it believed existed, so its view has
+    /// diverged from the engine.
     ///
     /// # Side Effects
     ///
-    /// - Updates the scene graph structure
-    /// - Applies metadata updates to the affected scenes via `apply_scene_graph_update`
+    /// Touches metadata for both variants' scenes.
     ///
     /// # Use Cases
     ///
@@ -220,18 +225,15 @@ impl Narrative {
     /// - Allowing users to manually prune narrative branches
     pub fn unlink_variants(
         &mut self,
-        src: &Id<SceneVariant>,
-        dest: &Id<SceneVariant>,
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
     ) -> Result<NarrativeUpdate, NarrativeError> {
         if let Some(graph_update) = self.graph.remove_edge(src, dest)? {
-            self.apply_scene_graph_update(&graph_update);
+            self.apply_scene_graph_update(graph_update.clone());
             return Ok(graph_update.into());
         }
 
-        Err(NarrativeError::UnknownEdge {
-            src: src.clone(),
-            dest: dest.clone(),
-        })
+        Err(NarrativeError::UnknownEdge { src, dest })
     }
 
     /// Returns all scenes that are unreachable from any root scene.
@@ -257,19 +259,28 @@ impl Narrative {
         todo!()
     }
 
-    /// Moves a scene from one parent scene to another in the scene graph.
+    /// Moves a scene variant from one parent variant to another.
     ///
-    /// This operation updates scene relationships only. If the move would
-    /// create a cycle or otherwise violate graph constraints, an error is returned.
-    /// On success, affected scenes have their metadata updated.
+    /// Changes structure only; no scene content is modified.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`NarrativeError::Graph`] wrapping the underlying
+    /// [`SceneGraphError`] if any of the three variants is unknown, if
+    /// `variant` is not a child of `src`, or if the move would create a cycle.
+    /// On failure the graph is left unchanged.
+    ///
+    /// # Side Effects
+    ///
+    /// Touches metadata for the moved variant's scene and both parents'.
     pub fn move_variant(
         &mut self,
-        variant: &Id<SceneVariant>,
-        src: &Id<SceneVariant>,
-        dest: &Id<SceneVariant>,
+        variant: Id<SceneVariant>,
+        src: Id<SceneVariant>,
+        dest: Id<SceneVariant>,
     ) -> Result<NarrativeUpdate, NarrativeError> {
         let graph_update = self.graph.move_variant(variant, src, dest)?;
-        self.apply_scene_graph_update(&graph_update);
+        self.apply_scene_graph_update(graph_update.clone());
         Ok(graph_update.into())
     }
 
@@ -280,10 +291,7 @@ impl Narrative {
     /// (at which point traversal stops to avoid looping). If a variant referenced
     /// by the graph cannot be found in the scene bank, a warning is printed to
     /// stderr and traversal stops.
-    pub fn linearize_from<'a>(
-        &'a self,
-        root: &'a Id<SceneVariant>,
-    ) -> impl Iterator<Item = &'a Scene> {
+    pub fn linearize_from<'a>(&'a self, root: Id<SceneVariant>) -> impl Iterator<Item = &'a Scene> {
         let mut current = Some(root);
         let mut visited = HashSet::new();
         let mut order = Vec::new();
@@ -293,10 +301,14 @@ impl Narrative {
                 break;
             }
 
-            if let Some(scene) = self.scenes.values().find(|s| s.has_variant(variant_id)) {
+            if let Some(scene) = self.scenes.values().find(|s| s.has_variant(&variant_id)) {
                 order.push(scene);
 
-                current = scene.variants().get(variant_id).and_then(|v| v.next());
+                current = scene
+                    .variants()
+                    .get(&variant_id)
+                    .and_then(|v| v.next())
+                    .copied();
             } else {
                 eprintln!("Warning: variant ID {variant_id} found in graph but not in any scene");
             }
@@ -307,9 +319,12 @@ impl Narrative {
 
     /// Applies a structural update emitted by the scene graph.
     ///
-    /// This method synchronizes storyboard-owned data (such as scene metadata)
-    /// with graph-level changes without duplicating graph logic.
-    fn apply_scene_graph_update(&mut self, update: &SceneGraphUpdate) {
+    /// The graph holds only variant IDs and cannot reach scene data, so it
+    /// reports what changed and the narrative translates that into metadata
+    /// effects on the scenes involved. This is the only reason the update
+    /// types cross the boundary internally; forwarding them to the UI is
+    /// separate.
+    fn apply_scene_graph_update(&mut self, update: SceneGraphUpdate) {
         match update {
             SceneGraphUpdate::Move { variant, src, dest } => {
                 self.update_metadata(variant);
@@ -334,9 +349,9 @@ impl Narrative {
     ///
     /// This is typically called after structural changes such as moves,
     /// edge updates, or deletions.
-    fn update_metadata(&mut self, variant_id: &Id<SceneVariant>) {
+    fn update_metadata(&mut self, variant_id: Id<SceneVariant>) {
         for scene in self.scenes.values_mut() {
-            if scene.has_variant(variant_id) {
+            if scene.has_variant(&variant_id) {
                 scene.touch();
             }
         }
