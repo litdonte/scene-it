@@ -37,18 +37,6 @@ impl SceneVariant {
     pub fn summary(&self) -> &Summary {
         &self.summary
     }
-
-    pub fn set_next(&mut self, next: Id<SceneVariant>) {
-        self.next = Some(next)
-    }
-
-    pub fn clear_next(&mut self) {
-        self.next = None
-    }
-
-    pub fn next(&self) -> Option<&Id<SceneVariant>> {
-        self.next.as_ref()
-    }
 }
 
 #[derive(Debug, PartialEq, Eq, Clone, Serialize, Deserialize)]
@@ -86,10 +74,6 @@ impl Scene {
 
     pub fn variants(&self) -> &HashMap<Id<SceneVariant>, SceneVariant> {
         &self.variants
-    }
-
-    pub fn variants_mut(&mut self) -> &mut HashMap<Id<SceneVariant>, SceneVariant> {
-        &mut self.variants
     }
 
     pub fn variant_ids(&self) -> impl Iterator<Item = &Id<SceneVariant>> {
