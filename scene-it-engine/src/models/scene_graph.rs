@@ -15,7 +15,14 @@ pub enum SceneGraphError {
         dest: Id<Scene>,
     },
     /// Moving `scene` under `dest` would create a cycle in the graph.
-    CycleDetected { scene: Id<Scene>, dest: Id<Scene> },
+    CycleDetected {
+        scene: Id<Scene>,
+        dest: Id<Scene>,
+    },
+    UnknownEdge {
+        src: Id<Scene>,
+        dest: Id<Scene>,
+    },
 }
 
 /// A directed connection from one scene to another.
@@ -83,6 +90,8 @@ pub struct SceneGraph {
     nodes: HashMap<Id<Scene>, HashSet<Id<Scene>>>,
     /// Scenes that are valid starting points for traversal.
     roots: HashSet<Id<Scene>>,
+    /// One-to-one map of scenes and their direct successor.
+    successors: HashMap<Id<Scene>, Id<Scene>>,
 }
 
 impl SceneGraph {
@@ -91,6 +100,7 @@ impl SceneGraph {
         Self {
             nodes: HashMap::new(),
             roots: HashSet::new(),
+            successors: HashMap::new(),
         }
     }
 
@@ -340,6 +350,37 @@ impl SceneGraph {
             return Some(Edge { src, dest });
         }
 
+        None
+    }
+
+    pub fn set_successor(
+        &mut self,
+        src: Id<Scene>,
+        dest: Id<Scene>,
+    ) -> Result<bool, SceneGraphError> {
+        if !self.nodes.contains_key(&src) {
+            return Err(SceneGraphError::UnknownScene(src));
+        }
+
+        if !self.nodes.contains_key(&dest) {
+            return Err(SceneGraphError::UnknownScene(dest));
+        }
+
+        if let Some(edges) = self.nodes.get(&src)
+            && !edges.contains(&dest)
+        {
+            return Err(SceneGraphError::UnknownEdge { src, dest });
+        }
+
+        self.successors.insert(src, dest);
+        Ok(true)
+    }
+
+    pub fn clear_successor(src: Id<Scene>) -> Result<bool, SceneGraphError> {
+        Ok(true)
+    }
+
+    pub fn successor_of(scene: Id<Scene>) -> Option<Id<Scene>> {
         None
     }
 
