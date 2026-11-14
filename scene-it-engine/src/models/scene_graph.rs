@@ -207,11 +207,7 @@ impl SceneGraph {
             }
         }
 
-        if !self
-            .nodes
-            .get_mut(&src)
-            .is_some_and(|edges| edges.remove(&scene))
-        {
+        if self.remove_edge_unchecked(src, scene).is_none() {
             return Err(SceneGraphError::InvalidMove { scene, src, dest });
         }
 
@@ -347,6 +343,13 @@ impl SceneGraph {
     /// the same pair twice, and the second call legitimately finds nothing.
     fn remove_edge_unchecked(&mut self, src: Id<Scene>, dest: Id<Scene>) -> Option<Edge> {
         if self.nodes.get_mut(&src).is_some_and(|e| e.remove(&dest)) {
+            // Check if the edge exists in the successors map
+            if let Some(destination) = self.successor_of(src)
+                && dest == destination
+            {
+                self.clear_successor(src);
+            }
+
             return Some(Edge { src, dest });
         }
 
@@ -357,15 +360,7 @@ impl SceneGraph {
         &mut self,
         src: Id<Scene>,
         dest: Id<Scene>,
-    ) -> Result<bool, SceneGraphError> {
-        if !self.nodes.contains_key(&src) {
-            return Err(SceneGraphError::UnknownScene(src));
-        }
-
-        if !self.nodes.contains_key(&dest) {
-            return Err(SceneGraphError::UnknownScene(dest));
-        }
-
+    ) -> Result<(), SceneGraphError> {
         if let Some(edges) = self.nodes.get(&src)
             && !edges.contains(&dest)
         {
@@ -373,15 +368,16 @@ impl SceneGraph {
         }
 
         self.successors.insert(src, dest);
-        Ok(true)
+
+        Ok(())
     }
 
-    pub fn clear_successor(src: Id<Scene>) -> Result<bool, SceneGraphError> {
-        Ok(true)
+    pub fn clear_successor(&mut self, src: Id<Scene>) -> Option<Id<Scene>> {
+        self.successors.remove(&src)
     }
 
-    pub fn successor_of(scene: Id<Scene>) -> Option<Id<Scene>> {
-        None
+    pub fn successor_of(&self, scene: Id<Scene>) -> Option<Id<Scene>> {
+        self.successors.get(&scene).cloned()
     }
 
     /// Returns an iterator over all scenes that are direct successors of
@@ -471,6 +467,14 @@ impl SceneGraph {
         }
 
         false
+    }
+
+    fn verify_scene_exists(&self, scene: Id<Scene>) -> Result<(), SceneGraphError> {
+        if !self.nodes.contains_key(&scene) {
+            return Err(SceneGraphError::UnknownScene(scene));
+        }
+
+        Ok(())
     }
 }
 
